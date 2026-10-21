@@ -265,8 +265,10 @@ SELECT coalesce(pg_catalog.json_agg(p ORDER BY p.schema, p.relation, p.name), '[
             risks.append({"code": "INTERNAL_VIEW_SELECT", "relation": "app_internal." + view["name"]})
     if counted != len(views) or successful != counted:
         risks.append({"code": "VIEW_COUNT_OR_ACCESS_MISMATCH"})
+    catalog_complete = successful == counted == len(views)
     return {
-        "generated_at": datetime.now(timezone.utc).isoformat(), "status": "verified" if successful == counted == len(views) else "incomplete",
+        "generated_at": datetime.now(timezone.utc).isoformat(),
+        "status": "catalog_verified" if catalog_complete else "catalog_incomplete",
         "role": role, "source": source, "views": views, "base_tables": tables, "risks": risks,
         "view_owner_roles": owner_roles, "rls_policies": policies,
         "comparison": {"source_only": sorted(set(source["declared_views"]) - actual),
@@ -275,7 +277,12 @@ SELECT coalesce(pg_catalog.json_agg(p ORDER BY p.schema, p.relation, p.name), '[
                          "limit_zero_success_count": successful, "business_data_rows_read": 0,
                          "read_only": True, "source_sql_executed": False,
                          "rls_isolation_runtime_tested": False,
+                         "operational_account_verified": False,
                          "admin_inspection_authorized": reader.allow_admin_inspection},
+        "security_assessment": {
+            "status": "admin_inspection_only" if reader.allow_admin_inspection else "runtime_checks_required",
+            "note": "카탈로그와 LIMIT 0 확인은 서비스 계정의 최소 권한 또는 회원 격리 동작을 증명하지 않음",
+        },
     }
 
 
@@ -317,7 +324,7 @@ def main() -> int:
         write_json(attempts_file, {"consecutive_failures": 0, "last_status": "success"})
         print(json.dumps({"status": catalog["status"], "verification": catalog["verification"],
                           "comparison": catalog["comparison"], "risks": catalog["risks"]}, ensure_ascii=False))
-        return 0 if catalog["status"] == "verified" else 1
+        return 0 if catalog["status"] == "catalog_verified" else 1
     except SafeError as exc:
         if exc.code.startswith("CONNECT_") and exc.code not in {"CONNECT_ATTEMPTS_EXHAUSTED", "CONNECT_NETWORK"}:
             failures += 1

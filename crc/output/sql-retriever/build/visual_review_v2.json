@@ -1,0 +1,41 @@
+{
+  "status": "passed",
+  "date": "2026-10-21",
+  "slide_count": 62,
+  "reviewers": [
+    {
+      "name": "법원이",
+      "pages": [
+        1,
+        21
+      ],
+      "result": "각 원본 크기 이미지 확인, 경고 대상6쪽 포함 잘림과 겹침 없음"
+    },
+    {
+      "name": "클로니",
+      "pages": [
+        22,
+        42
+      ],
+      "result": "각 이미지 확인. 40~41쪽 컬럼폭 개선 후 다시 렌더링해 확인"
+    },
+    {
+      "name": "리야",
+      "pages": [
+        43,
+        62
+      ],
+      "result": "각 원본 크기 이미지 확인. SQL 상자와 표, 출처 겹침 없음"
+    }
+  ],
+  "final_pptx_sha256": "f9a4398bf8ab4c405930d13049493e87b9d93bae9ef2a91535e7be5acf33b3f5",
+  "checks": [
+    "design_validation_v2.json",
+    "package_validation_v2.json",
+    "final_validation_v2_1.json",
+    "final_validation_v2_2.json",
+    "preview_validation_v2.json"
+  ],
+  "warning_resolution": "자동 표 높이 추정 경고 6건은 실제 LibreOffice 렌더의 해당 페이지 시각 검수와 텍스트 검사로 확인. 겹침 없음",
+  "boundary": "LibreOffice 렌더 검증임. Microsoft PowerPoint 직접 실행, Groq 호출, 운영 계정 회원 격리와 성능 실측은 미수행"
+}

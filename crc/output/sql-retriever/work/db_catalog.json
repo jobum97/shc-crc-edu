@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-10-15T07:45:04.601273+00:00",
-  "status": "verified",
+  "generated_at": "2026-10-21T08:14:47.015954+00:00",
+  "status": "catalog_verified",
   "role": {
     "name": "cardlab",
     "rolsuper": true,
@@ -30,6 +30,110 @@
     ]
   },
   "views": [
+    {
+      "schema": "app",
+      "name": "card_fee_usage_6m",
+      "owner": "app_reader",
+      "kind": "v",
+      "options": [
+        "security_barrier=true"
+      ],
+      "description": "요청 회원의 카드별 최근 6개월 승인 사용액과 자료상 연회비. 실제 청구액 또는 혜택 손익 아님.",
+      "columns": [
+        {
+          "name": "card_ref",
+          "type": "text",
+          "position": 1,
+          "not_null": false,
+          "description": null
+        },
+        {
+          "name": "product_name",
+          "type": "text",
+          "position": 2,
+          "not_null": false,
+          "description": null
+        },
+        {
+          "name": "brand",
+          "type": "text",
+          "position": 3,
+          "not_null": false,
+          "description": null
+        },
+        {
+          "name": "current_status",
+          "type": "text",
+          "position": 4,
+          "not_null": false,
+          "description": null
+        },
+        {
+          "name": "product_effective_date",
+          "type": "date",
+          "position": 5,
+          "not_null": false,
+          "description": null
+        },
+        {
+          "name": "is_product_effective_on_base_date",
+          "type": "boolean",
+          "position": 6,
+          "not_null": false,
+          "description": null
+        },
+        {
+          "name": "listed_annual_fee",
+          "type": "integer",
+          "position": 7,
+          "not_null": false,
+          "description": "상품 자료의 총연회비 안내값. product_effective_date와 함께 해석할 것."
+        },
+        {
+          "name": "usage_period_start",
+          "type": "date",
+          "position": 8,
+          "not_null": false,
+          "description": null
+        },
+        {
+          "name": "usage_period_end",
+          "type": "date",
+          "position": 9,
+          "not_null": false,
+          "description": null
+        },
+        {
+          "name": "approved_amount_6m",
+          "type": "bigint",
+          "position": 10,
+          "not_null": false,
+          "description": null
+        },
+        {
+          "name": "transaction_count_6m",
+          "type": "integer",
+          "position": 11,
+          "not_null": false,
+          "description": null
+        },
+        {
+          "name": "covered_month_count",
+          "type": "integer",
+          "position": 12,
+          "not_null": false,
+          "description": null
+        },
+        {
+          "name": "active_month_count",
+          "type": "integer",
+          "position": 13,
+          "not_null": false,
+          "description": null
+        }
+      ],
+      "limit_zero_access": true
+    },
     {
       "schema": "app",
       "name": "customer_cards",
@@ -767,19 +871,25 @@
   "comparison": {
     "source_only": [],
     "database_only": [
+      "app.card_fee_usage_6m",
       "app.customer_daily_usage",
       "app.customer_delinquency_history",
       "app.merchant_usage"
     ]
   },
   "verification": {
-    "database_selectable_view_count": 11,
-    "catalog_view_count": 11,
-    "limit_zero_success_count": 11,
+    "database_selectable_view_count": 12,
+    "catalog_view_count": 12,
+    "limit_zero_success_count": 12,
     "business_data_rows_read": 0,
     "read_only": true,
     "source_sql_executed": false,
     "rls_isolation_runtime_tested": false,
+    "operational_account_verified": false,
     "admin_inspection_authorized": true
+  },
+  "security_assessment": {
+    "status": "admin_inspection_only",
+    "note": "카탈로그와 LIMIT 0 확인은 서비스 계정의 최소 권한 또는 회원 격리 동작을 증명하지 않음"
   }
 }

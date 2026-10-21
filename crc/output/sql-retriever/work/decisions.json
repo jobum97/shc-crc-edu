@@ -1,6 +1,6 @@
 {
-  "status": "accepted_defaults_spec_writing",
-  "updated_at": "2026-10-15T08:05:23.211936+00:00",
+  "status": "design_v2_completed",
+  "updated_at": "2026-10-21T08:36:48.598649+00:00",
   "confirmed_inputs": {
     "base_dir": "/Users/jobum/git/ai_edu/crc/output/sql-retriever",
     "view_sql": "/Users/jobum/git/ai_edu/crc/rdb/init/04_views_rls.sql",
@@ -12,25 +12,27 @@
   },
   "account_exception": {
     "decision_maker": "사용자",
-    "date": "2026-10-15",
-    "original_answer": "계정 cardlab 사용해",
+    "date": "2026-10-21",
+    "original_answer": "cardlab 계정으로 진행해저",
     "inspection_role": "cardlab",
     "allow_admin_for_inspection": true,
     "read_only_required": true,
     "business_data_row_reads_allowed": false,
-    "note": "관리자 접속 금지에 대한 후속 사용자 지시를 적용함. 최소 권한 계정 검증 완료를 의미하지 않음"
+    "note": "이번 재지시로 관리자 카탈로그 조사만 허용. 운영 계정 최소 권한과 회원 격리 증거로 사용하지 않음"
   },
   "observations": {
-    "verified_view_count": 11,
+    "verified_view_count": 12,
     "source_view_count": 8,
     "additional_views": [
+      "app.card_fee_usage_6m",
       "app.customer_daily_usage",
       "app.customer_delinquency_history",
       "app.merchant_usage"
     ],
     "additional_sql_sources": [
       "crc/rdb/init/05_merchant_usage.sql",
-      "crc/rdb/init/06_history_daily_usage.sql"
+      "crc/rdb/init/06_history_daily_usage.sql",
+      "crc/rdb/init/07_card_fee_usage.sql"
     ],
     "source_only_views": [],
     "explain_passed": 7,
@@ -45,19 +47,44 @@
     "view_owner_role": "app_reader",
     "view_owner_admin_flags_all_false": true,
     "rls_select_policy_count": 4,
-    "rls_isolation_runtime_tested": false
+    "rls_isolation_runtime_tested": false,
+    "catalog_status": "catalog_verified",
+    "explain_scope": "Q-01~Q-07의 2026-10-15 기록. 이번 카탈로그 재조회에서 EXPLAIN은 수행하지 않음"
   },
   "proposals": {
     "time_budget": {
-      "status": "accepted_default",
+      "status": "approved_v2",
       "total_seconds": 30,
       "closing_seconds": 1,
       "llm_timeout_seconds": 15,
       "llm_retries": 0,
-      "reason": "동기 요청의 대기 상한을 30초로 두고, 외부 LLM 15초 이후 내부 DB 처리와 규칙 처리 및 반환에 15초 확보",
+      "reason": "S-R1~6 정형14초/NL2SQL29초 상한 설계. S-R6 1초는 종료 처리와 동일하여 중복 합산하지 않음",
       "basis": "설계 가정. 개발 후 실측 필요",
       "decision_maker": "사용자",
-      "decision_date": "2026-10-15T08:00:55.424856+00:00"
+      "decision_date": "2026-10-15T08:00:55.424856+00:00",
+      "stage_seconds": {
+        "total": 30,
+        "exit": 1,
+        "start_threshold": 1.5,
+        "fixed": [
+          1,
+          1,
+          1,
+          2,
+          8,
+          1
+        ],
+        "nl2sql": [
+          1,
+          16,
+          1,
+          2,
+          8,
+          1
+        ],
+        "groq": 15,
+        "verified_runtime": false
+      }
     },
     "llm": {
       "status": "accepted_default",
@@ -69,7 +96,7 @@
       "decision_date": "2026-10-15T08:00:55.424856+00:00"
     },
     "fixed_queries": {
-      "status": "accepted_default",
+      "status": "approved_v2",
       "query_ids": [
         "Q-01",
         "Q-02",
@@ -77,16 +104,32 @@
         "Q-04",
         "Q-05",
         "Q-06",
-        "Q-07"
+        "Q-07",
+        "Q-08"
       ],
-      "evidence_file": "work/fixed_query_candidates.json",
-      "reason": "현재 논리 뷰의 제공 단위에 맞춘 7개 조회. 모두 EXPLAIN 통과",
+      "evidence_file": "assignment/fixed_query_catalog.json",
+      "reason": "사용자 승인에 따라 Q-08 추가. Q-01~07의 EXPLAIN은 과거 기록이며 v2 실행 검증과 구분",
       "decision_maker": "사용자",
       "decision_date": "2026-10-15T08:00:55.424856+00:00"
     },
     "sql_validation": {
       "status": "accepted_default",
       "allowed_views_and_columns": {
+        "app.card_fee_usage_6m": [
+          "card_ref",
+          "product_name",
+          "brand",
+          "current_status",
+          "product_effective_date",
+          "is_product_effective_on_base_date",
+          "listed_annual_fee",
+          "usage_period_start",
+          "usage_period_end",
+          "approved_amount_6m",
+          "transaction_count_6m",
+          "covered_month_count",
+          "active_month_count"
+        ],
         "app.customer_cards": [
           "card_ref",
           "product_id",
@@ -266,7 +309,7 @@
     },
     {
       "topic": "시간 예산",
-      "detail": "제안값 기준 외부 연동 최악값 15초, 전체 예산의 여유 15초 중 종료 1초를 제외한 내부 DB와 규칙 처리 몫 14초. 실제 성능 보장은 개발 후 검증"
+      "detail": "승인 v2는 NL2SQL29초(1+16+1+2+8+1), 정형14초. Groq15초를 S-R2 16초에 포함. 전체30초와 단계 시작 기준을 함께 검사. 실측 아님"
     },
     {
       "topic": "총 실행 제한",
@@ -448,5 +491,65 @@
       "2048토큰 내 완료 여부",
       "15초 호출과 전체30초 달성률"
     ]
+  },
+  "design_review_2026_10_21": {
+    "source_pptx_slide_count": 52,
+    "reviewers": [
+      "리야: PPT와 단계 흐름",
+      "법원이: View와 권한",
+      "클로니: 통합과 DB 재조회"
+    ],
+    "confirmed_by_user": [
+      {
+        "id": "D-01",
+        "decision": "cardlab 관리자 계정으로 읽기 전용 메타데이터 조사",
+        "scope": "운영 계정 검증 제외"
+      },
+      {
+        "id": "D-02",
+        "decision": "app.card_fee_usage_6m과 Q-08을 개선 설계에 포함"
+      }
+    ],
+    "enhancement_file": "enhance_sql_retriever_design.md",
+    "catalog_scope": "cardlab 메타데이터와 LIMIT 0. 업무 행 읽기 0건",
+    "approved_by_user": [
+      {
+        "id": "D-03",
+        "decision": "내부 단계 포함 30초 시간 상한 배분"
+      },
+      {
+        "id": "D-04",
+        "decision": "LIMIT 도달 시 추가 행 여부 미확정 표시"
+      },
+      {
+        "id": "D-05",
+        "decision": "제한된 운영 계정과 회원 격리 검증을 출시 조건으로 명시"
+      }
+    ],
+    "approval": {
+      "status": "approved",
+      "date": "2026-10-21",
+      "original_answer": "검토안 승인하였고 다음 단계 진행해줘"
+    },
+    "v2_spec_reviewers": [
+      "쉽게: 62쪽 설계 스크립트",
+      "법원이: SQL와 컬럼 대조",
+      "리야: 시간과 계약 검토",
+      "클로니: PPT와 검증 통합"
+    ],
+    "completion": {
+      "status": "completed",
+      "outputs": [
+        "tools/read_views.py",
+        "work/db_catalog.json",
+        "work/decisions.json",
+        "enhance_sql_retriever_design.md",
+        "sql_retriever_설계서_v2.md",
+        "sql_retriever_설계서_v2.pptx"
+      ],
+      "slide_count": 62,
+      "validation": "build/visual_review_v2.json",
+      "runtime_validated": false
+    }
   }
 }

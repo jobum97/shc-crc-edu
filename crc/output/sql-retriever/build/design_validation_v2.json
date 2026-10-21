@@ -1,0 +1,21 @@
+{
+  "result": "passed",
+  "checks": {
+    "slide_sequence": true,
+    "public_view_count": true,
+    "catalog_view_count": true,
+    "column_types": true,
+    "catalog_semantics": true,
+    "schema_identity": true,
+    "schema_view_enum": true,
+    "strict_schema": true,
+    "prompt_sections": true,
+    "time_budget": true,
+    "fixed_queries": true,
+    "markdown_width": true,
+    "markdown_punctuation": true,
+    "script_slide_titles": true,
+    "md_json_appendices_parse": true
+  },
+  "claim_boundary": "설계 산출물 정합성 검사. Groq 호출, 운영 계정 격리와 성능 실측 미수행"
+}
