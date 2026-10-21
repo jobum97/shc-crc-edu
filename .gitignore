@@ -24,6 +24,7 @@ __pycache__/
 
 # Downloaded references and generated presentation previews
 .temp/
+.references/
 crc/output/**/build/assets/
 crc/output/**/build/font-cache/
 crc/output/**/build/out/
