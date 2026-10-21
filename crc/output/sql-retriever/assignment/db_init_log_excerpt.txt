@@ -1,0 +1,4 @@
+hybrid-ai-lab-rdb  | 2026-10-21 04:55:57.362 UTC [47] LOG:  database system is ready to accept connections
+hybrid-ai-lab-rdb  | /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/07_card_fee_usage.sql
+hybrid-ai-lab-rdb  | PostgreSQL init process complete; ready for start up.
+hybrid-ai-lab-rdb  | 2026-10-21 04:56:00.932 UTC [1] LOG:  database system is ready to accept connections

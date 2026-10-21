@@ -1,0 +1,375 @@
+{
+  "result": "passed",
+  "checks": [
+    {
+      "check": "S-R1 필수 11항목",
+      "passed": true,
+      "evidence": [
+        "단계ID",
+        "단계명",
+        "이전 단계",
+        "비즈니스 목표",
+        "입력 데이터",
+        "수행 작업",
+        "출력 데이터",
+        "담당자 유형",
+        "외부시스템",
+        "예외 처리",
+        "비고"
+      ]
+    },
+    {
+      "check": "S-R1 이전 단계",
+      "passed": true,
+      "evidence": "트리거"
+    },
+    {
+      "check": "S-R2 필수 11항목",
+      "passed": true,
+      "evidence": [
+        "단계ID",
+        "단계명",
+        "이전 단계",
+        "비즈니스 목표",
+        "입력 데이터",
+        "수행 작업",
+        "출력 데이터",
+        "담당자 유형",
+        "외부시스템",
+        "예외 처리",
+        "비고"
+      ]
+    },
+    {
+      "check": "S-R2 이전 단계",
+      "passed": true,
+      "evidence": "S-R1"
+    },
+    {
+      "check": "S-R3 필수 11항목",
+      "passed": true,
+      "evidence": [
+        "단계ID",
+        "단계명",
+        "이전 단계",
+        "비즈니스 목표",
+        "입력 데이터",
+        "수행 작업",
+        "출력 데이터",
+        "담당자 유형",
+        "외부시스템",
+        "예외 처리",
+        "비고"
+      ]
+    },
+    {
+      "check": "S-R3 이전 단계",
+      "passed": true,
+      "evidence": "S-R2"
+    },
+    {
+      "check": "S-R4 필수 11항목",
+      "passed": true,
+      "evidence": [
+        "단계ID",
+        "단계명",
+        "이전 단계",
+        "비즈니스 목표",
+        "입력 데이터",
+        "수행 작업",
+        "출력 데이터",
+        "담당자 유형",
+        "외부시스템",
+        "예외 처리",
+        "비고"
+      ]
+    },
+    {
+      "check": "S-R4 이전 단계",
+      "passed": true,
+      "evidence": "S-R3"
+    },
+    {
+      "check": "S-R5 필수 11항목",
+      "passed": true,
+      "evidence": [
+        "단계ID",
+        "단계명",
+        "이전 단계",
+        "비즈니스 목표",
+        "입력 데이터",
+        "수행 작업",
+        "출력 데이터",
+        "담당자 유형",
+        "외부시스템",
+        "예외 처리",
+        "비고"
+      ]
+    },
+    {
+      "check": "S-R5 이전 단계",
+      "passed": true,
+      "evidence": "S-R4"
+    },
+    {
+      "check": "S-R6 필수 11항목",
+      "passed": true,
+      "evidence": [
+        "단계ID",
+        "단계명",
+        "이전 단계",
+        "비즈니스 목표",
+        "입력 데이터",
+        "수행 작업",
+        "출력 데이터",
+        "담당자 유형",
+        "외부시스템",
+        "예외 처리",
+        "비고"
+      ]
+    },
+    {
+      "check": "S-R6 이전 단계",
+      "passed": true,
+      "evidence": "S-R5 성공 또는 S-R1 ~ S-R5 오류"
+    },
+    {
+      "check": "Mermaid 연결",
+      "passed": true,
+      "evidence": {
+        "T": [
+          "R1"
+        ],
+        "R1": [
+          "R2",
+          "R6"
+        ],
+        "R2": [
+          "F",
+          "L",
+          "R6"
+        ],
+        "F": [
+          "R3"
+        ],
+        "L": [
+          "R3",
+          "R6"
+        ],
+        "R3": [
+          "R4",
+          "R6"
+        ],
+        "R4": [
+          "R5",
+          "R6"
+        ],
+        "R5": [
+          "R6",
+          "R6"
+        ],
+        "R6": [
+          "E"
+        ]
+      }
+    },
+    {
+      "check": "외부 연동 최악값",
+      "passed": true,
+      "evidence": "15 × (1 + 0) = 15초"
+    },
+    {
+      "check": "전체 예산",
+      "passed": true,
+      "evidence": "max(0,15)+0=15 ≤ 30"
+    },
+    {
+      "check": "내부 처리 몫",
+      "passed": true,
+      "evidence": "30-15-1=14"
+    },
+    {
+      "check": "예산 예: S-R1, 경과 0초",
+      "passed": true,
+      "evidence": "30 - 0 - 1 - 15 = 14초 ≥ 1.5초 → 시작"
+    },
+    {
+      "check": "예산 예: S-R2 NL2SQL, 경과 2초",
+      "passed": true,
+      "evidence": "30 - 2 - 1 - 15 = 12초 ≥ 1.5초 → 호출"
+    },
+    {
+      "check": "예산 예: S-R3, 경과 17초",
+      "passed": true,
+      "evidence": "30 - 17 - 1 - 0 = 12초 ≥ 1.5초 → 시작"
+    },
+    {
+      "check": "예산 예: S-R5, 경과 27초",
+      "passed": true,
+      "evidence": "30 - 27 - 1 - 0 = 2초 ≥ 1.5초 → 시작"
+    },
+    {
+      "check": "예산 예: S-R5, 경과 28초",
+      "passed": true,
+      "evidence": "30 - 28 - 1 - 0 = 1초 < 1.5초 → S-R6"
+    },
+    {
+      "check": "예산 예: S-R2 정형, 경과 12초",
+      "passed": true,
+      "evidence": "분기 전 2초로 통과 → 분기 후 30 - 12 - 1 - 0 = 17초"
+    },
+    {
+      "check": "정형 분기 예 진입 가능",
+      "passed": true,
+      "evidence": "분기 전: 30-12-1-15 ≥ 1.5"
+    },
+    {
+      "check": "DB 뷰 수와 LIMIT 0",
+      "passed": true,
+      "evidence": {
+        "database_selectable_view_count": 11,
+        "catalog_view_count": 11,
+        "limit_zero_success_count": 11,
+        "business_data_rows_read": 0,
+        "read_only": true,
+        "source_sql_executed": false,
+        "rls_isolation_runtime_tested": false,
+        "admin_inspection_authorized": true
+      }
+    },
+    {
+      "check": "업무 행 미조회",
+      "passed": true,
+      "evidence": "LIMIT 0 및 EXPLAIN ANALYZE FALSE"
+    },
+    {
+      "check": "정형 SQL EXPLAIN",
+      "passed": true,
+      "evidence": {
+        "passed": 7,
+        "total": 7
+      }
+    },
+    {
+      "check": "Q-01 SQL 원문",
+      "passed": true,
+      "evidence": "Q-01"
+    },
+    {
+      "check": "Q-02 SQL 원문",
+      "passed": true,
+      "evidence": "Q-02"
+    },
+    {
+      "check": "Q-03 SQL 원문",
+      "passed": true,
+      "evidence": "Q-03"
+    },
+    {
+      "check": "Q-04 SQL 원문",
+      "passed": true,
+      "evidence": "Q-04"
+    },
+    {
+      "check": "Q-05 SQL 원문",
+      "passed": true,
+      "evidence": "Q-05"
+    },
+    {
+      "check": "Q-06 SQL 원문",
+      "passed": true,
+      "evidence": "Q-06"
+    },
+    {
+      "check": "Q-07 SQL 원문",
+      "passed": true,
+      "evidence": "Q-07"
+    },
+    {
+      "check": "엄격 JSON Schema",
+      "passed": true,
+      "evidence": [
+        "status",
+        "reason_code",
+        "view",
+        "sql",
+        "grain",
+        "period_start",
+        "period_end",
+        "selected_columns"
+      ]
+    },
+    {
+      "check": "시스템 프롬프트 8섹션",
+      "passed": true,
+      "evidence": [
+        "목표",
+        "역할",
+        "맥락",
+        "입력",
+        "처리",
+        "출력",
+        "제약조건",
+        "예시"
+      ]
+    },
+    {
+      "check": "Context 단계 필드 연결",
+      "passed": true,
+      "evidence": {
+        "S-R2": [
+          "context.plan"
+        ],
+        "S-R3": [
+          "context.plan_check"
+        ],
+        "S-R4": [
+          "context.validated_sql",
+          "context.sql_fingerprint"
+        ],
+        "S-R5": [
+          "context.result"
+        ],
+        "모든 단계 오류": [
+          "context.error"
+        ]
+      }
+    },
+    {
+      "check": "LLM 공식 근거",
+      "passed": true,
+      "evidence": {
+        "base_url": "https://github.com/groq/groq-python/blob/main/src/groq/_client.py",
+        "endpoint": "https://console.groq.com/docs/api-reference",
+        "authentication": "https://console.groq.com/docs/reasoning",
+        "api_key_environment_variable": "https://console.groq.com/docs/quickstart",
+        "model_id": "https://console.groq.com/docs/model/openai/gpt-oss-120b",
+        "context_window_tokens": "https://console.groq.com/docs/model/openai/gpt-oss-120b",
+        "provider_max_output_tokens": "https://console.groq.com/docs/model/openai/gpt-oss-120b",
+        "rate_limit": "https://console.groq.com/docs/rate-limits",
+        "temperature": "https://console.groq.com/docs/api-reference",
+        "top_p": "https://console.groq.com/docs/api-reference",
+        "max_completion_tokens": "https://console.groq.com/docs/api-reference",
+        "reasoning_effort": "https://console.groq.com/docs/api-reference",
+        "include_reasoning": "https://console.groq.com/docs/api-reference",
+        "stream": "https://console.groq.com/docs/structured-outputs",
+        "n": "https://console.groq.com/docs/api-reference",
+        "response_format": "https://console.groq.com/docs/structured-outputs",
+        "top_k": "https://console.groq.com/docs/api-reference",
+        "tools": "https://console.groq.com/docs/structured-outputs"
+      }
+    },
+    {
+      "check": "문서 가운뎃점 없음",
+      "passed": true,
+      "evidence": "0건"
+    },
+    {
+      "check": "문서 줄 길이",
+      "passed": true,
+      "evidence": 118
+    }
+  ],
+  "visual_review": "빌드 후 별도 수행",
+  "field_lineage_manual_review": "Context 누적 및 오류 분기 검토"
+}

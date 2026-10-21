@@ -1,0 +1,89 @@
+{
+  "schema_version": "design-catalog-2026-10-21",
+  "runtime_implemented": false,
+  "query_count": 8,
+  "queries": [
+    {
+      "id": "Q-01",
+      "description": "회원 가입일과 연령대 조회",
+      "view": "app.customer_profile",
+      "result_grain": "요청 회원 1명",
+      "sql": "SELECT join_date, age_band FROM app.customer_profile LIMIT 1;",
+      "source": "existing_design"
+    },
+    {
+      "id": "Q-02",
+      "description": "보유 카드와 연회비 조회",
+      "view": "app.customer_cards",
+      "result_grain": "카드 1개",
+      "sql": "SELECT card_ref, product_id, product_name, brand, issue_date, current_status, product_effective_date, is_product_effective_on_base_date, annual_fee FROM app.customer_cards ORDER BY card_ref LIMIT 200;",
+      "source": "existing_design"
+    },
+    {
+      "id": "Q-03",
+      "description": "최근 6개월 카드별 사용액과 건수 조회",
+      "view": "app.monthly_usage",
+      "result_grain": "카드 1개와 월 1개",
+      "sql": "SELECT card_ref, month, period_start, period_end, approved_amount, transaction_count FROM app.monthly_usage ORDER BY month DESC, card_ref LIMIT 200;",
+      "source": "existing_design"
+    },
+    {
+      "id": "Q-04",
+      "description": "기준일 이전 완료월의 최신 연체 현황 조회",
+      "view": "app.customer_delinquency",
+      "result_grain": "요청 회원의 최신 완료월 1개",
+      "sql": "SELECT base_month, as_of_date, overdue_amount, overdue_days, overdue_count_12m FROM app.customer_delinquency ORDER BY base_month DESC LIMIT 1;",
+      "source": "existing_design"
+    },
+    {
+      "id": "Q-05",
+      "description": "최근 6개월 가맹점과 업종별 사용액 조회",
+      "view": "app.merchant_usage",
+      "result_grain": "카드 1개, 월 1개, 가맹점 1개",
+      "sql": "SELECT card_ref, month, period_start, period_end, merchant_name, category, first_approved_date, last_approved_date, approved_amount, transaction_count FROM app.merchant_usage ORDER BY month DESC, approved_amount DESC, card_ref, merchant_name, category LIMIT 200;",
+      "source": "existing_design"
+    },
+    {
+      "id": "Q-06",
+      "description": "최근 12개 완료월의 연체 이력 조회",
+      "view": "app.customer_delinquency_history",
+      "result_grain": "요청 회원과 완료월 1개",
+      "sql": "SELECT base_month, as_of_date, overdue_amount, overdue_days, overdue_count_12m FROM app.customer_delinquency_history ORDER BY base_month DESC LIMIT 12;",
+      "source": "existing_design"
+    },
+    {
+      "id": "Q-07",
+      "description": "최근 최대 90일의 일별 사용액 조회",
+      "view": "app.customer_daily_usage",
+      "result_grain": "요청 회원과 날짜 1개",
+      "sql": "SELECT usage_date, approved_amount, transaction_count FROM app.customer_daily_usage ORDER BY usage_date DESC LIMIT 90;",
+      "source": "existing_design"
+    },
+    {
+      "id": "Q-08",
+      "description": "활성 카드별 자료상 연회비와 최근 6개월 승인 사용액",
+      "view": "app.card_fee_usage_6m",
+      "result_grain": "카드 1장당 1행",
+      "match": {
+        "intent": "card_fee_vs_approved_usage",
+        "period": "base_month_inclusive_last_6_calendar_months",
+        "grain": "card",
+        "allowed_metrics": [
+          "listed_annual_fee",
+          "approved_amount_6m",
+          "transaction_count_6m",
+          "covered_month_count",
+          "active_month_count"
+        ],
+        "excludes": [
+          "actual_billed_fee",
+          "benefit_value",
+          "cancellation_advice",
+          "monthly_trend"
+        ]
+      },
+      "sql": "SELECT\n    card_ref,\n    product_name,\n    brand,\n    product_effective_date,\n    is_product_effective_on_base_date,\n    listed_annual_fee,\n    usage_period_start,\n    usage_period_end,\n    approved_amount_6m,\n    transaction_count_6m,\n    covered_month_count,\n    active_month_count\nFROM app.card_fee_usage_6m\nWHERE current_status = 'ACTIVE'\nORDER BY listed_annual_fee DESC, approved_amount_6m ASC, card_ref\nLIMIT 20;",
+      "source": "2026-10-21_assignment"
+    }
+  ]
+}

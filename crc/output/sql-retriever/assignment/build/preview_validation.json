@@ -1,0 +1,239 @@
+{
+  "pdf_sha256": "51c2f726f4a625a1164db6da0d0b68f7c0ad5b6b50e068cf3c05d59dba4dd4a0",
+  "page_count": 21,
+  "pages": [
+    {
+      "page": 1,
+      "missing_strings": [],
+      "out_of_page_count": 0,
+      "fonts": [
+        "Pretendard-Bold",
+        "Pretendard-Regular"
+      ],
+      "minimum_font_pt": 14.003,
+      "passed": true
+    },
+    {
+      "page": 2,
+      "missing_strings": [],
+      "out_of_page_count": 0,
+      "fonts": [
+        "Pretendard-Bold",
+        "Pretendard-Regular"
+      ],
+      "minimum_font_pt": 14.003,
+      "passed": true
+    },
+    {
+      "page": 3,
+      "missing_strings": [],
+      "out_of_page_count": 0,
+      "fonts": [
+        "Pretendard-Bold",
+        "Pretendard-Regular"
+      ],
+      "minimum_font_pt": 14.003,
+      "passed": true
+    },
+    {
+      "page": 4,
+      "missing_strings": [],
+      "out_of_page_count": 0,
+      "fonts": [
+        "Pretendard-Bold",
+        "Pretendard-Regular"
+      ],
+      "minimum_font_pt": 14.003,
+      "passed": true
+    },
+    {
+      "page": 5,
+      "missing_strings": [],
+      "out_of_page_count": 0,
+      "fonts": [
+        "Pretendard-Bold",
+        "Pretendard-Regular"
+      ],
+      "minimum_font_pt": 14.003,
+      "passed": true
+    },
+    {
+      "page": 6,
+      "missing_strings": [],
+      "out_of_page_count": 0,
+      "fonts": [
+        "Pretendard-Bold",
+        "Pretendard-Regular"
+      ],
+      "minimum_font_pt": 14.003,
+      "passed": true
+    },
+    {
+      "page": 7,
+      "missing_strings": [],
+      "out_of_page_count": 0,
+      "fonts": [
+        "Pretendard-Bold",
+        "Pretendard-Regular"
+      ],
+      "minimum_font_pt": 14.003,
+      "passed": true
+    },
+    {
+      "page": 8,
+      "missing_strings": [],
+      "out_of_page_count": 0,
+      "fonts": [
+        "Pretendard-Bold",
+        "Pretendard-Regular"
+      ],
+      "minimum_font_pt": 14.003,
+      "passed": true
+    },
+    {
+      "page": 9,
+      "missing_strings": [],
+      "out_of_page_count": 0,
+      "fonts": [
+        "Pretendard-Bold",
+        "Pretendard-Regular"
+      ],
+      "minimum_font_pt": 14.003,
+      "passed": true
+    },
+    {
+      "page": 10,
+      "missing_strings": [],
+      "out_of_page_count": 0,
+      "fonts": [
+        "Pretendard-Bold",
+        "Pretendard-Regular"
+      ],
+      "minimum_font_pt": 14.003,
+      "passed": true
+    },
+    {
+      "page": 11,
+      "missing_strings": [],
+      "out_of_page_count": 0,
+      "fonts": [
+        "Pretendard-Bold",
+        "Pretendard-Regular"
+      ],
+      "minimum_font_pt": 14.003,
+      "passed": true
+    },
+    {
+      "page": 12,
+      "missing_strings": [],
+      "out_of_page_count": 0,
+      "fonts": [
+        "Pretendard-Bold",
+        "Pretendard-Regular"
+      ],
+      "minimum_font_pt": 14.003,
+      "passed": true
+    },
+    {
+      "page": 13,
+      "missing_strings": [],
+      "out_of_page_count": 0,
+      "fonts": [
+        "Pretendard-Bold",
+        "Pretendard-Regular"
+      ],
+      "minimum_font_pt": 14.003,
+      "passed": true
+    },
+    {
+      "page": 14,
+      "missing_strings": [],
+      "out_of_page_count": 0,
+      "fonts": [
+        "Pretendard-Bold",
+        "Pretendard-Regular"
+      ],
+      "minimum_font_pt": 14.003,
+      "passed": true
+    },
+    {
+      "page": 15,
+      "missing_strings": [],
+      "out_of_page_count": 0,
+      "fonts": [
+        "Pretendard-Bold",
+        "Pretendard-Regular"
+      ],
+      "minimum_font_pt": 14.003,
+      "passed": true
+    },
+    {
+      "page": 16,
+      "missing_strings": [],
+      "out_of_page_count": 0,
+      "fonts": [
+        "Pretendard-Bold",
+        "Pretendard-Regular"
+      ],
+      "minimum_font_pt": 14.003,
+      "passed": true
+    },
+    {
+      "page": 17,
+      "missing_strings": [],
+      "out_of_page_count": 0,
+      "fonts": [
+        "Pretendard-Bold",
+        "Pretendard-Regular"
+      ],
+      "minimum_font_pt": 14.003,
+      "passed": true
+    },
+    {
+      "page": 18,
+      "missing_strings": [],
+      "out_of_page_count": 0,
+      "fonts": [
+        "Pretendard-Bold",
+        "Pretendard-Regular"
+      ],
+      "minimum_font_pt": 14.003,
+      "passed": true
+    },
+    {
+      "page": 19,
+      "missing_strings": [],
+      "out_of_page_count": 0,
+      "fonts": [
+        "Pretendard-Bold",
+        "Pretendard-Regular"
+      ],
+      "minimum_font_pt": 14.003,
+      "passed": true
+    },
+    {
+      "page": 20,
+      "missing_strings": [],
+      "out_of_page_count": 0,
+      "fonts": [
+        "Pretendard-Bold",
+        "Pretendard-Regular"
+      ],
+      "minimum_font_pt": 14.003,
+      "passed": true
+    },
+    {
+      "page": 21,
+      "missing_strings": [],
+      "out_of_page_count": 0,
+      "fonts": [
+        "Pretendard-Bold",
+        "Pretendard-Regular"
+      ],
+      "minimum_font_pt": 14.003,
+      "passed": true
+    }
+  ],
+  "result": "passed",
+  "scope": "LibreOffice PDF의 텍스트와 글꼴 검증. PowerPoint 앱 자체 확인은 아님."
+}

@@ -1,0 +1,250 @@
+{
+  "reviewer": "지식니",
+  "reviewed_at": "2026-10-18T12:15:49.089898+00:00",
+  "render_source": "LibreOffice 최종 미리보기",
+  "method": "view_image detail=original로 36쪽부터 52쪽까지 1600x900 PNG 17장을 각각 확인함",
+  "final_reviewed": true,
+  "reviewed_pages": 17,
+  "page_range": [
+    36,
+    52
+  ],
+  "remaining_issue_count": 0,
+  "summary": "최종 PNG에서 SQL 잘림, 표 글자 누락과 겹침, 영문 필드명 중간 줄바꿈, 오류 HTTP 상태 가독성 문제를 발견하지 못함",
+  "resolved_initial_findings": [
+    {
+      "pages": [
+        46,
+        47,
+        48,
+        49
+      ],
+      "issue": "첫 열 폭이 좁아 영문 필드명과 타입의 단어 중간에 줄바꿈 발생",
+      "resolution": "첫 열 확대 후 최종 PNG를 개별 재확인하여 해소 확인함"
+    }
+  ],
+  "scope_limit": "PPT 내부 구조와 최소 글자 크기의 수치 검증은 본 이미지 검수 범위에 포함하지 않음. 실제 SQL 실행과 회원 격리 테스트를 수행하지 않음",
+  "pages": [
+    {
+      "page": 36,
+      "reviewed": true,
+      "final_reviewed": true,
+      "image_path": "/Users/jobum/git/ai_edu/crc/output/sql-retriever/build/out/slide-36.png",
+      "sha256": "e797227d904783361ab7bb1e94484850f667613bc9ec1e184fe591e50f470bff",
+      "dimensions": {
+        "width": 1600,
+        "height": 900
+      },
+      "issues": [],
+      "observation": "SQL 4줄과 하단 결과 단위, EXPLAIN, 검증 한계 표의 내용과 가독성 확인함"
+    },
+    {
+      "page": 37,
+      "reviewed": true,
+      "final_reviewed": true,
+      "image_path": "/Users/jobum/git/ai_edu/crc/output/sql-retriever/build/out/slide-37.png",
+      "sha256": "6379e66fce203b27319ee6e0dcf356c1cfe422ffd249f2cf1cdb5a6ca88fa6b5",
+      "dimensions": {
+        "width": 1600,
+        "height": 900
+      },
+      "issues": [],
+      "observation": "긴 카드 필드명과 6줄 SQL이 상자 안에 표시됨. 하단표 누락과 겹침 없음"
+    },
+    {
+      "page": 38,
+      "reviewed": true,
+      "final_reviewed": true,
+      "image_path": "/Users/jobum/git/ai_edu/crc/output/sql-retriever/build/out/slide-38.png",
+      "sha256": "5c2dae7abccc49bac5b13ece3f620a2cb0812c1d82304ef283e9c510fba882b2",
+      "dimensions": {
+        "width": 1600,
+        "height": 900
+      },
+      "issues": [],
+      "observation": "거래 건수의 줄바꿈과 정렬 구문, 하단표 가독성 확인함"
+    },
+    {
+      "page": 39,
+      "reviewed": true,
+      "final_reviewed": true,
+      "image_path": "/Users/jobum/git/ai_edu/crc/output/sql-retriever/build/out/slide-39.png",
+      "sha256": "79fe253b37f0a2d5a6e99ec775112cea3755ccf19937e972efc5a691fbb1b887",
+      "dimensions": {
+        "width": 1600,
+        "height": 900
+      },
+      "issues": [],
+      "observation": "연체 컬럼 목록과 완료월 조회 SQL, 하단표가 잘림 없이 표시됨"
+    },
+    {
+      "page": 40,
+      "reviewed": true,
+      "final_reviewed": true,
+      "image_path": "/Users/jobum/git/ai_edu/crc/output/sql-retriever/build/out/slide-40.png",
+      "sha256": "79b52d23acfbe72ae4421068b45c586e995f0a034d3ba8f106d1ac2f13e1f15f",
+      "dimensions": {
+        "width": 1600,
+        "height": 900
+      },
+      "issues": [],
+      "observation": "긴 ORDER BY와 가맹점 컬럼 목록이 SQL 상자 안에 표시됨"
+    },
+    {
+      "page": 41,
+      "reviewed": true,
+      "final_reviewed": true,
+      "image_path": "/Users/jobum/git/ai_edu/crc/output/sql-retriever/build/out/slide-41.png",
+      "sha256": "eb6de9054a7d0cedd6abf5cd395ab63bf704c821b58a5fb0291f41b972343113",
+      "dimensions": {
+        "width": 1600,
+        "height": 900
+      },
+      "issues": [],
+      "observation": "customer_delinquency_history 뷰 이름과 완료월 설명이 잘림 없이 표시됨"
+    },
+    {
+      "page": 42,
+      "reviewed": true,
+      "final_reviewed": true,
+      "image_path": "/Users/jobum/git/ai_edu/crc/output/sql-retriever/build/out/slide-42.png",
+      "sha256": "518f58b4b2aa30cebcab108e69fb6b37897956ec903089051df573b451836b22",
+      "dimensions": {
+        "width": 1600,
+        "height": 900
+      },
+      "issues": [],
+      "observation": "일별 조회 SQL과 LIMIT 90, 하단표가 선명하게 표시됨"
+    },
+    {
+      "page": 43,
+      "reviewed": true,
+      "final_reviewed": true,
+      "image_path": "/Users/jobum/git/ai_edu/crc/output/sql-retriever/build/out/slide-43.png",
+      "sha256": "ca1777c3f1d4cbe6d7931e78a6594278646f00367e07b7c23b90d364be50caa1",
+      "dimensions": {
+        "width": 1600,
+        "height": 900
+      },
+      "issues": [],
+      "observation": "8개 규칙 행과 머리글이 표 안에 표시됨. 행 경계와 글자 겹침 없음"
+    },
+    {
+      "page": 44,
+      "reviewed": true,
+      "final_reviewed": true,
+      "image_path": "/Users/jobum/git/ai_edu/crc/output/sql-retriever/build/out/slide-44.png",
+      "sha256": "dfc39c480a89dc62c0077ed93bdc02099463aae88f1614b95ae1db0d922e9fc8",
+      "dimensions": {
+        "width": 1600,
+        "height": 900
+      },
+      "issues": [],
+      "observation": "긴 허용 함수 목록과 함수 해석, 실행 일치 설명이 잘림 없이 표시됨"
+    },
+    {
+      "page": 45,
+      "reviewed": true,
+      "final_reviewed": true,
+      "image_path": "/Users/jobum/git/ai_edu/crc/output/sql-retriever/build/out/slide-45.png",
+      "sha256": "ce017e50a97f91972097d2747ef5c4b883886039d7900bd634967f3ce476890e",
+      "dimensions": {
+        "width": 1600,
+        "height": 900
+      },
+      "issues": [],
+      "observation": "세션 변수와 읽기 전용 설정 문자열이 잘림 없이 표시됨. 미검증 항목이 분명히 보임"
+    },
+    {
+      "page": 46,
+      "reviewed": true,
+      "final_reviewed": true,
+      "image_path": "/Users/jobum/git/ai_edu/crc/output/sql-retriever/build/out/slide-46.png",
+      "sha256": "e854f98d3cbce180c0a6ad5ff6d7e922f77ed1aa46e00289251ef5a80f903d00",
+      "dimensions": {
+        "width": 1600,
+        "height": 900
+      },
+      "issues": [],
+      "observation": "첫 열 확대 후 AuthScope와 member_scope의 단어 중간 줄바꿈 해소 확인함"
+    },
+    {
+      "page": 47,
+      "reviewed": true,
+      "final_reviewed": true,
+      "image_path": "/Users/jobum/git/ai_edu/crc/output/sql-retriever/build/out/slide-47.png",
+      "sha256": "99fb5df2ad9fd516a3cf4bf58a70aa51491963568aa1e32b7088a6a131d9d590",
+      "dimensions": {
+        "width": 1600,
+        "height": 900
+      },
+      "issues": [],
+      "observation": "첫 열 확대 후 schema_catalog와 object의 단어 중간 줄바꿈 해소 확인함"
+    },
+    {
+      "page": 48,
+      "reviewed": true,
+      "final_reviewed": true,
+      "image_path": "/Users/jobum/git/ai_edu/crc/output/sql-retriever/build/out/slide-48.png",
+      "sha256": "2f39fd6c08fa8f5865fb0943905acd6b17431e0c7f55713d5f4467f83afb1c7d",
+      "dimensions": {
+        "width": 1600,
+        "height": 900
+      },
+      "issues": [],
+      "observation": "첫 열 확대 후 validated_sql과 sql_fingerprint의 단어 중간 줄바꿈 해소 확인함"
+    },
+    {
+      "page": 49,
+      "reviewed": true,
+      "final_reviewed": true,
+      "image_path": "/Users/jobum/git/ai_edu/crc/output/sql-retriever/build/out/slide-49.png",
+      "sha256": "40f35c666a7dfb15a2746e7d88d056dcde9b79ed916dad671c4bce81cd44f09a",
+      "dimensions": {
+        "width": 1600,
+        "height": 900
+      },
+      "issues": [],
+      "observation": "첫 열 확대 후 array<object>와 Response.meta의 단어 중간 줄바꿈 및 괄호 단독 줄 해소 확인함"
+    },
+    {
+      "page": 50,
+      "reviewed": true,
+      "final_reviewed": true,
+      "image_path": "/Users/jobum/git/ai_edu/crc/output/sql-retriever/build/out/slide-50.png",
+      "sha256": "8822d5def920933f81d99076eb238f89516d1c5b60f37732199dfe6f89b1fc19",
+      "dimensions": {
+        "width": 1600,
+        "height": 900
+      },
+      "issues": [],
+      "observation": "오류 코드, HTTP 상태, 단계, 호출자 메시지가 각 셀 안에서 읽힘"
+    },
+    {
+      "page": 51,
+      "reviewed": true,
+      "final_reviewed": true,
+      "image_path": "/Users/jobum/git/ai_edu/crc/output/sql-retriever/build/out/slide-51.png",
+      "sha256": "6c5dcc5ac8bb6e7c6ad50b78e0faec8415cb25db8a4c96450db1ee2feb625867",
+      "dimensions": {
+        "width": 1600,
+        "height": 900
+      },
+      "issues": [],
+      "observation": "긴 TIME_BUDGET_EXCEEDED 코드와 HTTP 504 적용 단계 범위가 잘림 없이 읽힘"
+    },
+    {
+      "page": 52,
+      "reviewed": true,
+      "final_reviewed": true,
+      "image_path": "/Users/jobum/git/ai_edu/crc/output/sql-retriever/build/out/slide-52.png",
+      "sha256": "49fc1b0dea87bffeacfa57c14b0c04ab24270ffc2289bdeaccc94717892e8b73",
+      "dimensions": {
+        "width": 1600,
+        "height": 900
+      },
+      "issues": [],
+      "observation": "점검표 8개 행과 설계 확인 및 미검증 항목이 잘림 없이 읽힘"
+    }
+  ]
+}

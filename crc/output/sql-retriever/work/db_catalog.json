@@ -1,0 +1,785 @@
+{
+  "generated_at": "2026-10-15T07:45:04.601273+00:00",
+  "status": "verified",
+  "role": {
+    "name": "cardlab",
+    "rolsuper": true,
+    "rolcreaterole": true,
+    "rolcreatedb": true,
+    "rolbypassrls": true,
+    "default_transaction_read_only": "on",
+    "transaction_read_only": "on",
+    "server_version": "18.6"
+  },
+  "source": {
+    "path": "/Users/jobum/git/ai_edu/crc/rdb/init/04_views_rls.sql",
+    "declared_views": [
+      "app.customer_cards",
+      "app.customer_delinquency",
+      "app.customer_profile",
+      "app.monthly_usage",
+      "app_internal.customer_cards_full",
+      "app_internal.member_basic",
+      "app_internal.request_scope",
+      "app_internal.usage_months"
+    ],
+    "session_variables": [
+      "app.base_date",
+      "app.coverage_start",
+      "app.member_id"
+    ]
+  },
+  "views": [
+    {
+      "schema": "app",
+      "name": "customer_cards",
+      "owner": "app_reader",
+      "kind": "v",
+      "options": [
+        "security_barrier=true"
+      ],
+      "description": null,
+      "columns": [
+        {
+          "name": "card_ref",
+          "type": "text",
+          "position": 1,
+          "not_null": false,
+          "description": null
+        },
+        {
+          "name": "product_id",
+          "type": "text",
+          "position": 2,
+          "not_null": false,
+          "description": null
+        },
+        {
+          "name": "product_name",
+          "type": "text",
+          "position": 3,
+          "not_null": false,
+          "description": null
+        },
+        {
+          "name": "brand",
+          "type": "text",
+          "position": 4,
+          "not_null": false,
+          "description": null
+        },
+        {
+          "name": "issue_date",
+          "type": "date",
+          "position": 5,
+          "not_null": false,
+          "description": null
+        },
+        {
+          "name": "current_status",
+          "type": "text",
+          "position": 6,
+          "not_null": false,
+          "description": null
+        },
+        {
+          "name": "product_effective_date",
+          "type": "date",
+          "position": 7,
+          "not_null": false,
+          "description": null
+        },
+        {
+          "name": "is_product_effective_on_base_date",
+          "type": "boolean",
+          "position": 8,
+          "not_null": false,
+          "description": null
+        },
+        {
+          "name": "annual_fee",
+          "type": "integer",
+          "position": 9,
+          "not_null": false,
+          "description": null
+        }
+      ],
+      "limit_zero_access": true
+    },
+    {
+      "schema": "app",
+      "name": "customer_daily_usage",
+      "owner": "app_reader",
+      "kind": "v",
+      "options": [
+        "security_barrier=true"
+      ],
+      "description": null,
+      "columns": [
+        {
+          "name": "usage_date",
+          "type": "date",
+          "position": 1,
+          "not_null": false,
+          "description": null
+        },
+        {
+          "name": "approved_amount",
+          "type": "bigint",
+          "position": 2,
+          "not_null": false,
+          "description": null
+        },
+        {
+          "name": "transaction_count",
+          "type": "integer",
+          "position": 3,
+          "not_null": false,
+          "description": null
+        }
+      ],
+      "limit_zero_access": true
+    },
+    {
+      "schema": "app",
+      "name": "customer_delinquency",
+      "owner": "app_reader",
+      "kind": "v",
+      "options": [
+        "security_barrier=true"
+      ],
+      "description": null,
+      "columns": [
+        {
+          "name": "base_month",
+          "type": "character(7)",
+          "position": 1,
+          "not_null": false,
+          "description": null
+        },
+        {
+          "name": "as_of_date",
+          "type": "date",
+          "position": 2,
+          "not_null": false,
+          "description": null
+        },
+        {
+          "name": "overdue_amount",
+          "type": "integer",
+          "position": 3,
+          "not_null": false,
+          "description": null
+        },
+        {
+          "name": "overdue_days",
+          "type": "integer",
+          "position": 4,
+          "not_null": false,
+          "description": null
+        },
+        {
+          "name": "overdue_count_12m",
+          "type": "integer",
+          "position": 5,
+          "not_null": false,
+          "description": null
+        }
+      ],
+      "limit_zero_access": true
+    },
+    {
+      "schema": "app",
+      "name": "customer_delinquency_history",
+      "owner": "app_reader",
+      "kind": "v",
+      "options": [
+        "security_barrier=true"
+      ],
+      "description": null,
+      "columns": [
+        {
+          "name": "base_month",
+          "type": "character(7)",
+          "position": 1,
+          "not_null": false,
+          "description": null
+        },
+        {
+          "name": "as_of_date",
+          "type": "date",
+          "position": 2,
+          "not_null": false,
+          "description": null
+        },
+        {
+          "name": "overdue_amount",
+          "type": "integer",
+          "position": 3,
+          "not_null": false,
+          "description": null
+        },
+        {
+          "name": "overdue_days",
+          "type": "integer",
+          "position": 4,
+          "not_null": false,
+          "description": null
+        },
+        {
+          "name": "overdue_count_12m",
+          "type": "integer",
+          "position": 5,
+          "not_null": false,
+          "description": null
+        }
+      ],
+      "limit_zero_access": true
+    },
+    {
+      "schema": "app",
+      "name": "customer_profile",
+      "owner": "app_reader",
+      "kind": "v",
+      "options": [
+        "security_barrier=true"
+      ],
+      "description": null,
+      "columns": [
+        {
+          "name": "join_date",
+          "type": "date",
+          "position": 1,
+          "not_null": false,
+          "description": null
+        },
+        {
+          "name": "age_band",
+          "type": "text",
+          "position": 2,
+          "not_null": false,
+          "description": null
+        }
+      ],
+      "limit_zero_access": true
+    },
+    {
+      "schema": "app",
+      "name": "merchant_usage",
+      "owner": "app_reader",
+      "kind": "v",
+      "options": [
+        "security_barrier=true"
+      ],
+      "description": null,
+      "columns": [
+        {
+          "name": "card_ref",
+          "type": "text",
+          "position": 1,
+          "not_null": false,
+          "description": null
+        },
+        {
+          "name": "month",
+          "type": "text",
+          "position": 2,
+          "not_null": false,
+          "description": null
+        },
+        {
+          "name": "period_start",
+          "type": "date",
+          "position": 3,
+          "not_null": false,
+          "description": null
+        },
+        {
+          "name": "period_end",
+          "type": "date",
+          "position": 4,
+          "not_null": false,
+          "description": null
+        },
+        {
+          "name": "merchant_name",
+          "type": "text",
+          "position": 5,
+          "not_null": false,
+          "description": null
+        },
+        {
+          "name": "category",
+          "type": "text",
+          "position": 6,
+          "not_null": false,
+          "description": null
+        },
+        {
+          "name": "first_approved_date",
+          "type": "date",
+          "position": 7,
+          "not_null": false,
+          "description": null
+        },
+        {
+          "name": "last_approved_date",
+          "type": "date",
+          "position": 8,
+          "not_null": false,
+          "description": null
+        },
+        {
+          "name": "approved_amount",
+          "type": "bigint",
+          "position": 9,
+          "not_null": false,
+          "description": null
+        },
+        {
+          "name": "transaction_count",
+          "type": "integer",
+          "position": 10,
+          "not_null": false,
+          "description": null
+        }
+      ],
+      "limit_zero_access": true
+    },
+    {
+      "schema": "app",
+      "name": "monthly_usage",
+      "owner": "app_reader",
+      "kind": "v",
+      "options": [
+        "security_barrier=true"
+      ],
+      "description": null,
+      "columns": [
+        {
+          "name": "card_ref",
+          "type": "text",
+          "position": 1,
+          "not_null": false,
+          "description": null
+        },
+        {
+          "name": "month",
+          "type": "text",
+          "position": 2,
+          "not_null": false,
+          "description": null
+        },
+        {
+          "name": "period_start",
+          "type": "date",
+          "position": 3,
+          "not_null": false,
+          "description": null
+        },
+        {
+          "name": "period_end",
+          "type": "date",
+          "position": 4,
+          "not_null": false,
+          "description": null
+        },
+        {
+          "name": "approved_amount",
+          "type": "bigint",
+          "position": 5,
+          "not_null": false,
+          "description": null
+        },
+        {
+          "name": "transaction_count",
+          "type": "integer",
+          "position": 6,
+          "not_null": false,
+          "description": null
+        }
+      ],
+      "limit_zero_access": true
+    },
+    {
+      "schema": "app_internal",
+      "name": "customer_cards_full",
+      "owner": "app_reader",
+      "kind": "v",
+      "options": [
+        "security_barrier=true"
+      ],
+      "description": null,
+      "columns": [
+        {
+          "name": "card_id",
+          "type": "text",
+          "position": 1,
+          "not_null": false,
+          "description": null
+        },
+        {
+          "name": "card_ref",
+          "type": "text",
+          "position": 2,
+          "not_null": false,
+          "description": null
+        },
+        {
+          "name": "product_id",
+          "type": "text",
+          "position": 3,
+          "not_null": false,
+          "description": null
+        },
+        {
+          "name": "product_name",
+          "type": "text",
+          "position": 4,
+          "not_null": false,
+          "description": null
+        },
+        {
+          "name": "brand",
+          "type": "text",
+          "position": 5,
+          "not_null": false,
+          "description": null
+        },
+        {
+          "name": "issue_date",
+          "type": "date",
+          "position": 6,
+          "not_null": false,
+          "description": null
+        },
+        {
+          "name": "current_status",
+          "type": "text",
+          "position": 7,
+          "not_null": false,
+          "description": null
+        },
+        {
+          "name": "product_effective_date",
+          "type": "date",
+          "position": 8,
+          "not_null": false,
+          "description": null
+        },
+        {
+          "name": "is_product_effective_on_base_date",
+          "type": "boolean",
+          "position": 9,
+          "not_null": false,
+          "description": null
+        },
+        {
+          "name": "annual_fee",
+          "type": "integer",
+          "position": 10,
+          "not_null": false,
+          "description": null
+        }
+      ],
+      "limit_zero_access": true
+    },
+    {
+      "schema": "app_internal",
+      "name": "member_basic",
+      "owner": "app_reader",
+      "kind": "v",
+      "options": [
+        "security_barrier=true"
+      ],
+      "description": null,
+      "columns": [
+        {
+          "name": "member_id",
+          "type": "text",
+          "position": 1,
+          "not_null": false,
+          "description": null
+        },
+        {
+          "name": "join_date",
+          "type": "date",
+          "position": 2,
+          "not_null": false,
+          "description": null
+        },
+        {
+          "name": "age_band",
+          "type": "text",
+          "position": 3,
+          "not_null": false,
+          "description": null
+        }
+      ],
+      "limit_zero_access": true
+    },
+    {
+      "schema": "app_internal",
+      "name": "request_scope",
+      "owner": "app_reader",
+      "kind": "v",
+      "options": [
+        "security_barrier=true"
+      ],
+      "description": null,
+      "columns": [
+        {
+          "name": "base_date",
+          "type": "date",
+          "position": 1,
+          "not_null": false,
+          "description": null
+        },
+        {
+          "name": "coverage_start",
+          "type": "date",
+          "position": 2,
+          "not_null": false,
+          "description": null
+        }
+      ],
+      "limit_zero_access": true
+    },
+    {
+      "schema": "app_internal",
+      "name": "usage_months",
+      "owner": "app_reader",
+      "kind": "v",
+      "options": [
+        "security_barrier=true"
+      ],
+      "description": null,
+      "columns": [
+        {
+          "name": "month_start",
+          "type": "date",
+          "position": 1,
+          "not_null": false,
+          "description": null
+        }
+      ],
+      "limit_zero_access": true
+    }
+  ],
+  "base_tables": [
+    {
+      "schema": "private",
+      "name": "member_id_map",
+      "rls_enabled": false,
+      "rls_forced": false,
+      "owner": "cardlab",
+      "table_select": true,
+      "any_column_select": true
+    },
+    {
+      "schema": "public",
+      "name": "card",
+      "rls_enabled": true,
+      "rls_forced": false,
+      "owner": "cardlab",
+      "table_select": true,
+      "any_column_select": true
+    },
+    {
+      "schema": "public",
+      "name": "card_txn",
+      "rls_enabled": true,
+      "rls_forced": false,
+      "owner": "cardlab",
+      "table_select": true,
+      "any_column_select": true
+    },
+    {
+      "schema": "public",
+      "name": "delinquency",
+      "rls_enabled": true,
+      "rls_forced": false,
+      "owner": "cardlab",
+      "table_select": true,
+      "any_column_select": true
+    },
+    {
+      "schema": "public",
+      "name": "lab_metadata",
+      "rls_enabled": false,
+      "rls_forced": false,
+      "owner": "cardlab",
+      "table_select": true,
+      "any_column_select": true
+    },
+    {
+      "schema": "public",
+      "name": "member",
+      "rls_enabled": true,
+      "rls_forced": false,
+      "owner": "cardlab",
+      "table_select": true,
+      "any_column_select": true
+    },
+    {
+      "schema": "public",
+      "name": "merchant",
+      "rls_enabled": false,
+      "rls_forced": false,
+      "owner": "cardlab",
+      "table_select": true,
+      "any_column_select": true
+    },
+    {
+      "schema": "public",
+      "name": "product",
+      "rls_enabled": false,
+      "rls_forced": false,
+      "owner": "cardlab",
+      "table_select": true,
+      "any_column_select": true
+    },
+    {
+      "schema": "public",
+      "name": "product_annual_fee",
+      "rls_enabled": false,
+      "rls_forced": false,
+      "owner": "cardlab",
+      "table_select": true,
+      "any_column_select": true
+    }
+  ],
+  "risks": [
+    {
+      "code": "ADMIN_INSPECTION_ACCOUNT",
+      "role": "cardlab",
+      "user_authorized_exception": true
+    },
+    {
+      "code": "BASE_TABLE_SELECT",
+      "relation": "private.member_id_map"
+    },
+    {
+      "code": "BASE_TABLE_SELECT",
+      "relation": "public.card"
+    },
+    {
+      "code": "BASE_TABLE_SELECT",
+      "relation": "public.card_txn"
+    },
+    {
+      "code": "BASE_TABLE_SELECT",
+      "relation": "public.delinquency"
+    },
+    {
+      "code": "BASE_TABLE_SELECT",
+      "relation": "public.lab_metadata"
+    },
+    {
+      "code": "BASE_TABLE_SELECT",
+      "relation": "public.member"
+    },
+    {
+      "code": "BASE_TABLE_SELECT",
+      "relation": "public.merchant"
+    },
+    {
+      "code": "BASE_TABLE_SELECT",
+      "relation": "public.product"
+    },
+    {
+      "code": "BASE_TABLE_SELECT",
+      "relation": "public.product_annual_fee"
+    },
+    {
+      "code": "INTERNAL_VIEW_SELECT",
+      "relation": "app_internal.customer_cards_full"
+    },
+    {
+      "code": "INTERNAL_VIEW_SELECT",
+      "relation": "app_internal.member_basic"
+    },
+    {
+      "code": "INTERNAL_VIEW_SELECT",
+      "relation": "app_internal.request_scope"
+    },
+    {
+      "code": "INTERNAL_VIEW_SELECT",
+      "relation": "app_internal.usage_months"
+    }
+  ],
+  "view_owner_roles": [
+    {
+      "name": "app_reader",
+      "rolsuper": false,
+      "rolbypassrls": false,
+      "rolcreaterole": false,
+      "rolcreatedb": false,
+      "rolcanlogin": false
+    }
+  ],
+  "rls_policies": [
+    {
+      "schema": "public",
+      "relation": "card",
+      "name": "card_session_scope",
+      "command": "r",
+      "permissive": true,
+      "roles": [
+        "app_reader"
+      ],
+      "using_expression": "(member_id = NULLIF(current_setting('app.member_id'::text, true), ''::text))"
+    },
+    {
+      "schema": "public",
+      "relation": "card_txn",
+      "name": "card_txn_session_scope",
+      "command": "r",
+      "permissive": true,
+      "roles": [
+        "app_reader"
+      ],
+      "using_expression": "(EXISTS ( SELECT 1\n   FROM public.card scoped_card\n  WHERE ((scoped_card.card_id = card_txn.card_id) AND (scoped_card.member_id = NULLIF(current_setting('app.member_id'::text, true), ''::text)))))"
+    },
+    {
+      "schema": "public",
+      "relation": "delinquency",
+      "name": "delinquency_session_scope",
+      "command": "r",
+      "permissive": true,
+      "roles": [
+        "app_reader"
+      ],
+      "using_expression": "(member_id = NULLIF(current_setting('app.member_id'::text, true), ''::text))"
+    },
+    {
+      "schema": "public",
+      "relation": "member",
+      "name": "member_session_scope",
+      "command": "r",
+      "permissive": true,
+      "roles": [
+        "app_reader"
+      ],
+      "using_expression": "(member_id = NULLIF(current_setting('app.member_id'::text, true), ''::text))"
+    }
+  ],
+  "comparison": {
+    "source_only": [],
+    "database_only": [
+      "app.customer_daily_usage",
+      "app.customer_delinquency_history",
+      "app.merchant_usage"
+    ]
+  },
+  "verification": {
+    "database_selectable_view_count": 11,
+    "catalog_view_count": 11,
+    "limit_zero_success_count": 11,
+    "business_data_rows_read": 0,
+    "read_only": true,
+    "source_sql_executed": false,
+    "rls_isolation_runtime_tested": false,
+    "admin_inspection_authorized": true
+  }
+}

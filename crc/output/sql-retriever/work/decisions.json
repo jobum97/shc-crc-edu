@@ -1,0 +1,452 @@
+{
+  "status": "accepted_defaults_spec_writing",
+  "updated_at": "2026-10-15T08:05:23.211936+00:00",
+  "confirmed_inputs": {
+    "base_dir": "/Users/jobum/git/ai_edu/crc/output/sql-retriever",
+    "view_sql": "/Users/jobum/git/ai_edu/crc/rdb/init/04_views_rls.sql",
+    "related_user_stories": null,
+    "workflow": "프롬프트의 동기 요청 기본 6단계",
+    "decision_maker": "사용자",
+    "date": "2026-10-15",
+    "original_answer": "1"
+  },
+  "account_exception": {
+    "decision_maker": "사용자",
+    "date": "2026-10-15",
+    "original_answer": "계정 cardlab 사용해",
+    "inspection_role": "cardlab",
+    "allow_admin_for_inspection": true,
+    "read_only_required": true,
+    "business_data_row_reads_allowed": false,
+    "note": "관리자 접속 금지에 대한 후속 사용자 지시를 적용함. 최소 권한 계정 검증 완료를 의미하지 않음"
+  },
+  "observations": {
+    "verified_view_count": 11,
+    "source_view_count": 8,
+    "additional_views": [
+      "app.customer_daily_usage",
+      "app.customer_delinquency_history",
+      "app.merchant_usage"
+    ],
+    "additional_sql_sources": [
+      "crc/rdb/init/05_merchant_usage.sql",
+      "crc/rdb/init/06_history_daily_usage.sql"
+    ],
+    "source_only_views": [],
+    "explain_passed": 7,
+    "explain_total": 7,
+    "role_flags": {
+      "rolsuper": true,
+      "rolcreaterole": true,
+      "rolcreatedb": true,
+      "rolbypassrls": true
+    },
+    "business_data_rows_read": 0,
+    "view_owner_role": "app_reader",
+    "view_owner_admin_flags_all_false": true,
+    "rls_select_policy_count": 4,
+    "rls_isolation_runtime_tested": false
+  },
+  "proposals": {
+    "time_budget": {
+      "status": "accepted_default",
+      "total_seconds": 30,
+      "closing_seconds": 1,
+      "llm_timeout_seconds": 15,
+      "llm_retries": 0,
+      "reason": "동기 요청의 대기 상한을 30초로 두고, 외부 LLM 15초 이후 내부 DB 처리와 규칙 처리 및 반환에 15초 확보",
+      "basis": "설계 가정. 개발 후 실측 필요",
+      "decision_maker": "사용자",
+      "decision_date": "2026-10-15T08:00:55.424856+00:00"
+    },
+    "llm": {
+      "status": "accepted_default",
+      "provider": "Groq",
+      "model": "openai/gpt-oss-120b",
+      "basis": "사용자 .env에 입력된 제공자와 모델",
+      "official_spec_status": "공식 문서 확인 완료. 실제 계정 한도와 라이브 호출 검증은 확인 필요",
+      "decision_maker": "사용자",
+      "decision_date": "2026-10-15T08:00:55.424856+00:00"
+    },
+    "fixed_queries": {
+      "status": "accepted_default",
+      "query_ids": [
+        "Q-01",
+        "Q-02",
+        "Q-03",
+        "Q-04",
+        "Q-05",
+        "Q-06",
+        "Q-07"
+      ],
+      "evidence_file": "work/fixed_query_candidates.json",
+      "reason": "현재 논리 뷰의 제공 단위에 맞춘 7개 조회. 모두 EXPLAIN 통과",
+      "decision_maker": "사용자",
+      "decision_date": "2026-10-15T08:00:55.424856+00:00"
+    },
+    "sql_validation": {
+      "status": "accepted_default",
+      "allowed_views_and_columns": {
+        "app.customer_cards": [
+          "card_ref",
+          "product_id",
+          "product_name",
+          "brand",
+          "issue_date",
+          "current_status",
+          "product_effective_date",
+          "is_product_effective_on_base_date",
+          "annual_fee"
+        ],
+        "app.customer_daily_usage": [
+          "usage_date",
+          "approved_amount",
+          "transaction_count"
+        ],
+        "app.customer_delinquency": [
+          "base_month",
+          "as_of_date",
+          "overdue_amount",
+          "overdue_days",
+          "overdue_count_12m"
+        ],
+        "app.customer_delinquency_history": [
+          "base_month",
+          "as_of_date",
+          "overdue_amount",
+          "overdue_days",
+          "overdue_count_12m"
+        ],
+        "app.customer_profile": [
+          "join_date",
+          "age_band"
+        ],
+        "app.merchant_usage": [
+          "card_ref",
+          "month",
+          "period_start",
+          "period_end",
+          "merchant_name",
+          "category",
+          "first_approved_date",
+          "last_approved_date",
+          "approved_amount",
+          "transaction_count"
+        ],
+        "app.monthly_usage": [
+          "card_ref",
+          "month",
+          "period_start",
+          "period_end",
+          "approved_amount",
+          "transaction_count"
+        ]
+      },
+      "allowed_statement": "단일 SELECT",
+      "allowed_clauses": [
+        "WHERE",
+        "GROUP BY",
+        "HAVING",
+        "ORDER BY",
+        "LIMIT"
+      ],
+      "allowed_functions": [
+        "COUNT",
+        "SUM",
+        "AVG",
+        "MIN",
+        "MAX",
+        "COALESCE",
+        "ROUND",
+        "DATE_TRUNC",
+        "TO_CHAR"
+      ],
+      "output_row_limit": 200,
+      "forbidden": [
+        "원본 테이블",
+        "app_internal",
+        "시스템 카탈로그",
+        "SELECT *",
+        "복수 문장",
+        "데이터 변경문",
+        "DDL",
+        "권한 변경",
+        "SET",
+        "COPY",
+        "SELECT INTO",
+        "잠금 구문",
+        "CTE",
+        "서브쿼리",
+        "JOIN",
+        "UNION",
+        "임의 함수",
+        "세션 변수 접근 또는 변경"
+      ],
+      "reason": "초기 버전의 SQL 범위를 공개 논리 뷰 1개 조회와 집계로 제한하여 검증 규칙을 명확히 함",
+      "decision_maker": "사용자",
+      "decision_date": "2026-10-15T08:00:55.424856+00:00"
+    },
+    "sql_regeneration": {
+      "status": "accepted_default",
+      "enabled": false,
+      "reason": "기본 워크플로우의 검증 실패 시 오류 종료를 유지함",
+      "decision_maker": "사용자",
+      "decision_date": "2026-10-15T08:00:55.424856+00:00"
+    },
+    "privacy": {
+      "status": "accepted_default",
+      "new_step": false,
+      "step": "S-R1",
+      "proposal": "개인 식별자 검사와 제거를 첫 단계의 수행 작업으로 추가. 제거를 확신할 수 없으면 외부 LLM 호출 없이 오류 반환",
+      "reason": "원본 회원 ID와 카드번호를 외부 LLM으로 전송하지 않기 위함",
+      "decision_maker": "사용자",
+      "decision_date": "2026-10-15T08:00:55.424856+00:00"
+    },
+    "downloads": {
+      "status": "accepted_default",
+      "items": [
+        {
+          "name": "Groq 공식 API와 모델 문서",
+          "source": "https://console.groq.com/docs/",
+          "destination": "crc/.temp/"
+        },
+        {
+          "name": "PostgreSQL 공식 보안과 SQL 문서",
+          "source": "https://www.postgresql.org/docs/current/",
+          "destination": "crc/.temp/"
+        },
+        {
+          "name": "Pretendard 글꼴과 라이선스",
+          "source": "https://github.com/orioncactus/pretendard",
+          "destination": "crc/output/sql-retriever/build/assets/"
+        }
+      ],
+      "reason": "공식 연동 명세 근거 확보와 지정 글꼴로 미리보기 렌더링에 필요",
+      "decision_maker": "사용자",
+      "decision_date": "2026-10-15T08:00:55.424856+00:00"
+    }
+  },
+  "limitations": [
+    "EXPLAIN은 실제 실행 성능이나 업무 데이터 결과를 검증하지 않음",
+    "관리자 계정으로 조사하여 실행 계정의 최소 권한과 회원 격리 동작은 미검증",
+    "context7 도구가 현재 세션에 없어 공식 SDK 문서로 대체 확인 필요"
+  ],
+  "user_design_answers": [
+    {
+      "decision_maker": "사용자",
+      "date": "2026-10-15T08:00:55.424856+00:00",
+      "original_answer": "기본적인 내용으로 진행해줘",
+      "applies_to": [
+        "time_budget",
+        "llm",
+        "fixed_queries",
+        "sql_validation",
+        "sql_regeneration",
+        "privacy",
+        "downloads"
+      ]
+    }
+  ],
+  "review_notes": [
+    {
+      "topic": "권한",
+      "detail": "app_reader의 비관리자 역할 속성과 회원 범위 SELECT 정책 4개를 실제 메타데이터로 확인함. 실제 회원 간 격리와 최소 권한 실행 계정은 미검증"
+    },
+    {
+      "topic": "세션 범위",
+      "detail": "인증된 요청의 권한 검증을 통과한 회원 ID만 사용. S-R5에서 같은 연결의 읽기 전용 트랜잭션에 세션 변수 3개를 지역 설정하고 오류 시 롤백"
+    },
+    {
+      "topic": "SQL 검사",
+      "detail": "SQL 구문 트리에서 모든 참조, 함수, 형변환, 연산자와 LIMIT을 검사. 쉼표 조인 등 우회 구문 차단. 검사한 SQL과 실행 SQL의 일치 보장"
+    },
+    {
+      "topic": "LLM 호출 수",
+      "detail": "정형쿼리 경로 0회, NL2SQL 경로 S-R2에서 최대 1회. S-R3는 규칙 기반. SDK 자동 재시도도 0회"
+    },
+    {
+      "topic": "시간 예산",
+      "detail": "제안값 기준 외부 연동 최악값 15초, 전체 예산의 여유 15초 중 종료 1초를 제외한 내부 DB와 규칙 처리 몫 14초. 실제 성능 보장은 개발 후 검증"
+    },
+    {
+      "topic": "총 실행 제한",
+      "detail": "연결 대기, 세션 설정, SQL 실행, 결과 수신을 같은 절대 종료 시각으로 통제. 취소와 롤백 이후 응답 마무리 시간 확보"
+    },
+    {
+      "topic": "외부 전송",
+      "detail": "정제한 질문과 허용된 논리 스키마만 LLM에 전송. 회원 ID, 카드번호, 접속 정보와 DB 조회 결과는 제외"
+    },
+    {
+      "topic": "제공 범위",
+      "detail": "월별 6개월, 일별 최대 90일, 연체 이력 최대 12개 완료월의 제공 범위를 S-R3에서 확인하고 S-R6에 실제 범위와 단위 표시"
+    },
+    {
+      "topic": "행 상한",
+      "detail": "LIMIT에 도달하면 추가 결과 가능성을 응답에 표시. 전체 합계는 잘린 행의 애플리케이션 합산 대신 허용된 SQL 집계로 계산"
+    }
+  ],
+  "llm_official_research": {
+    "provider": "Groq",
+    "checked_on": "2026-10-15",
+    "source_method": "공식 문서를 curl로 crc/.temp에 저장하여 확인",
+    "base_url": {
+      "value": "https://api.groq.com",
+      "source_url": "https://github.com/groq/groq-python/blob/main/src/groq/_client.py",
+      "checked_on": "2026-10-15",
+      "basis": "공식 SDK의 기본 base_url 코드 확인"
+    },
+    "endpoint": {
+      "value": "POST /openai/v1/chat/completions",
+      "source_url": "https://console.groq.com/docs/api-reference",
+      "checked_on": "2026-10-15"
+    },
+    "authentication": {
+      "value": "Authorization: Bearer ${GROQ_API_KEY}",
+      "source_url": "https://console.groq.com/docs/reasoning",
+      "checked_on": "2026-10-15"
+    },
+    "api_key_environment_variable": {
+      "value": "GROQ_API_KEY",
+      "source_url": "https://console.groq.com/docs/quickstart",
+      "checked_on": "2026-10-15"
+    },
+    "model_id": {
+      "value": "openai/gpt-oss-120b",
+      "source_url": "https://console.groq.com/docs/model/openai/gpt-oss-120b",
+      "checked_on": "2026-10-15"
+    },
+    "context_window_tokens": {
+      "value": 131072,
+      "source_url": "https://console.groq.com/docs/model/openai/gpt-oss-120b",
+      "checked_on": "2026-10-15"
+    },
+    "provider_max_output_tokens": {
+      "value": 65536,
+      "source_url": "https://console.groq.com/docs/model/openai/gpt-oss-120b",
+      "checked_on": "2026-10-15"
+    },
+    "settings": {
+      "temperature": {
+        "value": 0.1,
+        "source_url": "https://console.groq.com/docs/api-reference",
+        "checked_on": "2026-10-15",
+        "supported_range": [
+          0,
+          2
+        ],
+        "reason": "SQL 계획의 변동을 줄이기 위한 설계값. 정확성 보장은 별도 평가 필요"
+      },
+      "top_p": {
+        "value": 1,
+        "source_url": "https://console.groq.com/docs/api-reference",
+        "checked_on": "2026-10-15",
+        "supported_range": [
+          0,
+          1
+        ],
+        "reason": "공식 기본값 유지. temperature와 동시에 조정하지 않음"
+      },
+      "max_completion_tokens": {
+        "value": 2048,
+        "source_url": "https://console.groq.com/docs/api-reference",
+        "checked_on": "2026-10-15",
+        "model_limit_source_url": "https://console.groq.com/docs/model/openai/gpt-oss-120b",
+        "supported_range_note": "양의 정수이며 모델 최대 출력 65536과 전체 문맥 한도 이내",
+        "reason": "짧은 단일 SQL과 구조화 계획에 대한 설계 가정. 잘림 여부 실측 필요"
+      },
+      "reasoning_effort": {
+        "value": "low",
+        "source_url": "https://console.groq.com/docs/api-reference",
+        "checked_on": "2026-10-15",
+        "supported_values": [
+          "low",
+          "medium",
+          "high"
+        ],
+        "reason": "단일 뷰 조회 범위에서 지연을 줄이려는 설계값"
+      },
+      "include_reasoning": {
+        "value": false,
+        "source_url": "https://console.groq.com/docs/api-reference",
+        "checked_on": "2026-10-15",
+        "supported_values": [
+          true,
+          false
+        ],
+        "reason": "중간 추론 텍스트를 반환하거나 보관하지 않음. reasoning_format과 동시 전송 금지"
+      },
+      "stream": {
+        "value": false,
+        "source_url": "https://console.groq.com/docs/structured-outputs",
+        "checked_on": "2026-10-15",
+        "reason": "구조화 출력은 스트리밍과 도구 사용을 현재 지원하지 않음"
+      },
+      "n": {
+        "value": 1,
+        "source_url": "https://console.groq.com/docs/api-reference",
+        "checked_on": "2026-10-15",
+        "supported_range": [
+          1,
+          1
+        ]
+      },
+      "response_format": {
+        "value": {
+          "type": "json_schema",
+          "strict": true
+        },
+        "source_url": "https://console.groq.com/docs/structured-outputs",
+        "checked_on": "2026-10-15",
+        "reason": "모든 속성을 required로 지정하고 모든 객체에 additionalProperties:false 적용"
+      },
+      "top_k": {
+        "value": "미전송",
+        "source_url": "https://console.groq.com/docs/api-reference",
+        "checked_on": "2026-10-15",
+        "status": "API에 명시된 지원 범위 없음. 확인 필요"
+      },
+      "tools": {
+        "value": "미전송",
+        "source_url": "https://console.groq.com/docs/structured-outputs",
+        "checked_on": "2026-10-15",
+        "reason": "구조화 출력과 도구 사용을 함께 사용하지 않음"
+      }
+    },
+    "sdk": {
+      "package": "groq",
+      "source_url": "https://github.com/groq/groq-python",
+      "checked_on": "2026-10-15",
+      "client": "AsyncGroq",
+      "max_retries": 0,
+      "timeout_seconds": 15,
+      "absolute_deadline_wrapper_required": true,
+      "note": "SDK 기본 재시도 2회이므로 명시적으로 0회 설정. 전 구간 절대 종료시각을 별도 적용",
+      "context7_status": "현재 도구 없음. 공식 SDK README로 사용법 확인",
+      "base_url": "https://api.groq.com",
+      "base_url_source_url": "https://github.com/groq/groq-python/blob/main/src/groq/_client.py"
+    },
+    "rate_limit": {
+      "value": {
+        "account_limit": "확인 필요",
+        "scope": "조직 단위",
+        "published_free_plan_example": {
+          "RPM": 30,
+          "RPD": 1000,
+          "TPM": 8000,
+          "TPD": 200000
+        },
+        "adopt_as_runtime_limit": false
+      },
+      "source_url": "https://console.groq.com/docs/rate-limits",
+      "checked_on": "2026-10-15",
+      "note": "실제 계정 한도는 계정 Limits 화면과 응답 헤더로 확인. 429는 재시도 없이 오류 반환"
+    },
+    "live_api_test": false,
+    "remaining_validation": [
+      "실제 계정별 rate limit",
+      "지원 설정 조합의 실제 호출 성공",
+      "2048토큰 내 완료 여부",
+      "15초 호출과 전체30초 달성률"
+    ]
+  }
+}

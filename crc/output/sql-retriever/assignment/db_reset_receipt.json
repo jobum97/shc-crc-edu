@@ -1,0 +1,29 @@
+{
+  "date_utc": "2026-10-21",
+  "working_directory": "/Users/jobum/git/ai_edu/crc/rdb",
+  "commands": [
+    {
+      "command": "docker compose down -v",
+      "exit_code": 0,
+      "observed_output": [
+        "Container hybrid-ai-lab-rdb Removed",
+        "Volume hybrid-ai-lab-pgdata Removed"
+      ]
+    },
+    {
+      "command": "docker compose up -d",
+      "exit_code": 0,
+      "observed_output": [
+        "Volume hybrid-ai-lab-pgdata Created",
+        "Container hybrid-ai-lab-rdb Started"
+      ]
+    }
+  ],
+  "post_reset_observation": {
+    "container_created_utc": "2026-10-21T04:55:55.209425Z",
+    "volume_created_utc": "2026-10-21T04:55:55Z",
+    "container_health": "healthy",
+    "init_script_logged": "07_card_fee_usage.sql",
+    "log_excerpt": "db_init_log_excerpt.txt"
+  }
+}

@@ -1,0 +1,949 @@
+{
+  "added_rows": 1152,
+  "member_months": 142,
+  "minimum_approved_month": 1050000,
+  "original_rows_unchanged": true,
+  "original_rows": 77650,
+  "invalid_added_rows": 0,
+  "refreshed_consultation_facts": 46,
+  "member_totals": [
+    {
+      "member_id": "M-1001",
+      "segment_id": 1,
+      "cards": 1,
+      "txns": 64,
+      "approved": 58
+    },
+    {
+      "member_id": "M-1050",
+      "segment_id": 1,
+      "cards": 1,
+      "txns": 115,
+      "approved": 109
+    },
+    {
+      "member_id": "M-1042",
+      "segment_id": 2,
+      "cards": 2,
+      "txns": 260,
+      "approved": 247
+    },
+    {
+      "member_id": "M-2048",
+      "segment_id": 2,
+      "cards": 2,
+      "txns": 277,
+      "approved": 264
+    },
+    {
+      "member_id": "M-3001",
+      "segment_id": 3,
+      "cards": 2,
+      "txns": 181,
+      "approved": 168
+    },
+    {
+      "member_id": "M-3049",
+      "segment_id": 3,
+      "cards": 2,
+      "txns": 181,
+      "approved": 168
+    },
+    {
+      "member_id": "M-4001",
+      "segment_id": 4,
+      "cards": 1,
+      "txns": 304,
+      "approved": 291
+    },
+    {
+      "member_id": "M-4049",
+      "segment_id": 4,
+      "cards": 1,
+      "txns": 253,
+      "approved": 240
+    },
+    {
+      "member_id": "M-5001",
+      "segment_id": 5,
+      "cards": 4,
+      "txns": 281,
+      "approved": 268
+    },
+    {
+      "member_id": "M-5049",
+      "segment_id": 5,
+      "cards": 4,
+      "txns": 266,
+      "approved": 253
+    },
+    {
+      "member_id": "M-6001",
+      "segment_id": 6,
+      "cards": 2,
+      "txns": 297,
+      "approved": 284
+    },
+    {
+      "member_id": "M-6049",
+      "segment_id": 6,
+      "cards": 2,
+      "txns": 307,
+      "approved": 294
+    }
+  ],
+  "monthly_totals": [
+    {
+      "member_id": "M-1001",
+      "month": "2026-03",
+      "amount": 1050000,
+      "cnt": 9
+    },
+    {
+      "member_id": "M-1001",
+      "month": "2026-04",
+      "amount": 1103000,
+      "cnt": 9
+    },
+    {
+      "member_id": "M-1001",
+      "month": "2026-05",
+      "amount": 1155000,
+      "cnt": 9
+    },
+    {
+      "member_id": "M-1001",
+      "month": "2026-06",
+      "amount": 1208000,
+      "cnt": 10
+    },
+    {
+      "member_id": "M-1001",
+      "month": "2026-07",
+      "amount": 1260000,
+      "cnt": 10
+    },
+    {
+      "member_id": "M-1001",
+      "month": "2026-08",
+      "amount": 1313000,
+      "cnt": 11
+    },
+    {
+      "member_id": "M-1042",
+      "month": "2025-08",
+      "amount": 2124000,
+      "cnt": 21
+    },
+    {
+      "member_id": "M-1042",
+      "month": "2025-09",
+      "amount": 2046000,
+      "cnt": 24
+    },
+    {
+      "member_id": "M-1042",
+      "month": "2025-10",
+      "amount": 1967000,
+      "cnt": 19
+    },
+    {
+      "member_id": "M-1042",
+      "month": "2025-11",
+      "amount": 1888000,
+      "cnt": 20
+    },
+    {
+      "member_id": "M-1042",
+      "month": "2025-12",
+      "amount": 1810000,
+      "cnt": 26
+    },
+    {
+      "member_id": "M-1042",
+      "month": "2026-01",
+      "amount": 1731000,
+      "cnt": 21
+    },
+    {
+      "member_id": "M-1042",
+      "month": "2026-02",
+      "amount": 1652000,
+      "cnt": 14
+    },
+    {
+      "member_id": "M-1042",
+      "month": "2026-03",
+      "amount": 1574000,
+      "cnt": 16
+    },
+    {
+      "member_id": "M-1042",
+      "month": "2026-04",
+      "amount": 1495000,
+      "cnt": 19
+    },
+    {
+      "member_id": "M-1042",
+      "month": "2026-05",
+      "amount": 1416000,
+      "cnt": 20
+    },
+    {
+      "member_id": "M-1042",
+      "month": "2026-06",
+      "amount": 1338000,
+      "cnt": 15
+    },
+    {
+      "member_id": "M-1042",
+      "month": "2026-07",
+      "amount": 1259000,
+      "cnt": 14
+    },
+    {
+      "member_id": "M-1042",
+      "month": "2026-08",
+      "amount": 1180000,
+      "cnt": 18
+    },
+    {
+      "member_id": "M-1050",
+      "month": "2026-03",
+      "amount": 1155000,
+      "cnt": 17
+    },
+    {
+      "member_id": "M-1050",
+      "month": "2026-04",
+      "amount": 1218000,
+      "cnt": 16
+    },
+    {
+      "member_id": "M-1050",
+      "month": "2026-05",
+      "amount": 1092000,
+      "cnt": 21
+    },
+    {
+      "member_id": "M-1050",
+      "month": "2026-06",
+      "amount": 1155000,
+      "cnt": 16
+    },
+    {
+      "member_id": "M-1050",
+      "month": "2026-07",
+      "amount": 1218000,
+      "cnt": 19
+    },
+    {
+      "member_id": "M-1050",
+      "month": "2026-08",
+      "amount": 1092000,
+      "cnt": 20
+    },
+    {
+      "member_id": "M-2048",
+      "month": "2025-08",
+      "amount": 1620000,
+      "cnt": 24
+    },
+    {
+      "member_id": "M-2048",
+      "month": "2025-09",
+      "amount": 1585000,
+      "cnt": 25
+    },
+    {
+      "member_id": "M-2048",
+      "month": "2025-10",
+      "amount": 1550000,
+      "cnt": 17
+    },
+    {
+      "member_id": "M-2048",
+      "month": "2025-11",
+      "amount": 1515000,
+      "cnt": 23
+    },
+    {
+      "member_id": "M-2048",
+      "month": "2025-12",
+      "amount": 1480000,
+      "cnt": 17
+    },
+    {
+      "member_id": "M-2048",
+      "month": "2026-01",
+      "amount": 1445000,
+      "cnt": 22
+    },
+    {
+      "member_id": "M-2048",
+      "month": "2026-02",
+      "amount": 1410000,
+      "cnt": 24
+    },
+    {
+      "member_id": "M-2048",
+      "month": "2026-03",
+      "amount": 1375000,
+      "cnt": 17
+    },
+    {
+      "member_id": "M-2048",
+      "month": "2026-04",
+      "amount": 1340000,
+      "cnt": 16
+    },
+    {
+      "member_id": "M-2048",
+      "month": "2026-05",
+      "amount": 1305000,
+      "cnt": 23
+    },
+    {
+      "member_id": "M-2048",
+      "month": "2026-06",
+      "amount": 1270000,
+      "cnt": 19
+    },
+    {
+      "member_id": "M-2048",
+      "month": "2026-07",
+      "amount": 1236000,
+      "cnt": 15
+    },
+    {
+      "member_id": "M-2048",
+      "month": "2026-08",
+      "amount": 1200000,
+      "cnt": 22
+    },
+    {
+      "member_id": "M-3001",
+      "month": "2025-08",
+      "amount": 10868000,
+      "cnt": 15
+    },
+    {
+      "member_id": "M-3001",
+      "month": "2025-09",
+      "amount": 10633000,
+      "cnt": 19
+    },
+    {
+      "member_id": "M-3001",
+      "month": "2025-10",
+      "amount": 10398000,
+      "cnt": 14
+    },
+    {
+      "member_id": "M-3001",
+      "month": "2025-11",
+      "amount": 10164000,
+      "cnt": 12
+    },
+    {
+      "member_id": "M-3001",
+      "month": "2025-12",
+      "amount": 9929000,
+      "cnt": 11
+    },
+    {
+      "member_id": "M-3001",
+      "month": "2026-01",
+      "amount": 9694000,
+      "cnt": 10
+    },
+    {
+      "member_id": "M-3001",
+      "month": "2026-02",
+      "amount": 9459000,
+      "cnt": 16
+    },
+    {
+      "member_id": "M-3001",
+      "month": "2026-03",
+      "amount": 9224000,
+      "cnt": 13
+    },
+    {
+      "member_id": "M-3001",
+      "month": "2026-04",
+      "amount": 8990000,
+      "cnt": 12
+    },
+    {
+      "member_id": "M-3001",
+      "month": "2026-05",
+      "amount": 8755000,
+      "cnt": 10
+    },
+    {
+      "member_id": "M-3001",
+      "month": "2026-06",
+      "amount": 8520000,
+      "cnt": 13
+    },
+    {
+      "member_id": "M-3001",
+      "month": "2026-07",
+      "amount": 8285000,
+      "cnt": 10
+    },
+    {
+      "member_id": "M-3001",
+      "month": "2026-08",
+      "amount": 8050000,
+      "cnt": 13
+    },
+    {
+      "member_id": "M-3049",
+      "month": "2025-08",
+      "amount": 9464000,
+      "cnt": 10
+    },
+    {
+      "member_id": "M-3049",
+      "month": "2025-09",
+      "amount": 9464000,
+      "cnt": 12
+    },
+    {
+      "member_id": "M-3049",
+      "month": "2025-10",
+      "amount": 9464000,
+      "cnt": 10
+    },
+    {
+      "member_id": "M-3049",
+      "month": "2025-11",
+      "amount": 9464000,
+      "cnt": 15
+    },
+    {
+      "member_id": "M-3049",
+      "month": "2025-12",
+      "amount": 9464000,
+      "cnt": 10
+    },
+    {
+      "member_id": "M-3049",
+      "month": "2026-01",
+      "amount": 13943000,
+      "cnt": 18
+    },
+    {
+      "member_id": "M-3049",
+      "month": "2026-02",
+      "amount": 13943000,
+      "cnt": 19
+    },
+    {
+      "member_id": "M-3049",
+      "month": "2026-03",
+      "amount": 8619000,
+      "cnt": 14
+    },
+    {
+      "member_id": "M-3049",
+      "month": "2026-04",
+      "amount": 8619000,
+      "cnt": 10
+    },
+    {
+      "member_id": "M-3049",
+      "month": "2026-05",
+      "amount": 8619000,
+      "cnt": 15
+    },
+    {
+      "member_id": "M-3049",
+      "month": "2026-06",
+      "amount": 8619000,
+      "cnt": 15
+    },
+    {
+      "member_id": "M-3049",
+      "month": "2026-07",
+      "amount": 8619000,
+      "cnt": 10
+    },
+    {
+      "member_id": "M-3049",
+      "month": "2026-08",
+      "amount": 8619000,
+      "cnt": 10
+    },
+    {
+      "member_id": "M-4001",
+      "month": "2025-08",
+      "amount": 1890000,
+      "cnt": 24
+    },
+    {
+      "member_id": "M-4001",
+      "month": "2025-09",
+      "amount": 1820000,
+      "cnt": 26
+    },
+    {
+      "member_id": "M-4001",
+      "month": "2025-10",
+      "amount": 1750000,
+      "cnt": 30
+    },
+    {
+      "member_id": "M-4001",
+      "month": "2025-11",
+      "amount": 1680000,
+      "cnt": 28
+    },
+    {
+      "member_id": "M-4001",
+      "month": "2025-12",
+      "amount": 1610000,
+      "cnt": 26
+    },
+    {
+      "member_id": "M-4001",
+      "month": "2026-01",
+      "amount": 1540000,
+      "cnt": 23
+    },
+    {
+      "member_id": "M-4001",
+      "month": "2026-02",
+      "amount": 1470000,
+      "cnt": 23
+    },
+    {
+      "member_id": "M-4001",
+      "month": "2026-03",
+      "amount": 1400000,
+      "cnt": 19
+    },
+    {
+      "member_id": "M-4001",
+      "month": "2026-04",
+      "amount": 1330000,
+      "cnt": 24
+    },
+    {
+      "member_id": "M-4001",
+      "month": "2026-05",
+      "amount": 1260000,
+      "cnt": 26
+    },
+    {
+      "member_id": "M-4001",
+      "month": "2026-06",
+      "amount": 1190000,
+      "cnt": 24
+    },
+    {
+      "member_id": "M-4001",
+      "month": "2026-07",
+      "amount": 1120000,
+      "cnt": 9
+    },
+    {
+      "member_id": "M-4001",
+      "month": "2026-08",
+      "amount": 1050000,
+      "cnt": 9
+    },
+    {
+      "member_id": "M-4049",
+      "month": "2025-08",
+      "amount": 1092000,
+      "cnt": 20
+    },
+    {
+      "member_id": "M-4049",
+      "month": "2025-09",
+      "amount": 1124000,
+      "cnt": 14
+    },
+    {
+      "member_id": "M-4049",
+      "month": "2025-10",
+      "amount": 1155000,
+      "cnt": 24
+    },
+    {
+      "member_id": "M-4049",
+      "month": "2025-11",
+      "amount": 1155000,
+      "cnt": 25
+    },
+    {
+      "member_id": "M-4049",
+      "month": "2025-12",
+      "amount": 1218000,
+      "cnt": 19
+    },
+    {
+      "member_id": "M-4049",
+      "month": "2026-01",
+      "amount": 1218000,
+      "cnt": 18
+    },
+    {
+      "member_id": "M-4049",
+      "month": "2026-02",
+      "amount": 1124000,
+      "cnt": 14
+    },
+    {
+      "member_id": "M-4049",
+      "month": "2026-03",
+      "amount": 1124000,
+      "cnt": 22
+    },
+    {
+      "member_id": "M-4049",
+      "month": "2026-04",
+      "amount": 1155000,
+      "cnt": 24
+    },
+    {
+      "member_id": "M-4049",
+      "month": "2026-05",
+      "amount": 1218000,
+      "cnt": 17
+    },
+    {
+      "member_id": "M-4049",
+      "month": "2026-06",
+      "amount": 1124000,
+      "cnt": 24
+    },
+    {
+      "member_id": "M-4049",
+      "month": "2026-07",
+      "amount": 1092000,
+      "cnt": 9
+    },
+    {
+      "member_id": "M-4049",
+      "month": "2026-08",
+      "amount": 1218000,
+      "cnt": 10
+    },
+    {
+      "member_id": "M-5001",
+      "month": "2025-08",
+      "amount": 2112000,
+      "cnt": 21
+    },
+    {
+      "member_id": "M-5001",
+      "month": "2025-09",
+      "amount": 1948000,
+      "cnt": 17
+    },
+    {
+      "member_id": "M-5001",
+      "month": "2025-10",
+      "amount": 1893000,
+      "cnt": 19
+    },
+    {
+      "member_id": "M-5001",
+      "month": "2025-11",
+      "amount": 1893000,
+      "cnt": 17
+    },
+    {
+      "member_id": "M-5001",
+      "month": "2025-12",
+      "amount": 2057000,
+      "cnt": 22
+    },
+    {
+      "member_id": "M-5001",
+      "month": "2026-01",
+      "amount": 2112000,
+      "cnt": 19
+    },
+    {
+      "member_id": "M-5001",
+      "month": "2026-02",
+      "amount": 2057000,
+      "cnt": 24
+    },
+    {
+      "member_id": "M-5001",
+      "month": "2026-03",
+      "amount": 1893000,
+      "cnt": 20
+    },
+    {
+      "member_id": "M-5001",
+      "month": "2026-04",
+      "amount": 2003000,
+      "cnt": 23
+    },
+    {
+      "member_id": "M-5001",
+      "month": "2026-05",
+      "amount": 1893000,
+      "cnt": 22
+    },
+    {
+      "member_id": "M-5001",
+      "month": "2026-06",
+      "amount": 2003000,
+      "cnt": 17
+    },
+    {
+      "member_id": "M-5001",
+      "month": "2026-07",
+      "amount": 1893000,
+      "cnt": 24
+    },
+    {
+      "member_id": "M-5001",
+      "month": "2026-08",
+      "amount": 2003000,
+      "cnt": 23
+    },
+    {
+      "member_id": "M-5049",
+      "month": "2025-08",
+      "amount": 2088000,
+      "cnt": 21
+    },
+    {
+      "member_id": "M-5049",
+      "month": "2025-09",
+      "amount": 2088000,
+      "cnt": 24
+    },
+    {
+      "member_id": "M-5049",
+      "month": "2025-10",
+      "amount": 2088000,
+      "cnt": 15
+    },
+    {
+      "member_id": "M-5049",
+      "month": "2025-11",
+      "amount": 2088000,
+      "cnt": 20
+    },
+    {
+      "member_id": "M-5049",
+      "month": "2025-12",
+      "amount": 2034000,
+      "cnt": 18
+    },
+    {
+      "member_id": "M-5049",
+      "month": "2026-01",
+      "amount": 1926000,
+      "cnt": 21
+    },
+    {
+      "member_id": "M-5049",
+      "month": "2026-02",
+      "amount": 1926000,
+      "cnt": 19
+    },
+    {
+      "member_id": "M-5049",
+      "month": "2026-03",
+      "amount": 1872000,
+      "cnt": 14
+    },
+    {
+      "member_id": "M-5049",
+      "month": "2026-04",
+      "amount": 1981000,
+      "cnt": 17
+    },
+    {
+      "member_id": "M-5049",
+      "month": "2026-05",
+      "amount": 1926000,
+      "cnt": 18
+    },
+    {
+      "member_id": "M-5049",
+      "month": "2026-06",
+      "amount": 1981000,
+      "cnt": 21
+    },
+    {
+      "member_id": "M-5049",
+      "month": "2026-07",
+      "amount": 1926000,
+      "cnt": 22
+    },
+    {
+      "member_id": "M-5049",
+      "month": "2026-08",
+      "amount": 1872000,
+      "cnt": 23
+    },
+    {
+      "member_id": "M-6001",
+      "month": "2025-08",
+      "amount": 1239000,
+      "cnt": 24
+    },
+    {
+      "member_id": "M-6001",
+      "month": "2025-09",
+      "amount": 1224000,
+      "cnt": 22
+    },
+    {
+      "member_id": "M-6001",
+      "month": "2025-10",
+      "amount": 1208000,
+      "cnt": 23
+    },
+    {
+      "member_id": "M-6001",
+      "month": "2025-11",
+      "amount": 1192000,
+      "cnt": 20
+    },
+    {
+      "member_id": "M-6001",
+      "month": "2025-12",
+      "amount": 1176000,
+      "cnt": 24
+    },
+    {
+      "member_id": "M-6001",
+      "month": "2026-01",
+      "amount": 1161000,
+      "cnt": 18
+    },
+    {
+      "member_id": "M-6001",
+      "month": "2026-02",
+      "amount": 1145000,
+      "cnt": 25
+    },
+    {
+      "member_id": "M-6001",
+      "month": "2026-03",
+      "amount": 1129000,
+      "cnt": 19
+    },
+    {
+      "member_id": "M-6001",
+      "month": "2026-04",
+      "amount": 1113000,
+      "cnt": 20
+    },
+    {
+      "member_id": "M-6001",
+      "month": "2026-05",
+      "amount": 1098000,
+      "cnt": 22
+    },
+    {
+      "member_id": "M-6001",
+      "month": "2026-06",
+      "amount": 1082000,
+      "cnt": 24
+    },
+    {
+      "member_id": "M-6001",
+      "month": "2026-07",
+      "amount": 1066000,
+      "cnt": 22
+    },
+    {
+      "member_id": "M-6001",
+      "month": "2026-08",
+      "amount": 1050000,
+      "cnt": 21
+    },
+    {
+      "member_id": "M-6049",
+      "month": "2025-08",
+      "amount": 1575000,
+      "cnt": 24
+    },
+    {
+      "member_id": "M-6049",
+      "month": "2025-09",
+      "amount": 1532000,
+      "cnt": 25
+    },
+    {
+      "member_id": "M-6049",
+      "month": "2025-10",
+      "amount": 1488000,
+      "cnt": 24
+    },
+    {
+      "member_id": "M-6049",
+      "month": "2025-11",
+      "amount": 1444000,
+      "cnt": 20
+    },
+    {
+      "member_id": "M-6049",
+      "month": "2025-12",
+      "amount": 1401000,
+      "cnt": 20
+    },
+    {
+      "member_id": "M-6049",
+      "month": "2026-01",
+      "amount": 1357000,
+      "cnt": 18
+    },
+    {
+      "member_id": "M-6049",
+      "month": "2026-02",
+      "amount": 1313000,
+      "cnt": 24
+    },
+    {
+      "member_id": "M-6049",
+      "month": "2026-03",
+      "amount": 1269000,
+      "cnt": 20
+    },
+    {
+      "member_id": "M-6049",
+      "month": "2026-04",
+      "amount": 1225000,
+      "cnt": 27
+    },
+    {
+      "member_id": "M-6049",
+      "month": "2026-05",
+      "amount": 1308000,
+      "cnt": 28
+    },
+    {
+      "member_id": "M-6049",
+      "month": "2026-06",
+      "amount": 1138000,
+      "cnt": 24
+    },
+    {
+      "member_id": "M-6049",
+      "month": "2026-07",
+      "amount": 1094000,
+      "cnt": 20
+    },
+    {
+      "member_id": "M-6049",
+      "month": "2026-08",
+      "amount": 1050000,
+      "cnt": 20
+    }
+  ]
+}

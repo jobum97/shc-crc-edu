@@ -1,0 +1,141 @@
+{
+  "reviewer": "root",
+  "method": "view_image로 1600x900 각 장 개별 확인",
+  "pages": [
+    {
+      "page": 1,
+      "reviewed": true,
+      "issues": [],
+      "final_reviewed": true,
+      "sha256": "15582784a99949f8d022eafaa327e8b4a72db76ca7c32335c87deb42f677dfc0"
+    },
+    {
+      "page": 2,
+      "reviewed": true,
+      "issues": [],
+      "final_reviewed": true,
+      "sha256": "4bb2efe4488087077ba338129d3c1b4bd0e9c792e5b37aef141b9f38af50c7ab"
+    },
+    {
+      "page": 3,
+      "reviewed": true,
+      "issues": [],
+      "final_reviewed": true,
+      "sha256": "180196aa0d0b9414c5628132ff7f7d86565cb8b53df5b9f641c2b30c5490bdc9"
+    },
+    {
+      "page": 4,
+      "reviewed": true,
+      "issues": [],
+      "final_reviewed": true,
+      "sha256": "1f319c3fe8ef5f67493c6e110d6d473a7e0b63fe3a9a61d0277312da2641a31b"
+    },
+    {
+      "page": 5,
+      "reviewed": true,
+      "issues": [],
+      "final_reviewed": true,
+      "sha256": "4c02b284083b099d06aa6ed7ccf82c333f8a0c35311097147f8b2cf2d5e3d22c"
+    },
+    {
+      "page": 6,
+      "reviewed": true,
+      "issues": [],
+      "final_reviewed": true,
+      "sha256": "11456b49080b570ddfb4917d9e370552a9e971c1144e6b1cec8f223db860ce9e"
+    },
+    {
+      "page": 7,
+      "reviewed": true,
+      "issues": [],
+      "final_reviewed": true,
+      "sha256": "1adcd83644195b2853f1d432b5d15edfa5efe23021980e5787bb9c6eee401e08"
+    },
+    {
+      "page": 8,
+      "reviewed": true,
+      "issues": [],
+      "final_reviewed": true,
+      "sha256": "c5ae4309773de1c106e9b8a18df6ca09f14cb9c208f03d1121d7bbe30c18433d"
+    },
+    {
+      "page": 9,
+      "reviewed": true,
+      "issues": [],
+      "final_reviewed": true,
+      "sha256": "30c31c9cac3fc12de8418143cee8ce9c1a26339818fb170f70979d4e71c75fa6"
+    },
+    {
+      "page": 10,
+      "reviewed": true,
+      "issues": [],
+      "final_reviewed": true,
+      "sha256": "319716f52bcd634d6fb8f964ce4278d999fa27550163d2ca2074177eb65c6925"
+    },
+    {
+      "page": 11,
+      "reviewed": true,
+      "issues": [],
+      "final_reviewed": true,
+      "sha256": "d16eb5b0edd4f6c52141ca5713c00c668c2d0503c852755a71f35bffd574a08b"
+    },
+    {
+      "page": 12,
+      "reviewed": true,
+      "issues": [],
+      "final_reviewed": true,
+      "sha256": "8e8fe1bd37f7735f55bea8db62a69e071f3922d64e76bbc0fc297e80dc26a155"
+    },
+    {
+      "page": 13,
+      "reviewed": true,
+      "issues": [],
+      "final_reviewed": true,
+      "sha256": "522495cf24004b91f3a09a657708cd467cf79daed0e5ed942837b08afb4dad8c"
+    },
+    {
+      "page": 14,
+      "reviewed": true,
+      "issues": [],
+      "final_reviewed": true,
+      "sha256": "2dccdd4b51fff6db1cd9f950f02230bd5135a8943002ff24014708b0fbc77fd6"
+    },
+    {
+      "page": 15,
+      "reviewed": true,
+      "issues": [],
+      "final_reviewed": true,
+      "sha256": "43eaabb7def9700cde15f126582649b6c9da530f638f18aeee76713a4a18046c"
+    },
+    {
+      "page": 16,
+      "reviewed": true,
+      "issues": [],
+      "final_reviewed": true,
+      "sha256": "697be30375678402d81e87f79cf5d06d659583f2ba21e65addb6b9e4701a89f5"
+    },
+    {
+      "page": 17,
+      "reviewed": true,
+      "issues": [],
+      "final_reviewed": true,
+      "sha256": "8e456d0fa8c7199e14273d5b5aa0938e05ca6a9ba197bd42c9a3d91269d94108"
+    },
+    {
+      "page": 18,
+      "reviewed": true,
+      "issues": [],
+      "final_reviewed": true,
+      "sha256": "52e95d2011877d49a48bb33d3c08719263a1fe64a74060cbab5d74c389d2d22d"
+    }
+  ],
+  "repairs": {
+    "1": "표지 콘텐츠 하단 균형 확대",
+    "4": "S-R2 오류 점선의 시작점을 마름모 경계에 연결",
+    "15": "영문 필드명이 쪼개지지 않도록 첫 열 확대",
+    "18": "필드명 첫 열 확대"
+  },
+  "result": "passed",
+  "open_issue_count": 0,
+  "notes": "최종 18장 개별 확인. 5~10쪽 표 높이 추정 경고는 실제 PNG에서 본문과 푸터 사이 여백을 확인하여 해소함."
+}

@@ -1,0 +1,581 @@
+{
+  "pdf_sha256": "61386540d29d0df064462869f55c4da3078a1bc6b13bc8d10ccf4d5f33226ffe",
+  "page_count": 52,
+  "expected_page_count": 52,
+  "pages": [
+    {
+      "page": 1,
+      "missing_strings": [],
+      "out_of_page_count": 0,
+      "fonts": [
+        "Pretendard-Bold",
+        "Pretendard-Regular"
+      ],
+      "minimum_font_pt": 14.003,
+      "passed": true
+    },
+    {
+      "page": 2,
+      "missing_strings": [],
+      "out_of_page_count": 0,
+      "fonts": [
+        "Pretendard-Bold",
+        "Pretendard-Regular"
+      ],
+      "minimum_font_pt": 14.003,
+      "passed": true
+    },
+    {
+      "page": 3,
+      "missing_strings": [],
+      "out_of_page_count": 0,
+      "fonts": [
+        "Pretendard-Bold",
+        "Pretendard-Regular"
+      ],
+      "minimum_font_pt": 14.003,
+      "passed": true
+    },
+    {
+      "page": 4,
+      "missing_strings": [],
+      "out_of_page_count": 0,
+      "fonts": [
+        "Pretendard-Bold",
+        "Pretendard-Regular"
+      ],
+      "minimum_font_pt": 14.003,
+      "passed": true
+    },
+    {
+      "page": 5,
+      "missing_strings": [],
+      "out_of_page_count": 0,
+      "fonts": [
+        "Pretendard-Bold",
+        "Pretendard-Regular"
+      ],
+      "minimum_font_pt": 14.003,
+      "passed": true
+    },
+    {
+      "page": 6,
+      "missing_strings": [],
+      "out_of_page_count": 0,
+      "fonts": [
+        "Pretendard-Bold",
+        "Pretendard-Regular"
+      ],
+      "minimum_font_pt": 14.003,
+      "passed": true
+    },
+    {
+      "page": 7,
+      "missing_strings": [],
+      "out_of_page_count": 0,
+      "fonts": [
+        "Pretendard-Bold",
+        "Pretendard-Regular"
+      ],
+      "minimum_font_pt": 14.003,
+      "passed": true
+    },
+    {
+      "page": 8,
+      "missing_strings": [],
+      "out_of_page_count": 0,
+      "fonts": [
+        "Pretendard-Bold",
+        "Pretendard-Regular"
+      ],
+      "minimum_font_pt": 14.003,
+      "passed": true
+    },
+    {
+      "page": 9,
+      "missing_strings": [],
+      "out_of_page_count": 0,
+      "fonts": [
+        "Pretendard-Bold",
+        "Pretendard-Regular"
+      ],
+      "minimum_font_pt": 14.003,
+      "passed": true
+    },
+    {
+      "page": 10,
+      "missing_strings": [],
+      "out_of_page_count": 0,
+      "fonts": [
+        "Pretendard-Bold",
+        "Pretendard-Regular"
+      ],
+      "minimum_font_pt": 14.003,
+      "passed": true
+    },
+    {
+      "page": 11,
+      "missing_strings": [],
+      "out_of_page_count": 0,
+      "fonts": [
+        "Pretendard-Bold",
+        "Pretendard-Regular"
+      ],
+      "minimum_font_pt": 14.003,
+      "passed": true
+    },
+    {
+      "page": 12,
+      "missing_strings": [],
+      "out_of_page_count": 0,
+      "fonts": [
+        "Pretendard-Bold",
+        "Pretendard-Regular"
+      ],
+      "minimum_font_pt": 14.003,
+      "passed": true
+    },
+    {
+      "page": 13,
+      "missing_strings": [],
+      "out_of_page_count": 0,
+      "fonts": [
+        "Pretendard-Bold",
+        "Pretendard-Regular"
+      ],
+      "minimum_font_pt": 14.003,
+      "passed": true
+    },
+    {
+      "page": 14,
+      "missing_strings": [],
+      "out_of_page_count": 0,
+      "fonts": [
+        "Pretendard-Bold",
+        "Pretendard-Regular"
+      ],
+      "minimum_font_pt": 14.003,
+      "passed": true
+    },
+    {
+      "page": 15,
+      "missing_strings": [],
+      "out_of_page_count": 0,
+      "fonts": [
+        "Pretendard-Bold",
+        "Pretendard-Regular"
+      ],
+      "minimum_font_pt": 14.003,
+      "passed": true
+    },
+    {
+      "page": 16,
+      "missing_strings": [],
+      "out_of_page_count": 0,
+      "fonts": [
+        "Pretendard-Bold",
+        "Pretendard-Regular"
+      ],
+      "minimum_font_pt": 14.003,
+      "passed": true
+    },
+    {
+      "page": 17,
+      "missing_strings": [],
+      "out_of_page_count": 0,
+      "fonts": [
+        "Pretendard-Bold",
+        "Pretendard-Regular"
+      ],
+      "minimum_font_pt": 14.003,
+      "passed": true
+    },
+    {
+      "page": 18,
+      "missing_strings": [],
+      "out_of_page_count": 0,
+      "fonts": [
+        "Pretendard-Bold",
+        "Pretendard-Regular"
+      ],
+      "minimum_font_pt": 14.003,
+      "passed": true
+    },
+    {
+      "page": 19,
+      "missing_strings": [],
+      "out_of_page_count": 0,
+      "fonts": [
+        "Pretendard-Bold",
+        "Pretendard-Regular"
+      ],
+      "minimum_font_pt": 14.003,
+      "passed": true
+    },
+    {
+      "page": 20,
+      "missing_strings": [],
+      "out_of_page_count": 0,
+      "fonts": [
+        "Pretendard-Bold",
+        "Pretendard-Regular"
+      ],
+      "minimum_font_pt": 14.003,
+      "passed": true
+    },
+    {
+      "page": 21,
+      "missing_strings": [],
+      "out_of_page_count": 0,
+      "fonts": [
+        "Pretendard-Bold",
+        "Pretendard-Regular"
+      ],
+      "minimum_font_pt": 14.003,
+      "passed": true
+    },
+    {
+      "page": 22,
+      "missing_strings": [],
+      "out_of_page_count": 0,
+      "fonts": [
+        "Pretendard-Bold",
+        "Pretendard-Regular"
+      ],
+      "minimum_font_pt": 14.003,
+      "passed": true
+    },
+    {
+      "page": 23,
+      "missing_strings": [],
+      "out_of_page_count": 0,
+      "fonts": [
+        "Pretendard-Bold",
+        "Pretendard-Regular"
+      ],
+      "minimum_font_pt": 14.003,
+      "passed": true
+    },
+    {
+      "page": 24,
+      "missing_strings": [],
+      "out_of_page_count": 0,
+      "fonts": [
+        "Pretendard-Bold",
+        "Pretendard-Regular"
+      ],
+      "minimum_font_pt": 14.003,
+      "passed": true
+    },
+    {
+      "page": 25,
+      "missing_strings": [],
+      "out_of_page_count": 0,
+      "fonts": [
+        "Pretendard-Bold",
+        "Pretendard-Regular"
+      ],
+      "minimum_font_pt": 14.003,
+      "passed": true
+    },
+    {
+      "page": 26,
+      "missing_strings": [],
+      "out_of_page_count": 0,
+      "fonts": [
+        "Pretendard-Bold",
+        "Pretendard-Regular"
+      ],
+      "minimum_font_pt": 14.003,
+      "passed": true
+    },
+    {
+      "page": 27,
+      "missing_strings": [],
+      "out_of_page_count": 0,
+      "fonts": [
+        "Pretendard-Bold",
+        "Pretendard-Regular"
+      ],
+      "minimum_font_pt": 14.003,
+      "passed": true
+    },
+    {
+      "page": 28,
+      "missing_strings": [],
+      "out_of_page_count": 0,
+      "fonts": [
+        "Pretendard-Bold",
+        "Pretendard-Regular"
+      ],
+      "minimum_font_pt": 14.003,
+      "passed": true
+    },
+    {
+      "page": 29,
+      "missing_strings": [],
+      "out_of_page_count": 0,
+      "fonts": [
+        "Pretendard-Bold",
+        "Pretendard-Regular"
+      ],
+      "minimum_font_pt": 14.003,
+      "passed": true
+    },
+    {
+      "page": 30,
+      "missing_strings": [],
+      "out_of_page_count": 0,
+      "fonts": [
+        "Pretendard-Bold",
+        "Pretendard-Regular"
+      ],
+      "minimum_font_pt": 14.003,
+      "passed": true
+    },
+    {
+      "page": 31,
+      "missing_strings": [],
+      "out_of_page_count": 0,
+      "fonts": [
+        "Pretendard-Bold",
+        "Pretendard-Regular"
+      ],
+      "minimum_font_pt": 14.003,
+      "passed": true
+    },
+    {
+      "page": 32,
+      "missing_strings": [],
+      "out_of_page_count": 0,
+      "fonts": [
+        "Pretendard-Bold",
+        "Pretendard-Regular"
+      ],
+      "minimum_font_pt": 14.003,
+      "passed": true
+    },
+    {
+      "page": 33,
+      "missing_strings": [],
+      "out_of_page_count": 0,
+      "fonts": [
+        "Pretendard-Bold",
+        "Pretendard-Regular"
+      ],
+      "minimum_font_pt": 14.003,
+      "passed": true
+    },
+    {
+      "page": 34,
+      "missing_strings": [],
+      "out_of_page_count": 0,
+      "fonts": [
+        "Pretendard-Bold",
+        "Pretendard-Regular"
+      ],
+      "minimum_font_pt": 14.003,
+      "passed": true
+    },
+    {
+      "page": 35,
+      "missing_strings": [],
+      "out_of_page_count": 0,
+      "fonts": [
+        "Pretendard-Bold",
+        "Pretendard-Regular"
+      ],
+      "minimum_font_pt": 14.003,
+      "passed": true
+    },
+    {
+      "page": 36,
+      "missing_strings": [],
+      "out_of_page_count": 0,
+      "fonts": [
+        "Pretendard-Bold",
+        "Pretendard-Regular"
+      ],
+      "minimum_font_pt": 14.003,
+      "passed": true
+    },
+    {
+      "page": 37,
+      "missing_strings": [],
+      "out_of_page_count": 0,
+      "fonts": [
+        "Pretendard-Bold",
+        "Pretendard-Regular"
+      ],
+      "minimum_font_pt": 14.003,
+      "passed": true
+    },
+    {
+      "page": 38,
+      "missing_strings": [],
+      "out_of_page_count": 0,
+      "fonts": [
+        "Pretendard-Bold",
+        "Pretendard-Regular"
+      ],
+      "minimum_font_pt": 14.003,
+      "passed": true
+    },
+    {
+      "page": 39,
+      "missing_strings": [],
+      "out_of_page_count": 0,
+      "fonts": [
+        "Pretendard-Bold",
+        "Pretendard-Regular"
+      ],
+      "minimum_font_pt": 14.003,
+      "passed": true
+    },
+    {
+      "page": 40,
+      "missing_strings": [],
+      "out_of_page_count": 0,
+      "fonts": [
+        "Pretendard-Bold",
+        "Pretendard-Regular"
+      ],
+      "minimum_font_pt": 14.003,
+      "passed": true
+    },
+    {
+      "page": 41,
+      "missing_strings": [],
+      "out_of_page_count": 0,
+      "fonts": [
+        "Pretendard-Bold",
+        "Pretendard-Regular"
+      ],
+      "minimum_font_pt": 14.003,
+      "passed": true
+    },
+    {
+      "page": 42,
+      "missing_strings": [],
+      "out_of_page_count": 0,
+      "fonts": [
+        "Pretendard-Bold",
+        "Pretendard-Regular"
+      ],
+      "minimum_font_pt": 14.003,
+      "passed": true
+    },
+    {
+      "page": 43,
+      "missing_strings": [],
+      "out_of_page_count": 0,
+      "fonts": [
+        "Pretendard-Bold",
+        "Pretendard-Regular"
+      ],
+      "minimum_font_pt": 14.003,
+      "passed": true
+    },
+    {
+      "page": 44,
+      "missing_strings": [],
+      "out_of_page_count": 0,
+      "fonts": [
+        "Pretendard-Bold",
+        "Pretendard-Regular"
+      ],
+      "minimum_font_pt": 14.003,
+      "passed": true
+    },
+    {
+      "page": 45,
+      "missing_strings": [],
+      "out_of_page_count": 0,
+      "fonts": [
+        "Pretendard-Bold",
+        "Pretendard-Regular"
+      ],
+      "minimum_font_pt": 14.003,
+      "passed": true
+    },
+    {
+      "page": 46,
+      "missing_strings": [],
+      "out_of_page_count": 0,
+      "fonts": [
+        "Pretendard-Bold",
+        "Pretendard-Regular"
+      ],
+      "minimum_font_pt": 14.003,
+      "passed": true
+    },
+    {
+      "page": 47,
+      "missing_strings": [],
+      "out_of_page_count": 0,
+      "fonts": [
+        "Pretendard-Bold",
+        "Pretendard-Regular"
+      ],
+      "minimum_font_pt": 14.003,
+      "passed": true
+    },
+    {
+      "page": 48,
+      "missing_strings": [],
+      "out_of_page_count": 0,
+      "fonts": [
+        "Pretendard-Bold",
+        "Pretendard-Regular"
+      ],
+      "minimum_font_pt": 14.003,
+      "passed": true
+    },
+    {
+      "page": 49,
+      "missing_strings": [],
+      "out_of_page_count": 0,
+      "fonts": [
+        "Pretendard-Bold",
+        "Pretendard-Regular"
+      ],
+      "minimum_font_pt": 14.003,
+      "passed": true
+    },
+    {
+      "page": 50,
+      "missing_strings": [],
+      "out_of_page_count": 0,
+      "fonts": [
+        "Pretendard-Bold",
+        "Pretendard-Regular"
+      ],
+      "minimum_font_pt": 14.003,
+      "passed": true
+    },
+    {
+      "page": 51,
+      "missing_strings": [],
+      "out_of_page_count": 0,
+      "fonts": [
+        "Pretendard-Bold",
+        "Pretendard-Regular"
+      ],
+      "minimum_font_pt": 14.003,
+      "passed": true
+    },
+    {
+      "page": 52,
+      "missing_strings": [],
+      "out_of_page_count": 0,
+      "fonts": [
+        "Pretendard-Bold",
+        "Pretendard-Regular"
+      ],
+      "minimum_font_pt": 14.003,
+      "passed": true
+    }
+  ],
+  "result": "passed",
+  "claim_boundary": "PDF 텍스트와 글꼴 검사이며 개별 PNG 시각 검수를 대체하지 않음"
+}

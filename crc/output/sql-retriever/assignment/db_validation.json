@@ -1,0 +1,67 @@
+{
+  "status": "passed",
+  "checks": [
+    "view_owner_and_security_barrier",
+    "default_deny_without_scope_both_roles",
+    "two_cards_and_future_effective_date",
+    "q08_under_cardlab_and_restricted_role",
+    "midmonth_coverage_matches_raw_approved_transactions",
+    "unavailable_period_is_null",
+    "both_members_match_independent_raw_aggregates",
+    "restricted_role_has_view_only"
+  ],
+  "sample_member": "M-6074",
+  "sample_rows": [
+    [
+      "CARD_001",
+      "32000",
+      "2027-01-15",
+      "f",
+      "2026-03-01",
+      "2026-08-31",
+      "273405",
+      "40",
+      "6",
+      "6"
+    ],
+    [
+      "CARD_002",
+      "52000",
+      "2027-01-15",
+      "f",
+      "2026-03-01",
+      "2026-08-31",
+      "262573",
+      "38",
+      "6",
+      "6"
+    ]
+  ],
+  "q08_row_count": 2,
+  "midmonth_rows": [
+    [
+      "CARD_001",
+      "32000",
+      "2027-01-15",
+      "f",
+      "2026-08-15",
+      "2026-08-31",
+      "22470",
+      "3",
+      "1",
+      "1"
+    ],
+    [
+      "CARD_002",
+      "52000",
+      "2027-01-15",
+      "f",
+      "2026-08-15",
+      "2026-08-31",
+      "29970",
+      "4",
+      "1",
+      "1"
+    ]
+  ]
+}

@@ -1,0 +1,36 @@
+# Local secrets (keep shareable templates)
+.env
+.env.*
+!.env.example
+!.env.sample
+!.env.template
+
+# OS and editor files
+.DS_Store
+._*
+~$*
+*.swp
+*.swo
+
+# Local dependencies and Python caches
+node_modules/
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Downloaded references and generated presentation previews
+.temp/
+crc/output/**/build/assets/
+crc/output/**/build/font-cache/
+crc/output/**/build/out/
+crc/output/**/build/rendered/
+crc/output/**/build/final/
+crc/output/**/build/candidate.pptx
+crc/output/**/build/extracted_text.json
+crc/output/**/build/layout_log.json
+crc/output/**/build/fonts.conf
+crc/output/**/build/secret_scan.json

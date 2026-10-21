@@ -1,0 +1,47 @@
+{
+  "name": "sql_retriever_plan",
+  "strict": true,
+  "schema": {
+    "type": "object",
+    "properties": {
+      "status": {
+        "type": "string",
+        "enum": ["ready", "unsupported", "ambiguous"]
+      },
+      "reason_code": {
+        "type": "string",
+        "enum": ["OK", "UNSUPPORTED", "AMBIGUOUS"]
+      },
+      "view": {
+        "type": ["string", "null"]
+      },
+      "sql": {
+        "type": ["string", "null"]
+      },
+      "grain": {
+        "type": ["string", "null"]
+      },
+      "period_start": {
+        "type": ["string", "null"]
+      },
+      "period_end": {
+        "type": ["string", "null"]
+      },
+      "selected_columns": {
+        "type": "array",
+        "items": {"type": "string"}
+      }
+    },
+    "required": [
+      "status",
+      "reason_code",
+      "view",
+      "sql",
+      "grain",
+      "period_start",
+      "period_end",
+      "selected_columns"
+    ],
+    "additionalProperties": false
+  }
+}

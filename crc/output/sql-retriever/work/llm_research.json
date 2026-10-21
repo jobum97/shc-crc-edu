@@ -1,0 +1,164 @@
+{
+  "provider": "Groq",
+  "checked_on": "2026-10-15",
+  "source_method": "공식 문서를 curl로 crc/.temp에 저장하여 확인",
+  "base_url": {
+    "value": "https://api.groq.com",
+    "source_url": "https://github.com/groq/groq-python/blob/main/src/groq/_client.py",
+    "checked_on": "2026-10-15",
+    "basis": "공식 SDK의 기본 base_url 코드 확인"
+  },
+  "endpoint": {
+    "value": "POST /openai/v1/chat/completions",
+    "source_url": "https://console.groq.com/docs/api-reference",
+    "checked_on": "2026-10-15"
+  },
+  "authentication": {
+    "value": "Authorization: Bearer ${GROQ_API_KEY}",
+    "source_url": "https://console.groq.com/docs/reasoning",
+    "checked_on": "2026-10-15"
+  },
+  "api_key_environment_variable": {
+    "value": "GROQ_API_KEY",
+    "source_url": "https://console.groq.com/docs/quickstart",
+    "checked_on": "2026-10-15"
+  },
+  "model_id": {
+    "value": "openai/gpt-oss-120b",
+    "source_url": "https://console.groq.com/docs/model/openai/gpt-oss-120b",
+    "checked_on": "2026-10-15"
+  },
+  "context_window_tokens": {
+    "value": 131072,
+    "source_url": "https://console.groq.com/docs/model/openai/gpt-oss-120b",
+    "checked_on": "2026-10-15"
+  },
+  "provider_max_output_tokens": {
+    "value": 65536,
+    "source_url": "https://console.groq.com/docs/model/openai/gpt-oss-120b",
+    "checked_on": "2026-10-15"
+  },
+  "settings": {
+    "temperature": {
+      "value": 0.1,
+      "source_url": "https://console.groq.com/docs/api-reference",
+      "checked_on": "2026-10-15",
+      "supported_range": [
+        0,
+        2
+      ],
+      "reason": "SQL 계획의 변동을 줄이기 위한 설계값. 정확성 보장은 별도 평가 필요"
+    },
+    "top_p": {
+      "value": 1,
+      "source_url": "https://console.groq.com/docs/api-reference",
+      "checked_on": "2026-10-15",
+      "supported_range": [
+        0,
+        1
+      ],
+      "reason": "공식 기본값 유지. temperature와 동시에 조정하지 않음"
+    },
+    "max_completion_tokens": {
+      "value": 2048,
+      "source_url": "https://console.groq.com/docs/api-reference",
+      "checked_on": "2026-10-15",
+      "model_limit_source_url": "https://console.groq.com/docs/model/openai/gpt-oss-120b",
+      "supported_range_note": "양의 정수이며 모델 최대 출력 65536과 전체 문맥 한도 이내",
+      "reason": "짧은 단일 SQL과 구조화 계획에 대한 설계 가정. 잘림 여부 실측 필요"
+    },
+    "reasoning_effort": {
+      "value": "low",
+      "source_url": "https://console.groq.com/docs/api-reference",
+      "checked_on": "2026-10-15",
+      "supported_values": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "reason": "단일 뷰 조회 범위에서 지연을 줄이려는 설계값"
+    },
+    "include_reasoning": {
+      "value": false,
+      "source_url": "https://console.groq.com/docs/api-reference",
+      "checked_on": "2026-10-15",
+      "supported_values": [
+        true,
+        false
+      ],
+      "reason": "중간 추론 텍스트를 반환하거나 보관하지 않음. reasoning_format과 동시 전송 금지"
+    },
+    "stream": {
+      "value": false,
+      "source_url": "https://console.groq.com/docs/structured-outputs",
+      "checked_on": "2026-10-15",
+      "reason": "구조화 출력은 스트리밍과 도구 사용을 현재 지원하지 않음"
+    },
+    "n": {
+      "value": 1,
+      "source_url": "https://console.groq.com/docs/api-reference",
+      "checked_on": "2026-10-15",
+      "supported_range": [
+        1,
+        1
+      ]
+    },
+    "response_format": {
+      "value": {
+        "type": "json_schema",
+        "strict": true
+      },
+      "source_url": "https://console.groq.com/docs/structured-outputs",
+      "checked_on": "2026-10-15",
+      "reason": "모든 속성을 required로 지정하고 모든 객체에 additionalProperties:false 적용"
+    },
+    "top_k": {
+      "value": "미전송",
+      "source_url": "https://console.groq.com/docs/api-reference",
+      "checked_on": "2026-10-15",
+      "status": "API에 명시된 지원 범위 없음. 확인 필요"
+    },
+    "tools": {
+      "value": "미전송",
+      "source_url": "https://console.groq.com/docs/structured-outputs",
+      "checked_on": "2026-10-15",
+      "reason": "구조화 출력과 도구 사용을 함께 사용하지 않음"
+    }
+  },
+  "sdk": {
+    "package": "groq",
+    "source_url": "https://github.com/groq/groq-python",
+    "checked_on": "2026-10-15",
+    "client": "AsyncGroq",
+    "max_retries": 0,
+    "timeout_seconds": 15,
+    "absolute_deadline_wrapper_required": true,
+    "note": "SDK 기본 재시도 2회이므로 명시적으로 0회 설정. 전 구간 절대 종료시각을 별도 적용",
+    "context7_status": "현재 도구 없음. 공식 SDK README로 사용법 확인",
+    "base_url": "https://api.groq.com",
+    "base_url_source_url": "https://github.com/groq/groq-python/blob/main/src/groq/_client.py"
+  },
+  "rate_limit": {
+    "value": {
+      "account_limit": "확인 필요",
+      "scope": "조직 단위",
+      "published_free_plan_example": {
+        "RPM": 30,
+        "RPD": 1000,
+        "TPM": 8000,
+        "TPD": 200000
+      },
+      "adopt_as_runtime_limit": false
+    },
+    "source_url": "https://console.groq.com/docs/rate-limits",
+    "checked_on": "2026-10-15",
+    "note": "실제 계정 한도는 계정 Limits 화면과 응답 헤더로 확인. 429는 재시도 없이 오류 반환"
+  },
+  "live_api_test": false,
+  "remaining_validation": [
+    "실제 계정별 rate limit",
+    "지원 설정 조합의 실제 호출 성공",
+    "2048토큰 내 완료 여부",
+    "15초 호출과 전체30초 달성률"
+  ]
+}
