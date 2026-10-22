@@ -1,0 +1,120 @@
+{
+  "status": "accepted_default",
+  "allowed_views_and_columns": {
+    "app.card_fee_usage_6m": [
+      "card_ref",
+      "product_name",
+      "brand",
+      "current_status",
+      "product_effective_date",
+      "is_product_effective_on_base_date",
+      "listed_annual_fee",
+      "usage_period_start",
+      "usage_period_end",
+      "approved_amount_6m",
+      "transaction_count_6m",
+      "covered_month_count",
+      "active_month_count"
+    ],
+    "app.customer_cards": [
+      "card_ref",
+      "product_id",
+      "product_name",
+      "brand",
+      "issue_date",
+      "current_status",
+      "product_effective_date",
+      "is_product_effective_on_base_date",
+      "annual_fee"
+    ],
+    "app.customer_daily_usage": [
+      "usage_date",
+      "approved_amount",
+      "transaction_count"
+    ],
+    "app.customer_delinquency": [
+      "base_month",
+      "as_of_date",
+      "overdue_amount",
+      "overdue_days",
+      "overdue_count_12m"
+    ],
+    "app.customer_delinquency_history": [
+      "base_month",
+      "as_of_date",
+      "overdue_amount",
+      "overdue_days",
+      "overdue_count_12m"
+    ],
+    "app.customer_profile": [
+      "join_date",
+      "age_band"
+    ],
+    "app.merchant_usage": [
+      "card_ref",
+      "month",
+      "period_start",
+      "period_end",
+      "merchant_name",
+      "category",
+      "first_approved_date",
+      "last_approved_date",
+      "approved_amount",
+      "transaction_count"
+    ],
+    "app.monthly_usage": [
+      "card_ref",
+      "month",
+      "period_start",
+      "period_end",
+      "approved_amount",
+      "transaction_count"
+    ]
+  },
+  "allowed_statement": "단일 SELECT",
+  "allowed_clauses": [
+    "WHERE",
+    "GROUP BY",
+    "HAVING",
+    "ORDER BY",
+    "LIMIT"
+  ],
+  "allowed_functions": [
+    "COUNT",
+    "SUM",
+    "AVG",
+    "MIN",
+    "MAX",
+    "COALESCE",
+    "ROUND",
+    "DATE_TRUNC",
+    "TO_CHAR"
+  ],
+  "output_row_limit": 200,
+  "forbidden": [
+    "원본 테이블",
+    "app_internal",
+    "시스템 카탈로그",
+    "SELECT *",
+    "복수 문장",
+    "데이터 변경문",
+    "DDL",
+    "권한 변경",
+    "SET",
+    "COPY",
+    "SELECT INTO",
+    "잠금 구문",
+    "CTE",
+    "서브쿼리",
+    "JOIN",
+    "UNION",
+    "임의 함수",
+    "세션 변수 접근 또는 변경"
+  ],
+  "reason": "초기 버전의 SQL 범위를 공개 논리 뷰 1개 조회와 집계로 제한하여 검증 규칙을 명확히 함",
+  "decision_maker": "사용자",
+  "decision_date": "2026-10-15T08:00:55.424856+00:00",
+  "max_sql_bytes": 16384,
+  "max_result_bytes": 1048576,
+  "version": "sql-retriever-v2-2026-10-21"
+}

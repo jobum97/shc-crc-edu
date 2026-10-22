@@ -1,0 +1,5 @@
+{
+  "dip_violations": [],
+  "design_sources_unchanged": true,
+  "public_port_methods_have_abstractmethod": true
+}

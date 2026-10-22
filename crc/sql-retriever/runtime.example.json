@@ -1,0 +1,12 @@
+{
+  "metadata": {
+    "base_date": null,
+    "coverage_start": null,
+    "loaded_at": null,
+    "freshness_policy": "loaded_at 기준 24시간"
+  },
+  "auth": [
+    {"principal_id": "local-tester-a", "authorized_member_id": null, "token_env": "SQL_RETRIEVER_TOKEN_A"},
+    {"principal_id": "local-tester-b", "authorized_member_id": null, "token_env": "SQL_RETRIEVER_TOKEN_B"}
+  ]
+}

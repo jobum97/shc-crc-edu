@@ -1,0 +1,15 @@
+{
+  "status": "blocked",
+  "missing": [
+    "비관리자 RDB_USER와 해당 RDB_PASSWORD",
+    "metadata.base_date",
+    "metadata.coverage_start",
+    "metadata.loaded_at",
+    "서로 다른 시험 회원 범위 2개",
+    "시험용 인증 토큰 환경변수"
+  ],
+  "cases": [],
+  "business_rows_logged": 0,
+  "real_db_executed": false,
+  "real_llm_executed": false
+}

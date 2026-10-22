@@ -1,0 +1,357 @@
+{
+  "app.card_fee_usage_6m": {
+    "view": "app.card_fee_usage_6m",
+    "columns": [
+      {
+        "name": "card_ref",
+        "type": "text"
+      },
+      {
+        "name": "product_name",
+        "type": "text"
+      },
+      {
+        "name": "brand",
+        "type": "text"
+      },
+      {
+        "name": "current_status",
+        "type": "text"
+      },
+      {
+        "name": "product_effective_date",
+        "type": "date"
+      },
+      {
+        "name": "is_product_effective_on_base_date",
+        "type": "boolean"
+      },
+      {
+        "name": "listed_annual_fee",
+        "type": "integer"
+      },
+      {
+        "name": "usage_period_start",
+        "type": "date"
+      },
+      {
+        "name": "usage_period_end",
+        "type": "date"
+      },
+      {
+        "name": "approved_amount_6m",
+        "type": "bigint"
+      },
+      {
+        "name": "transaction_count_6m",
+        "type": "integer"
+      },
+      {
+        "name": "covered_month_count",
+        "type": "integer"
+      },
+      {
+        "name": "active_month_count",
+        "type": "integer"
+      }
+    ],
+    "description": "카드별 자료상 연회비와 최대 6개 달 승인 사용액 조회",
+    "grain": "카드 1개",
+    "period_policy": [
+      "시작은 기준월에서 5개월 전 월초, 실제 coverage_start, 카드 발급일 중 최댓값임.",
+      "종료는 base_date임. base_date와 coverage_start가 NULL이면 결과 행을 만들지 않음.",
+      "시작일 <= base_date일 때만 usage_period_start/end와 6개월 집계값을 채움.",
+      "View 자체는 전체 카드 상태를 포함하며 Q-08이 ACTIVE 조건을 추가함."
+    ],
+    "value_semantics": [
+      "listed_annual_fee는 상품 안내값이며 실제 청구액이나 혜택 손익이 아님.",
+      "상품 시행일과 기준일의 효력 여부를 함께 표시함. 기준일 뒤 시행 상품도 포함될 수 있음.",
+      "관측 기간 성립 후 APPROVED 거래가 없으면 금액, 거래건수, 활동월수는 0임.",
+      "관측 기간 미성립이면 기간 두 컬럼과 집계 네 컬럼은 NULL임.",
+      "covered_month_count는 관측 창에 걸친 달 수, active_month_count는 승인 거래가 있는 달 수임.",
+      "monthly_usage는 제공 시작월 월초를 쓰므로 월중 제공 시작 때 같은 값으로 단순 비교 금지."
+    ]
+  },
+  "app.customer_cards": {
+    "view": "app.customer_cards",
+    "columns": [
+      {
+        "name": "card_ref",
+        "type": "text"
+      },
+      {
+        "name": "product_id",
+        "type": "text"
+      },
+      {
+        "name": "product_name",
+        "type": "text"
+      },
+      {
+        "name": "brand",
+        "type": "text"
+      },
+      {
+        "name": "issue_date",
+        "type": "date"
+      },
+      {
+        "name": "current_status",
+        "type": "text"
+      },
+      {
+        "name": "product_effective_date",
+        "type": "date"
+      },
+      {
+        "name": "is_product_effective_on_base_date",
+        "type": "boolean"
+      },
+      {
+        "name": "annual_fee",
+        "type": "integer"
+      }
+    ],
+    "description": "기준일까지 발급한 카드의 상품과 연회비 안내값 조회",
+    "grain": "카드 1개",
+    "period_policy": [
+      "issue_date <= base_date인 카드만 노출함. 거래 기간 집계가 아님.",
+      "product_effective_date가 base_date 이후여도 행을 제거하지 않음."
+    ],
+    "value_semantics": [
+      "card_ref는 요청 회원 안의 표시값이며 영구 전역 ID가 아님.",
+      "current_status는 현재 상태이며 과거 상태 이력이 아님.",
+      "annual_fee는 상품과 브랜드별 total_fee 안내값이며 실제 청구액이 아님.",
+      "상품 또는 브랜드별 연회비 자료와 내부 결합이 안 되는 카드는 결과에서 빠짐.",
+      "NULL 값은 원본 컬럼 의미에 따라 처리하며 0으로 일괄 치환하지 않음."
+    ]
+  },
+  "app.customer_daily_usage": {
+    "view": "app.customer_daily_usage",
+    "columns": [
+      {
+        "name": "usage_date",
+        "type": "date"
+      },
+      {
+        "name": "approved_amount",
+        "type": "bigint"
+      },
+      {
+        "name": "transaction_count",
+        "type": "integer"
+      }
+    ],
+    "description": "회원의 일별 승인 사용액과 거래 건수 조회",
+    "grain": "회원 1명과 날짜 1개",
+    "period_policy": [
+      "base_date 포함 최대 90일이며 시작은 base_date-89일, coverage_start, 가입일 중 최댓값임.",
+      "가입일 <= base_date인 회원만 날짜를 생성함. 종료는 base_date임."
+    ],
+    "value_semantics": [
+      "회원 범위 카드의 APPROVED 거래만 합산함. 승인 거래가 없는 생성 날짜는 금액과 건수 0임.",
+      "0행은 날짜 생성 조건 미충족과 구분해야 하며 회원 미존재로 단정하지 않음.",
+      "카드별 발급일 필터를 별도로 추가하지 않는 SQL임. 회원 가입일 기준의 날짜 창을 사용함."
+    ]
+  },
+  "app.customer_delinquency": {
+    "view": "app.customer_delinquency",
+    "columns": [
+      {
+        "name": "base_month",
+        "type": "character(7)"
+      },
+      {
+        "name": "as_of_date",
+        "type": "date"
+      },
+      {
+        "name": "overdue_amount",
+        "type": "integer"
+      },
+      {
+        "name": "overdue_days",
+        "type": "integer"
+      },
+      {
+        "name": "overdue_count_12m",
+        "type": "integer"
+      }
+    ],
+    "description": "기준일까지 완료된 월 중 자료가 존재하는 최신 연체 현황 조회",
+    "grain": "요청 회원의 최신 자료 완료월 1개",
+    "period_policy": [
+      "as_of_date는 base_month의 월말임. as_of_date <= base_date인 자료만 선택함.",
+      "base_month 내림차순 LIMIT 1이므로 바로 직전 완료월 자료가 없으면 더 이전 자료가 선택됨.",
+      "coverage_start는 이 View의 SQL 필터에 사용하지 않음."
+    ],
+    "value_semantics": [
+      "연체금액, 연체일수, 12개월 연체횟수는 원본 값을 그대로 전달함.",
+      "없는 월의 행을 생성하거나 금액을 0으로 채우지 않음. 0행을 연체 없음으로 단정 금지.",
+      "NULL의 의미는 원본 정의에 따라 처리하며 미관측이나 0으로 임의 해석하지 않음."
+    ]
+  },
+  "app.customer_delinquency_history": {
+    "view": "app.customer_delinquency_history",
+    "columns": [
+      {
+        "name": "base_month",
+        "type": "character(7)"
+      },
+      {
+        "name": "as_of_date",
+        "type": "date"
+      },
+      {
+        "name": "overdue_amount",
+        "type": "integer"
+      },
+      {
+        "name": "overdue_days",
+        "type": "integer"
+      },
+      {
+        "name": "overdue_count_12m",
+        "type": "integer"
+      }
+    ],
+    "description": "최근 최대 12개 완료월 범위의 연체 이력 조회",
+    "grain": "요청 회원과 완료월 1개",
+    "period_policy": [
+      "base_date가 월말이면 기준월, 월중이면 직전 월이 최신 완료월임.",
+      "최신 완료월부터 11개월 전까지의 base_month 자료를 선택함.",
+      "coverage_start는 이 View의 SQL 필터에 사용하지 않음."
+    ],
+    "value_semantics": [
+      "기간 안에 실제 있는 원본 월 자료만 반환하며 누락 월을 0으로 채우지 않음.",
+      "연체금액, 연체일수, 12개월 연체횟수는 원본 값임. 반환 월수는 12개보다 적을 수 있음.",
+      "0행과 연체 0은 다름. NULL은 원본 정의 없이 연체 없음으로 해석하지 않음."
+    ]
+  },
+  "app.customer_profile": {
+    "view": "app.customer_profile",
+    "columns": [
+      {
+        "name": "join_date",
+        "type": "date"
+      },
+      {
+        "name": "age_band",
+        "type": "text"
+      }
+    ],
+    "description": "요청 회원의 가입일과 연령대 조회",
+    "grain": "회원 1명",
+    "period_policy": [
+      "join_date <= base_date인 회원만 노출함. 거래 기간 집계가 아님.",
+      "coverage_start는 이 View의 SQL 필터에 사용하지 않음."
+    ],
+    "value_semantics": [
+      "0행을 회원 미존재로 단정할 수 없음. 기준일 이전 가입 조건도 영향을 줌.",
+      "가입일과 연령대는 원본 값을 그대로 반환함. NULL 의미를 임의 추정하지 않음."
+    ]
+  },
+  "app.merchant_usage": {
+    "view": "app.merchant_usage",
+    "columns": [
+      {
+        "name": "card_ref",
+        "type": "text"
+      },
+      {
+        "name": "month",
+        "type": "text"
+      },
+      {
+        "name": "period_start",
+        "type": "date"
+      },
+      {
+        "name": "period_end",
+        "type": "date"
+      },
+      {
+        "name": "merchant_name",
+        "type": "text"
+      },
+      {
+        "name": "category",
+        "type": "text"
+      },
+      {
+        "name": "first_approved_date",
+        "type": "date"
+      },
+      {
+        "name": "last_approved_date",
+        "type": "date"
+      },
+      {
+        "name": "approved_amount",
+        "type": "bigint"
+      },
+      {
+        "name": "transaction_count",
+        "type": "integer"
+      }
+    ],
+    "description": "카드, 월, 가맹점별 승인 사용액과 업종 조회",
+    "grain": "카드 1개와 월 1개와 원본 가맹점 1개",
+    "period_policy": [
+      "거래 시작은 기준월에서 5개월 전 월초, 실제 coverage_start, 발급일 중 늦은 날짜임.",
+      "거래 종료는 base_date임. APPROVED 거래만 포함함.",
+      "출력 period_start는 거래월의 월초와 발급일의 최댓값이며 coverage_start를 반영하지 않음.",
+      "실제 필터 시작일은 max(period_start, coverage_start)로 해석해야 함.",
+      "period_end는 거래월 말일과 base_date 중 이른 날짜임."
+    ],
+    "value_semantics": [
+      "거래가 있는 가맹점만 출력함. 거래 없는 가맹점의 0행을 생성하지 않음.",
+      "first_approved_date와 last_approved_date는 실제 포함 거래의 최초일과 최종일임.",
+      "원본 merchant_id로도 묶지만 ID는 노출하지 않음. 동명 가맹점의 별도 행이 가능함.",
+      "NULL 금액 의미는 원본을 따름. 거래 없음으로 일괄 해석하지 않음."
+    ]
+  },
+  "app.monthly_usage": {
+    "view": "app.monthly_usage",
+    "columns": [
+      {
+        "name": "card_ref",
+        "type": "text"
+      },
+      {
+        "name": "month",
+        "type": "text"
+      },
+      {
+        "name": "period_start",
+        "type": "date"
+      },
+      {
+        "name": "period_end",
+        "type": "date"
+      },
+      {
+        "name": "approved_amount",
+        "type": "bigint"
+      },
+      {
+        "name": "transaction_count",
+        "type": "integer"
+      }
+    ],
+    "description": "카드별 월별 승인 사용액과 거래 건수 조회",
+    "grain": "카드 1개와 월 1개",
+    "period_policy": [
+      "기준월을 포함하여 최대 6개 달 생성함.",
+      "월 생성 시작은 기준월에서 5개월 전과 coverage_start의 월초 중 늦은 월임.",
+      "period_start는 해당 월초와 카드 발급일 중 늦은 날짜임.",
+      "period_end는 해당 월말과 base_date 중 이른 날짜임.",
+      "coverage_start를 월초로 절삭하므로 제공 시작일이 월중이면 그 이전 날짜가 범위에 포함됨."
+    ],
+    "value_semantics": [
+      "APPROVED 거래만 합산함. 카드 발급 이후의 생성 월에 거래가 없으면 금액과 건수 0임.",
+      "0행은 생성 가능한 카드와 월 조합 없음이며 0원과 구분함.",
+      "금액은 bigint, 건수는 integer임. 통화 확인 전 통화코드를 추정하지 않음."
+    ]
+  }
+}

@@ -1,0 +1,1 @@
+{"request_id": "f28def75-9a9b-44da-8f14-e80b000e4cb0", "status": "error", "data": null, "error": {"code": "UNAUTHORIZED_SCOPE", "message": "조회 권한이 없습니다", "stage": "S-R1"}, "meta": {"base_date": null, "coverage_start": null, "route": null, "query_id": null, "warnings": []}}

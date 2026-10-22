@@ -1,0 +1,42 @@
+{
+  "Q-01": {
+    "sql": "SELECT\n  join_date, age_band\nFROM app.customer_profile\nLIMIT 1;",
+    "view": "app.customer_profile",
+    "grain": "profile"
+  },
+  "Q-02": {
+    "sql": "SELECT\n  card_ref, product_id, product_name, brand, issue_date, current_status,\n  product_effective_date, is_product_effective_on_base_date, annual_fee\nFROM app.customer_cards\nORDER BY card_ref\nLIMIT 200;",
+    "view": "app.customer_cards",
+    "grain": "card"
+  },
+  "Q-03": {
+    "sql": "SELECT\n  card_ref, month, period_start, period_end, approved_amount,\n  transaction_count\nFROM app.monthly_usage\nORDER BY month DESC, card_ref\nLIMIT 200;",
+    "view": "app.monthly_usage",
+    "grain": "card_month"
+  },
+  "Q-04": {
+    "sql": "SELECT\n  base_month, as_of_date, overdue_amount, overdue_days, overdue_count_12m\nFROM app.customer_delinquency\nORDER BY base_month DESC\nLIMIT 1;",
+    "view": "app.customer_delinquency",
+    "grain": "month"
+  },
+  "Q-05": {
+    "sql": "SELECT\n  card_ref, month, period_start, period_end, merchant_name, category,\n  first_approved_date, last_approved_date, approved_amount,\n  transaction_count\nFROM app.merchant_usage\nORDER BY month DESC, approved_amount DESC, card_ref, merchant_name, category\nLIMIT 200;",
+    "view": "app.merchant_usage",
+    "grain": "merchant_month"
+  },
+  "Q-06": {
+    "sql": "SELECT\n  base_month, as_of_date, overdue_amount, overdue_days, overdue_count_12m\nFROM app.customer_delinquency_history\nORDER BY base_month DESC\nLIMIT 12;",
+    "view": "app.customer_delinquency_history",
+    "grain": "month"
+  },
+  "Q-07": {
+    "sql": "SELECT\n  usage_date, approved_amount, transaction_count\nFROM app.customer_daily_usage\nORDER BY usage_date DESC\nLIMIT 90;",
+    "view": "app.customer_daily_usage",
+    "grain": "day"
+  },
+  "Q-08": {
+    "sql": "SELECT card_ref, product_name, brand,\n  product_effective_date, is_product_effective_on_base_date,\n  listed_annual_fee, usage_period_start, usage_period_end,\n  approved_amount_6m, transaction_count_6m,\n  covered_month_count, active_month_count\nFROM app.card_fee_usage_6m\nWHERE current_status = 'ACTIVE'\nORDER BY listed_annual_fee DESC,\n  approved_amount_6m ASC, card_ref\nLIMIT 20;",
+    "view": "app.card_fee_usage_6m",
+    "grain": "card"
+  }
+}

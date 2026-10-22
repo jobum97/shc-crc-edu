@@ -1,0 +1,98 @@
+{
+  "type": "json_schema",
+  "json_schema": {
+    "name": "sql_retriever_plan_v2",
+    "strict": true,
+    "schema": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "ready",
+            "unsupported",
+            "ambiguous"
+          ]
+        },
+        "reason_code": {
+          "type": "string",
+          "enum": [
+            "OK",
+            "UNSUPPORTED",
+            "AMBIGUOUS"
+          ]
+        },
+        "view": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "app.customer_cards",
+            "app.customer_daily_usage",
+            "app.customer_delinquency",
+            "app.customer_delinquency_history",
+            "app.customer_profile",
+            "app.merchant_usage",
+            "app.monthly_usage",
+            "app.card_fee_usage_6m",
+            null
+          ]
+        },
+        "sql": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "grain": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "profile",
+            "card",
+            "card_month",
+            "merchant_month",
+            "month",
+            "day",
+            "aggregate",
+            null
+          ]
+        },
+        "period_start": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "YYYY-MM-DD 형식 시작일 또는 null. 서비스에서 실제 날짜 검증"
+        },
+        "period_end": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "YYYY-MM-DD 형식 종료일 또는 null. 서비스에서 실제 날짜 검증"
+        },
+        "selected_columns": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "status",
+        "reason_code",
+        "view",
+        "sql",
+        "grain",
+        "period_start",
+        "period_end",
+        "selected_columns"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

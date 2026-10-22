@@ -24,9 +24,9 @@ CLI와 API 진입점은 스택니(API와 UI 엔지니어)의 관점으로 한 �
 [입력]
 - 워크플로우 설계서 디렉토리(`{design_dir}`): 수행 중 사용자에게 받음(1단계).
   아래 설계 결과 파일만 설계 근거로 씀
-  - 설계서 PPT: `{design_dir}/sql_retriever_워크플로우설계서.pptx`
+  - 설계서 PPT: `{design_dir}/sql_retriever_설계서_v2.pptx`
     (승인된 최종 설계서. 다른 파일과 값이 다르면 PPT를 기준으로 삼되 사용자에게 확인함)
-  - 설계서 스크립트: `{design_dir}/sql_retriever_워크플로우설계서.md`
+  - 설계서 스크립트: `{design_dir}/sql_retriever_설계서_v2.md`
     (PPT의 원본 글. 부록의 LLM 시스템 프롬프트 **전문**과 PPT에 줄여 넣은 표의 전체 내용을 여기서 읽음)
   - 설계 결정 기록: `{design_dir}/work/decisions.json`
     (시간 예산, LLM 제공자와 모델 ID, 베이스 URL, 하이퍼파라미터와 출처 URL, 정형쿼리, SQL 검증 규칙,

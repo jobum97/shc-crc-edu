@@ -1,0 +1,58 @@
+{
+  "INVALID_REQUEST": {
+    "http": 400,
+    "message": "질문과 필수 입력을 확인해 주세요"
+  },
+  "UNAUTHORIZED_SCOPE": {
+    "http": 403,
+    "message": "조회 권한이 없습니다"
+  },
+  "PRIVACY_REJECTED": {
+    "http": 422,
+    "message": "개인정보를 제외하고 다시 입력해 주세요"
+  },
+  "CONFIG_UNAVAILABLE": {
+    "http": 503,
+    "message": "조회 기준 정보를 준비하지 못했습니다"
+  },
+  "AMBIGUOUS_REQUEST": {
+    "http": 422,
+    "message": "기간과 항목을 구체적으로 입력해 주세요"
+  },
+  "UNSUPPORTED_REQUEST": {
+    "http": 422,
+    "message": "현재 제공하는 조회 범위를 벗어났습니다"
+  },
+  "INVALID_MODEL_OUTPUT": {
+    "http": 502,
+    "message": "조회 계획을 만들지 못했습니다"
+  },
+  "SQL_REJECTED": {
+    "http": 422,
+    "message": "안전하게 실행할 수 없는 조회입니다"
+  },
+  "UPSTREAM_TIMEOUT": {
+    "http": 504,
+    "message": "조회 계획 생성 시간이 초과되었습니다"
+  },
+  "UPSTREAM_UNAVAILABLE": {
+    "http": 503,
+    "message": "조회 계획 서비스를 사용할 수 없습니다"
+  },
+  "TIME_BUDGET_EXCEEDED": {
+    "http": 504,
+    "message": "검색 처리 시간이 초과되었습니다"
+  },
+  "DB_EXECUTION_FAILED": {
+    "http": 503,
+    "message": "조회 중 오류가 발생했습니다"
+  },
+  "RESULT_TOO_LARGE": {
+    "http": 422,
+    "message": "조회 범위를 줄여 다시 요청해 주세요"
+  },
+  "RESPONSE_FAILED": {
+    "http": 500,
+    "message": "응답을 구성하지 못했습니다"
+  }
+}

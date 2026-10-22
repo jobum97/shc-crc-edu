@@ -1,0 +1,26 @@
+{
+  "status": "implemented_live_integration_blocked",
+  "design_dir": "/Users/jobum/git/ai_edu/crc/output/sql-retriever",
+  "base_dir": "/Users/jobum/git/ai_edu/crc/sql-retriever",
+  "base_dir_confirmed_by_user": "crc/sql-retriever 로 진행해줘",
+  "source_sha256": {
+    "sql_retriever_설계서_v2.pptx": "f9a4398bf8ab4c405930d13049493e87b9d93bae9ef2a91535e7be5acf33b3f5",
+    "sql_retriever_설계서_v2.md": "6a83e8c8b8ba641b1c14397f0ce4db1078982dec0e2326ff8cd8aed9c64b9ebf",
+    "work/decisions.json": "c80f72408f634aa1aa24b005da2fecac5e31faacaea3c3ea6891a1964d30c7f5",
+    "work/db_catalog.json": "36724db6776c119e5830b6327fdfbdb0e5924f37723b9c818dcb615f2f76a3d6",
+    "tools/read_views.py": "b60c0619c5cab7ec4f93e503e040d443a3563907c97b5f684264c8d9df7fadd1"
+  },
+  "implementation_started": true,
+  "db_connected": false,
+  "packages_installed": true,
+  "pending": [],
+  "reviewer": "플로니: 시간, 필드, 인증과 기간 계약 검토",
+  "pending_runtime_inputs": [
+    "restricted DB credentials",
+    "trusted dates and two test member scopes"
+  ],
+  "approval": {
+    "original_answer": "구현까지 진행해줘",
+    "interpretation": "제시한 기본안과 공식 문서 대체, 구현 수행 승인"
+  }
+}
