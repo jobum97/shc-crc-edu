@@ -1,0 +1,10 @@
+{
+  "base_date": "2026-08-31",
+  "base_date_source": "public.lab_metadata.base_date",
+  "coverage_start": "2025-08-01",
+  "coverage_start_source": "min(public.card_txn.txn_date), 관측된 거래 범위에 한정한 시험값",
+  "test_member_count": 2,
+  "member_selection": "public.member 정렬 후 첫 2개 교육용 합성 회원",
+  "env_modified": false,
+  "cardlab_test_exception": "사용자 명시 승인"
+}

@@ -1,0 +1,230 @@
+{
+  "app.card_fee_usage_6m": [
+    {
+      "name": "card_ref",
+      "type": "text"
+    },
+    {
+      "name": "product_name",
+      "type": "text"
+    },
+    {
+      "name": "brand",
+      "type": "text"
+    },
+    {
+      "name": "current_status",
+      "type": "text"
+    },
+    {
+      "name": "product_effective_date",
+      "type": "date"
+    },
+    {
+      "name": "is_product_effective_on_base_date",
+      "type": "boolean"
+    },
+    {
+      "name": "listed_annual_fee",
+      "type": "integer"
+    },
+    {
+      "name": "usage_period_start",
+      "type": "date"
+    },
+    {
+      "name": "usage_period_end",
+      "type": "date"
+    },
+    {
+      "name": "approved_amount_6m",
+      "type": "bigint"
+    },
+    {
+      "name": "transaction_count_6m",
+      "type": "integer"
+    },
+    {
+      "name": "covered_month_count",
+      "type": "integer"
+    },
+    {
+      "name": "active_month_count",
+      "type": "integer"
+    }
+  ],
+  "app.customer_cards": [
+    {
+      "name": "card_ref",
+      "type": "text"
+    },
+    {
+      "name": "product_id",
+      "type": "text"
+    },
+    {
+      "name": "product_name",
+      "type": "text"
+    },
+    {
+      "name": "brand",
+      "type": "text"
+    },
+    {
+      "name": "issue_date",
+      "type": "date"
+    },
+    {
+      "name": "current_status",
+      "type": "text"
+    },
+    {
+      "name": "product_effective_date",
+      "type": "date"
+    },
+    {
+      "name": "is_product_effective_on_base_date",
+      "type": "boolean"
+    },
+    {
+      "name": "annual_fee",
+      "type": "integer"
+    }
+  ],
+  "app.customer_daily_usage": [
+    {
+      "name": "usage_date",
+      "type": "date"
+    },
+    {
+      "name": "approved_amount",
+      "type": "bigint"
+    },
+    {
+      "name": "transaction_count",
+      "type": "integer"
+    }
+  ],
+  "app.customer_delinquency": [
+    {
+      "name": "base_month",
+      "type": "character(7)"
+    },
+    {
+      "name": "as_of_date",
+      "type": "date"
+    },
+    {
+      "name": "overdue_amount",
+      "type": "integer"
+    },
+    {
+      "name": "overdue_days",
+      "type": "integer"
+    },
+    {
+      "name": "overdue_count_12m",
+      "type": "integer"
+    }
+  ],
+  "app.customer_delinquency_history": [
+    {
+      "name": "base_month",
+      "type": "character(7)"
+    },
+    {
+      "name": "as_of_date",
+      "type": "date"
+    },
+    {
+      "name": "overdue_amount",
+      "type": "integer"
+    },
+    {
+      "name": "overdue_days",
+      "type": "integer"
+    },
+    {
+      "name": "overdue_count_12m",
+      "type": "integer"
+    }
+  ],
+  "app.customer_profile": [
+    {
+      "name": "join_date",
+      "type": "date"
+    },
+    {
+      "name": "age_band",
+      "type": "text"
+    }
+  ],
+  "app.merchant_usage": [
+    {
+      "name": "card_ref",
+      "type": "text"
+    },
+    {
+      "name": "month",
+      "type": "text"
+    },
+    {
+      "name": "period_start",
+      "type": "date"
+    },
+    {
+      "name": "period_end",
+      "type": "date"
+    },
+    {
+      "name": "merchant_name",
+      "type": "text"
+    },
+    {
+      "name": "category",
+      "type": "text"
+    },
+    {
+      "name": "first_approved_date",
+      "type": "date"
+    },
+    {
+      "name": "last_approved_date",
+      "type": "date"
+    },
+    {
+      "name": "approved_amount",
+      "type": "bigint"
+    },
+    {
+      "name": "transaction_count",
+      "type": "integer"
+    }
+  ],
+  "app.monthly_usage": [
+    {
+      "name": "card_ref",
+      "type": "text"
+    },
+    {
+      "name": "month",
+      "type": "text"
+    },
+    {
+      "name": "period_start",
+      "type": "date"
+    },
+    {
+      "name": "period_end",
+      "type": "date"
+    },
+    {
+      "name": "approved_amount",
+      "type": "bigint"
+    },
+    {
+      "name": "transaction_count",
+      "type": "integer"
+    }
+  ]
+}

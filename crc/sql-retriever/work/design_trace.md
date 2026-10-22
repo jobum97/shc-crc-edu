@@ -1,6 +1,6 @@
 # SQL 검색기 설계 대조표
 
-상태: 기본안으로 구현 및 단위 시험 완료, 실제 통합시험은 설정 대기  
+상태: 구현 및 단위 시험 완료, 승인된 cardlab 실제 DB와 Groq 통합시험17건 통과  
 갱신일: 2026-10-22  
 구현과 시험: 아래 파일에 반영됨. 실제 시험 증거는 마지막 표와 test_report.md 참조함.
 
@@ -25,14 +25,14 @@
 
 ## 단계별 대조
 
-| 설계 단계와 근거 | 구현 위치 | 확인할 시험 |
+| 설계 단계와 근거 | 구현 위치 | 시험 근거 |
 |---|---|---|
-| S-R1, PPT 5~6/56~57, MD 부록 G | application/services.py, domain/privacy.py | test_input, test_privacy, test_auth |
-| S-R2, PPT 7/43~52, MD B~E | application/services.py, domain/routing.py | test_fixed_routes, test_model_errors |
-| S-R3, PPT 8~9/29~30 | domain/plan_policy.py | test_plan_period, test_plan_grain |
-| S-R4, PPT 10/53~54 | infrastructure/sql_validator.py | test_sql_allowlist, test_sql_bypass |
-| S-R5, PPT 11/55 | infrastructure/postgres.py | test_repository, test_live_fixed |
-| S-R6, PPT 12/59~61, MD G | application/services.py | test_response, test_cli, test_api |
+| S-R1, PPT 5~6/56~57, MD 부록 G | application/services.py, domain/privacy.py | test_policies, test_workflow, test_presentation |
+| S-R2, PPT 7/43~52, MD B~E | application/services.py, domain/routing.py | test_fixed_flow_never_calls_model, test_model_failure_no_db_or_retry |
+| S-R3, PPT 8~9/29~30 | domain/plan_policy.py | tests/test_policies.py |
+| S-R4, PPT 10/53~54 | infrastructure/sql_validator.py | tests/test_sql_validator.py |
+| S-R5, PPT 11/55 | infrastructure/postgres.py | test_connectors, run_integration.py |
+| S-R6, PPT 12/59~61, MD G | application/services.py | test_workflow, test_presentation, run_entrypoint_tests.py |
 
 ### 입력과 상태 필드
 
@@ -397,64 +397,34 @@ LIMIT 20;
 - 월별 시작월과 가맹점/6개월뷰 실제 시작일 차이를 시험함
 - 최신 연체는 자료가 있는 최신 완료월이며 직전 달로 단정하지 않음
 
-## 파일 간 불일치와 사용자 확인
+## 확정된 설계 해석과 사용자 결정
 
-### D-01 카탈로그 컨테이너 타입
+- D-01: schema_catalog는 PPT의 object 계약에 따라 View 이름을 키로 구성함
+- D-02: 로컬 Bearer token 매핑 사용. 기준일/제공 시작일은 DB에서 확인하여 설정하고 24시간 유효성 적용함
+- D-03: 사용자 승인으로 cardlab 시험 예외 적용. 읽기 전용과 SQL 검증 및 회원 세션은 유지함
+- D-04: Context7 미제공은 승인된 공식 문서로 대체함. dev_plan.md에 출처 기록함
+- D-05: 최신 연체 Q-04의 period는 null이며 실제 월은 반환 행에서 확인함
+- 사용자 요청에 따라 .env 토큰과 runtime.local.json의 날짜 및 시험 회원 설정을 완료함
+- Groq에는 승인된 공개뷰 구조와 정책, 날짜 및 합성 질문만 전송함
 
-PPT21/57쪽은 schema_catalog를 object로 표기하지만 MD H는 8개 객체 배열 전달을 명시함.  
-제안: PPT 우선으로 View 이름을 키로 하는 object 사용, 각 View 객체 내용은 MD H 그대로 보존함.  
-사용자 “구현까지 진행해줘” 답변에 따라 제시한 기본안으로 구현함. 프롬프트 전문은 변경하지 않음.
+## 구현과 현재 시험 근거
 
-### D-02 인증과 날짜 설정
-
-AuthScope의 인증 계층, 실제 기준일/제공 시작일과 freshness_policy 구현이 미정임.  
-제안: 로컬 실습용으로 서버가 관리하는 Bearer token과 회원 허용목록을 검증한 뒤 AuthScope 생성함.  
-요청자가 보낸 auth_scope를 그대로 신뢰하지 않음. CLI도 같은 검증을 사용함.  
-날짜는 관리 설정의 명시값 사용, 오늘 날짜로 대체하지 않음. loaded_at 기준24시간 유효 정책 제안임.  
-토큰/회원2개/날짜 값은 사용자가 로컬 설정에 입력하며, 비밀값을 대화로 받지 않음.
-
-### D-03 실행 계정과 카탈로그 비교
-
-기존 cardlab 예외는 관리자 메타데이터 조사만 허용한 결정임.  
-현재 개발 프롬프트는 관리자 접속 및 DB 쓰기를 금지함. 제한 계정 설정 완료 전 DB 접속하지 않음.  
-통합시험 전에 RDB_USER=sql_retriever_user와 해당 RDB_PASSWORD를 사용자가 .env에서 설정해야 함.  
-12개 전체가 보이던 관리자 카탈로그와 제한 계정 접근 목록 차이는 구조 변경과 구분이 필요함.  
-제안: 공개8개 이름/타입/순서 일치를 필수로 검사하고 내부뷰 가시성 감소는 권한 차이로 따로 보고함.
-
-### D-04 Context7와 미검증 값
-
-현재 도구 목록에 Context7이 없어 요구한 사용법 확인을 수행할 수 없음.  
-제안: 공식 LangChain, Psycopg, FastAPI 문서로 대체하고 출처를 개발 계획에 기록함.  
-Groq 실제 조직 한도는 통합 호출 응답 헤더로 관측하고 없는 값은 미확인으로 기록함.  
-2048토큰 완결성과 타임아웃 달성은 시험으로 확인하며 설계값을 임의로 변경하지 않음.
-
-### D-05 최신 연체 현황의 기간
-
-Q-04는 최신 자료가 이전 완료월에 있을 수 있어 실행 전 실제 월을 확정할 수 없음.  
-제안: 최신 현황 조회 Plan과 QueryResult의 period=null, 반환 행의 base_month/as_of_date로 실제 월 표시함.  
-기간별 이력 Q-06에는 기간을 유지함. 사용자 “구현까지 진행해줘” 답변에 따라 제시한 기본안으로 구현함.
-
-## 확정과 실행 근거
-
-사용자 “구현까지 진행해줘”를 제시한 기본안과 공식 문서 대체 및 구현 수행 승인으로 기록함.  
-실제 DB 날짜와 회원 및 인증값은 추측하지 않고 설정 대기 상태로 유지함.
-
-| 설계 항목 | 구현 위치 | 실행한 시험과 결과 |
+| 설계 항목 | 구현 위치 | 확인한 시험 |
 |---|---|---|
-| S-R1 입력, 인증, 개인정보 | services, privacy, settings | test_policies, test_workflow, test_presentation 통과 |
-| S-R2 고정8건과 모델1회 | routing, services, groq_gateway | test_fixed_flow_never_calls_model 8건, test_nl2sql_once 통과 |
-| S-R3 기간, 단위, 지표 | plan_policy | test_policies 기간과 의미 보존 시험 통과 |
-| S-R4 구조와 필터 및 집계 | sql_validator | test_sql_validator 89개 통과 |
-| S-R5 권한, 세션, 해시 | postgres | test_connectors의 가짜 DB 시험 통과, 실제 DB 미실행 |
-| S-R6 결과와 오류 계약 | services | test_response_serialization_failure와 presentation 시험 통과 |
-| A/B 예산, 재시도0 | budget, services, gateway | test_budget_examples 6건 및 커넥터 timeout 시험 통과 |
-| 모델 설정과 데이터 경계 | resources, groq_gateway | test_connectors 전송 인자 및 무호출 시험 통과 |
-| CLI와 HTTP | presentation, 진입점 | CLI 프로세스, 실제 API 서버 403 응답 확인 |
-| 외부 통합과 카탈로그 | run_integration.py | 설정 사전 점검에서 차단, 실제 카탈로그와 질문 미실행 |
-| 계층과 주석 | 전체 구현 | mypy 21파일, docstring 검사와 DIP 점검 통과 |
+| S-R1 입력과 인증, 개인정보 | services, privacy, settings | 단위시험 및 실제 CLI/API 인증 성공과 거부 |
+| S-R2 정형8건과 모델1회 | routing, services, groq_gateway | 실제 정형8건 모델0회, NL2SQL2건 모델1회 |
+| S-R3 기간과 단위, 지표 | plan_policy | test_policies 및 실제 NL2SQL 성공 |
+| S-R4 구조와 필터, 집계 | sql_validator | test_sql_validator89개 및 실제 SQL 검증 |
+| S-R5 읽기 전용과 회원 세션 | postgres | 실제 DB 조회, 회원별 대조2건과 동시 조회4건 |
+| S-R6 응답 및 오류 | services | 실제 진입점8건, 200행/1MiB 직전 결과 직렬화5회 |
+| A/B 예산과 재시도0 | budget, services, gateway | 예산 계산6개, 실제 단계 시간 및 호출 횟수 검사 |
+| 공개/내부 뷰와 컬럼 | run_catalog_checks.py | 12개 목록/컬럼/타입/순서/소유자/옵션/접근 일치 |
+| CLI 및 API | presentation, run_entrypoint_tests.py | 저장 토큰으로 실제 프로세스와 HTTP8건 통과 |
+| 계층과 주석 | 전체 구현 | mypy24파일, docstring 및 DIP 검사 통과 |
 
-위에서 제시한 test_input 등 개념상 시험 이름은 최종 파일 tests/test_policies.py,  
-test_workflow.py, test_sql_validator.py, test_connectors.py, test_presentation.py로 통합됨.
+실제 통합17건, CLI/API8건, 자동 회귀199개가 통과함. 상세 수치와 한계는 test_report.md 참조.  
+모든 증거는 work에 기록하고 승인 원본 설계 파일은 변경하지 않음.  
+제한 계정의 권한 자체 검증은 사용자가 해제한 범위이며, cardlab 시험 증거와 구분함.
 
-보수적 지원 제한: 명시적인 pg_catalog 함수 표기와 집계 후 HAVING을 거부함.  
-월별 집계의 부분월 조회와 모델이 임의 추가한 필터도 거부함. 상세 사유는 시험 보고서 참조.
+정형 SQL과 허용 함수를 보수적으로 검증하며 명시적 pg_catalog 함수 표기와 임의 HAVING은 거부함.  
+이 범위는 README와 test_report.md에 명시함. 운영 부하의 최대 지연 및 전체 자연어 정확도 보장을 뜻하지 않음.

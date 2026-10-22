@@ -4,7 +4,7 @@
 정형쿼리는 미리 확정한 SQL이며, NL2SQL은 자연어 질문을 모델이 SQL로 바꾸는 방식임.  
 행 수준 보안(RLS)은 로그인한 회원 범위의 행만 보이도록 제한하는 DB 정책임.
 
-구현과 외부 연동 없는 시험은 제공됨. 실제 DB 및 Groq를 함께 사용하는 통합시험은 설정 준비 후 필요함.  
+저장 설정으로 자동 시험 199개, 실제 DB와 Groq 통합17건, 실제 CLI와 API 호출8건 통과함.  
 현재 검증 범위와 실행 근거는 `work/test_report.md` 참조.
 
 ## 주요 기능
@@ -104,26 +104,77 @@ PowerShell 정책상 활성화가 제한되면 `.\.venv\Scripts\python.exe`로 �
 `loaded_at`은 기준정보 확인 시각이며 거래 발생일과 다름. 24시간 경과 시 재확인 후 갱신 필요함.  
 회원 2개의 인증 범위를 등록하면 회원별 실행 통합시험 수행 가능함.
 
-`crc/secrets/.env`의 아래 항목을 사용자가 직접 입력함. 프로그램은 읽기만 수행함.
+`crc/secrets/.env`는 사용자 요청으로 필요한 값을 채워 둔 상태임. 실행 프로그램은 읽기만 수행함.  
+다른 환경에서 설치할 때는 아래 항목을 직접 설정함.
 
 | 환경변수 | 설명 |
 |---|---|
 | `RDB_HOST` | PostgreSQL 호스트 |
 | `RDB_PORT` | PostgreSQL 포트 |
 | `RDB_DATABASE` | DB 이름 |
-| `RDB_USER` | 승인 뷰만 조회 가능한 비관리자 실행 계정 |
+| `RDB_USER` | 기본은 비관리자 실행 계정, 명시한 시험 예외에서는 cardlab |
 | `RDB_PASSWORD` | 해당 실행 계정 비밀번호 |
 | `GROQ_API_KEY` | Groq API 키 |
 | `SQL_RETRIEVER_TOKEN_A` | 첫 번째 인증 주체의 무작위 토큰, 최소 32자 |
 | `SQL_RETRIEVER_TOKEN_B` | 두 번째 인증 주체의 별도 무작위 토큰, 최소 32자 |
 
-`cardlab`과 `postgres`는 접속 전 차단됨. 그 외 계정도 접속 후 관리자 역할과 원본 테이블 권한 검사함.  
+`cardlab`과 `postgres`는 기본적으로 접속 전 차단됨. 그 외 계정도 관리자 역할과 원본 권한 검사함.  
+사용자가 승인한 cardlab 시험은 아래 로컬 옵션이 true일 때만 예외 적용함. postgres에는 적용되지 않음.
+
+```json
+"testing": {"allow_cardlab_test": true}
+```
+
+예외에서도 읽기 전용, SQL 검증, 회원 세션 변수, 시간과 결과 크기 제한은 유지됨.  
+관리 권한이 있는 시험이므로 제한 계정의 DB 권한과 RLS 자체를 검증한 것으로 해석하지 않음.  
 DB 계정 생성이나 권한 변경은 이 프로그램에서 수행하지 않음.
+
+### 토큰 생성과 사용
+
+토큰 A와 B는 이 프로그램의 인증용 비밀 문자열임. DB 비밀번호나 Groq 키가 아님.  
+각 토큰은 runtime.local.json의 token_env를 통해 각각 다른 시험 회원과 연결됨.
+
+사용자가 터미널에서 실행하여 아래 출력 두 줄을 `crc/secrets/.env`에 직접 붙여 넣음.  
+기존 키가 있다면 해당 줄의 값을 교체하고 중복 줄을 만들지 않음.
+
+```bash
+python3 -c 'import secrets; print("SQL_RETRIEVER_TOKEN_A=" + secrets.token_urlsafe(32)); print("SQL_RETRIEVER_TOKEN_B=" + secrets.token_urlsafe(32))'
+```
+
+각 값은 무작위 바이트 32개를 URL 안전 문자열로 변환한 43자 값임. A와 B는 서로 다른 값을 사용함.  
+생성 결과는 대화나 Git에 공유하지 않음. 이 문서에 나온 예시 문장을 토큰으로 복사하지 않음.
+
+CLI와 API 호출 시에는 선택한 토큰 값을 클라이언트의 SQL_RETRIEVER_CLIENT_TOKEN에 설정함.  
+A를 사용하면 첫 회원, B를 사용하면 두 번째 회원의 허용 범위로 조회됨.
+
+사용자가 직접 값을 저장하기 전에도 아래 시험은 메모리 임시 토큰으로 인증을 검증할 수 있음.  
+임시 토큰은 파일에 저장하거나 출력하지 않으며 프로세스 종료 뒤 사용하지 않음.
+
+```bash
+python run_integration.py --ephemeral-test-tokens --db-only
+```
+
+승인된 범위에서 실제 Groq 모델을 포함하는 시험은 `--db-only`를 제외하여 실행함.
 
 모델은 승인된 `openai/gpt-oss-120b`, 호출 제한은 15초, 재시도는 0회임.  
 서버와 CLI는 기본적으로 `.env`에서만 서버 비밀값을 읽음. 셸 변수의 자동 덮어쓰기는 사용하지 않음.
 
 ## 실행
+
+가상환경 활성화 후 저장된 A 토큰을 클라이언트 환경변수로 읽는 명령은 아래와 같음.  
+토큰 값은 터미널에 출력되지 않음. B 회원을 조회할 때는 키 이름의 A를 B로 변경함.
+
+macOS와 Git Bash:
+
+```bash
+export SQL_RETRIEVER_CLIENT_TOKEN="$(python -c 'from dotenv import dotenv_values; print(dotenv_values("../secrets/.env", interpolate=False)["SQL_RETRIEVER_TOKEN_A"])')"
+```
+
+PowerShell:
+
+```powershell
+$env:SQL_RETRIEVER_CLIENT_TOKEN = python -c 'from dotenv import dotenv_values; print(dotenv_values("../secrets/.env", interpolate=False)["SQL_RETRIEVER_TOKEN_A"])'
+```
 
 CLI는 셸의 `SQL_RETRIEVER_CLIENT_TOKEN`에 서버에 등록한 토큰을 설정한 뒤 실행함.  
 비밀 토큰을 명령 인자로 넘기지 않음. 질문도 표준 입력으로 전달하면 셸 이력 노출을 줄일 수 있음.
@@ -186,10 +237,14 @@ API 본문 수신은 최대 5초이며 업무의 30초 예산은 본문 수신 �
 ```bash
 python -m pytest -q
 python -m mypy domain application infrastructure presentation bootstrap.py run_integration.py
+python run_catalog_checks.py
 python run_integration.py
+python run_entrypoint_tests.py
+python run_response_benchmark.py
 ```
 
-첫 시험은 DB와 모델을 가짜 구현으로 교체하므로 외부 호출이 없음.  
+pytest는 DB와 모델을 가짜 구현으로 교체하므로 외부 호출이 없음.  
+run_entrypoint_tests.py는 실제 CLI와 임시 HTTP 서버를 실행하고 저장 토큰으로 DB와 Groq를 호출함.  
 `run_integration.py`는 실제 Groq와 DB를 사용하며 필수 설정이 없으면 접속 없이 종료 코드 2를 반환함.  
 성공 시 0, 실행 중 시험 실패 시 1을 반환함. 업무 데이터 행은 보고서에 저장하지 않음.  
 카탈로그 차이가 있으면 이후 질문 시험을 중지함.
@@ -205,4 +260,4 @@ python run_integration.py
 - 큰 정수와 numeric 값은 정밀도 보존을 위해 문자열로 반환 가능함. NULL과 0은 구분함
 - 상품 안내 연회비를 실제 청구액으로 해석하거나 카드 해지 권고에 사용하지 않음
 - 로컬 토큰 인증은 교육용 배치임. 외부 공개 서비스의 인증 운영을 대체하지 않음
-- 두 회원 호출 성공만으로 DB의 실제 행 격리가 증명되지는 않음. 정답 데이터 대조가 별도로 필요함
+- 두 회원 프로필을 원본값과 순차/동시 대조함. 모든 뷰와 제한 계정의 RLS 강제성 검증과는 구분함

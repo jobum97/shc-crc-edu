@@ -62,15 +62,18 @@ def _json_value(value: Any) -> Any:
 
 
 class PostgresRepository(RepositoryPort):
-    """연결 설정과 카탈로그를 받아 제한 계정만 사용하며 연결을 요청끼리 공유하지 않음.
+    """연결 설정과 카탈로그를 받아 읽기 전용으로 조회하며 연결을 요청끼리 공유하지 않음.
 
     연결 풀 최적화는 하지 않음. 새 연결과 트랜잭션 지역 설정으로 회원 세션 오염을 방지함.
+    기본값은 제한 계정만 허용함. 명시적으로 승인한 로컬 시험만 cardlab 권한 예외를 허용함.
     """
 
-    def __init__(self, connection_kwargs: Record, catalog: Record, connect_factory: Callable | None = None):
+    def __init__(self, connection_kwargs: Record, catalog: Record, connect_factory: Callable | None = None,
+                 *, allow_cardlab_test: bool = False):
         """연결 생성 함수를 주입받고 동시에 최대 8개 요청의 연결을 허용함."""
         self.connection_kwargs = dict(connection_kwargs)
         self.catalog = catalog
+        self.allow_cardlab_test = allow_cardlab_test is True
         self.connect_factory = connect_factory or psycopg.AsyncConnection.connect
         self._slots = asyncio.Semaphore(8)
 
@@ -81,7 +84,10 @@ class PostgresRepository(RepositoryPort):
         예외: 관리자, 원본 테이블 권한, SQL 변경, DB 실패와 크기 초과는 RetrieverError로 반환함.
         부수효과: 메타데이터 검사와 읽기 전용 SELECT만 수행하며 종료 시 연결을 폐기함.
         """
-        if self.connection_kwargs.get("user", "").lower() in {"cardlab", "postgres"}:
+        account = self.connection_kwargs.get("user", "")
+        # 사용자 승인 예외는 정확한 cardlab 계정과 실제 불리언 True 조합에만 적용함.
+        cardlab_test = self.allow_cardlab_test and account == "cardlab"
+        if account.lower() in {"cardlab", "postgres"} and not cardlab_test:
             raise RetrieverError("DB_EXECUTION_FAILED", "S-R5")
         sql = context["validated_sql"]
         expected = hashlib.sha256(sql.encode()).hexdigest()
@@ -112,7 +118,9 @@ class PostgresRepository(RepositoryPort):
                     for query in (_ROLE_CHECK, _RAW_ACCESS_CHECK):
                         cursor = await connection.execute(query)
                         row = await cursor.fetchone()
-                        if row is None or row[0] is not False:
+                        if row is None or type(row[0]) is not bool:
+                            raise RetrieverError("DB_EXECUTION_FAILED", "S-R5")
+                        if row[0] and not cardlab_test:
                             raise RetrieverError("DB_EXECUTION_FAILED", "S-R5")
                     statement_ms = min(3000, int((stop - time.monotonic() - 2) * 1000))
                     if statement_ms <= 0:
@@ -131,29 +139,29 @@ class PostgresRepository(RepositoryPort):
                     async with asyncio.timeout(3):
                         # params=None을 유지해 모델 SQL의 % 문자를 드라이버 바인딩으로 해석하지 않게 함.
                         await cursor.execute(sql)
-                    descriptions = cursor.description or []
-                    names = [column.name for column in descriptions]
-                    if names != context["plan"]["selected_columns"] or len(set(names)) != len(names):
-                        raise RetrieverError("DB_EXECUTION_FAILED", "S-R5")
-                    view_columns = {c["name"]: c["type"]
-                                    for c in self.catalog.get(context["plan"].get("view"), {}).get("columns", [])}
-                    columns = [dict(name=c.name,
-                                    db_type=(view_columns[c.name] if c.type_code == 1042 and
-                                             view_columns.get(c.name, "").startswith("character")
-                                             else _TYPES.get(c.type_code, f"oid:{c.type_code}")),
-                                    unit=None, currency=None) for c in descriptions]
-                    rows: list[Record] = []
-                    size = len(json.dumps(columns, ensure_ascii=False).encode())
+                        # DECLARE는 지연 실행되므로 첫 행 계산까지 SQL 실행 3초에 포함함.
+                        batch = await cursor.fetchmany(1)
                     async with asyncio.timeout(1):
-                        while True:
-                            batch = await cursor.fetchmany(1)
-                            if not batch:
-                                break
+                        descriptions = cursor.description or []
+                        names = [column.name for column in descriptions]
+                        if names != context["plan"]["selected_columns"] or len(set(names)) != len(names):
+                            raise RetrieverError("DB_EXECUTION_FAILED", "S-R5")
+                        view_columns = {c["name"]: c["type"]
+                                        for c in self.catalog.get(context["plan"].get("view"), {}).get("columns", [])}
+                        columns = [dict(name=c.name,
+                                        db_type=(view_columns[c.name] if c.type_code == 1042 and
+                                                 view_columns.get(c.name, "").startswith("character")
+                                                 else _TYPES.get(c.type_code, f"oid:{c.type_code}")),
+                                        unit=None, currency=None) for c in descriptions]
+                        rows: list[Record] = []
+                        size = len(json.dumps(columns, ensure_ascii=False).encode())
+                        while batch:
                             row = {name: _json_value(value) for name, value in zip(names, batch[0], strict=True)}
                             size += len(json.dumps(row, ensure_ascii=False, allow_nan=False).encode()) + 1
                             if size > _MAX_BYTES or len(rows) >= limit:
                                 raise RetrieverError("RESULT_TOO_LARGE", "S-R5")
                             rows.append(row)
+                            batch = await cursor.fetchmany(1)
                 plan = context["plan"]
                 result = dict(rows=rows, columns=columns, grain=plan["grain"],
                               period={"start": plan["period_start"], "end": plan["period_end"]}

@@ -1,0 +1,19 @@
+{
+  "status": "configured",
+  "base_date": "2026-08-31",
+  "coverage_start": "2025-08-01",
+  "date_sources": [
+    "public.lab_metadata.base_date",
+    "min(public.card_txn.txn_date)"
+  ],
+  "test_member_count": 2,
+  "existing_members_preserved": true,
+  "persistent_tokens_valid": true,
+  "cardlab_test_exception": true,
+  "env_changed_keys": [
+    "SQL_RETRIEVER_TOKEN_A",
+    "SQL_RETRIEVER_TOKEN_B"
+  ],
+  "secret_values_logged": false,
+  "loaded_at": "2026-10-22T01:33:58.789871+00:00"
+}

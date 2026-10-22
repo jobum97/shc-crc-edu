@@ -264,3 +264,113 @@ async def test_numeric_nan_is_not_misreported_as_null():
     with pytest.raises(RetrieverError, match="DB_EXECUTION_FAILED"):
         await repository.execute(_context())
     assert connection.closed
+
+
+@pytest.mark.asyncio
+async def test_explicit_cardlab_test_exception_keeps_readonly_and_session_guards():
+    """정확한 cardlab 시험 예외만 권한 거부를 면제하며 읽기 전용과 세션을 유지함."""
+    connection = _Connection(rows=[1], denied=True)
+    factory = AsyncMock(return_value=connection)
+    repository = PostgresRepository({"user": "cardlab"}, {}, factory, allow_cardlab_test=True)
+    result = await repository.execute(_context())
+    assert result["rows"] == [{"value": 1}]
+    assert "default_transaction_read_only=on" in factory.call_args.kwargs["options"]
+    assert connection.commands[0][0] == "BEGIN READ ONLY"
+    assert any("pg_roles" in query for query, _ in connection.commands)
+    assert any("has_any_column_privilege" in query for query, _ in connection.commands)
+    assert any("set_config" in query for query, _ in connection.commands)
+    assert connection.commands[-1][0] == "ROLLBACK" and connection.closed
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("account,option", [
+    ("cardlab", False), ("cardlab", 1), ("cardlab", "true"),
+    ("postgres", True), ("CARDLAB", True),
+])
+async def test_cardlab_exception_requires_exact_account_and_boolean(account, option):
+    """다른 계정, 대소문자 변형, 문자열 및 정수 참값으로 예외를 넓히지 않음."""
+    factory = AsyncMock()
+    repository = PostgresRepository({"user": account}, {}, factory, allow_cardlab_test=option)
+    with pytest.raises(RetrieverError, match="DB_EXECUTION_FAILED"):
+        await repository.execute(_context())
+    factory.assert_not_called()
+
+
+@pytest.mark.asyncio
+async def test_cardlab_exception_does_not_exempt_another_privileged_account():
+    """예외 옵션이 있어도 다른 관리자 계정은 실제 권한 검사에서 거부함."""
+    connection = _Connection(denied=True)
+    repository = PostgresRepository({"user": "other_admin"}, {}, AsyncMock(return_value=connection),
+                                    allow_cardlab_test=True)
+    with pytest.raises(RetrieverError, match="DB_EXECUTION_FAILED"):
+        await repository.execute(_context())
+    assert not connection.business_calls and connection.closed
+
+
+@pytest.mark.asyncio
+async def test_cardlab_exception_still_rejects_failed_role_query():
+    """시험 예외에서도 역할 검사 SQL 실패를 숨기고 업무 조회를 진행하지 않음."""
+    connection = _Connection(denied=True)
+    original = connection.execute
+
+    async def fail_role_query(query, params=None):
+        if "pg_roles" in query:
+            raise RuntimeError("private role detail")
+        return await original(query, params)
+
+    connection.execute = fail_role_query
+    repository = PostgresRepository({"user": "cardlab"}, {}, AsyncMock(return_value=connection),
+                                    allow_cardlab_test=True)
+    with pytest.raises(RetrieverError, match="DB_EXECUTION_FAILED") as exc:
+        await repository.execute(_context())
+    assert "private" not in str(exc.value)
+    assert not connection.business_calls and connection.closed
+
+
+@pytest.mark.asyncio
+async def test_cardlab_exception_still_checks_sql_fingerprint():
+    """시험 계정도 검증 이후 변경된 SQL을 실행하지 못함."""
+    factory = AsyncMock()
+    context = _context()
+    context["validated_sql"] += " "
+    repository = PostgresRepository({"user": "cardlab"}, {}, factory, allow_cardlab_test=True)
+    with pytest.raises(RetrieverError, match="DB_EXECUTION_FAILED"):
+        await repository.execute(context)
+    factory.assert_not_called()
+
+
+@pytest.mark.asyncio
+async def test_first_row_execution_uses_query_budget_not_fetch_budget():
+    """지연 실행되는 첫 행 계산은 3초 실행 예산을 사용하며 1초 수신 예산을 소진하지 않음."""
+    connection = _Connection(rows=[1, 2])
+
+    class _DelayedFirstCursor(_Cursor):
+        async def fetchmany(self, size):
+            if self.index == 0:
+                await asyncio.sleep(1.05)
+            return await super().fetchmany(size)
+
+    connection.cursor = lambda **kwargs: _DelayedFirstCursor(connection)
+    repository = PostgresRepository({"user": "limited"}, {}, AsyncMock(return_value=connection))
+    result = await repository.execute(_context())
+    assert result["rows"] == [{"value": 1}, {"value": 2}]
+    assert result["completeness"] == "limit_reached_more_unknown"
+    assert connection.closed and connection.commands[-1][0] == "ROLLBACK"
+
+
+@pytest.mark.asyncio
+async def test_remaining_rows_still_have_one_second_fetch_budget():
+    """첫 행 뒤의 수신 지연은 계속 1초 예산으로 제한함."""
+    connection = _Connection(rows=[1, 2])
+
+    class _DelayedLaterCursor(_Cursor):
+        async def fetchmany(self, size):
+            if self.index == 1:
+                await asyncio.sleep(1.05)
+            return await super().fetchmany(size)
+
+    connection.cursor = lambda **kwargs: _DelayedLaterCursor(connection)
+    repository = PostgresRepository({"user": "limited"}, {}, AsyncMock(return_value=connection))
+    with pytest.raises(RetrieverError, match="TIME_BUDGET_EXCEEDED"):
+        await repository.execute(_context())
+    assert connection.closed and connection.commands[-1][0] == "ROLLBACK"

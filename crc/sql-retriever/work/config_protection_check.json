@@ -1,0 +1,19 @@
+{
+  "files": [
+    {
+      "file": ".env",
+      "ignored": true,
+      "tracked": false,
+      "permissions": "0o600"
+    },
+    {
+      "file": "runtime.local.json",
+      "ignored": true,
+      "tracked": false,
+      "permissions": "0o600"
+    }
+  ],
+  "token_and_groq_key_leak_files": [],
+  "design_sources_unchanged": true,
+  "checked_at": "2026-10-22T01:52:36.197786+00:00"
+}

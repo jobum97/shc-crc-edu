@@ -1,5 +1,5 @@
 {
-  "status": "implemented_live_integration_blocked",
+  "status": "all_authorized_checks_passed",
   "design_dir": "/Users/jobum/git/ai_edu/crc/output/sql-retriever",
   "base_dir": "/Users/jobum/git/ai_edu/crc/sql-retriever",
   "base_dir_confirmed_by_user": "crc/sql-retriever 로 진행해줘",
@@ -11,16 +11,40 @@
     "tools/read_views.py": "b60c0619c5cab7ec4f93e503e040d443a3563907c97b5f684264c8d9df7fadd1"
   },
   "implementation_started": true,
-  "db_connected": false,
+  "db_connected": true,
   "packages_installed": true,
   "pending": [],
   "reviewer": "플로니: 시간, 필드, 인증과 기간 계약 검토",
-  "pending_runtime_inputs": [
-    "restricted DB credentials",
-    "trusted dates and two test member scopes"
-  ],
+  "pending_runtime_inputs": [],
   "approval": {
     "original_answer": "구현까지 진행해줘",
     "interpretation": "제시한 기본안과 공식 문서 대체, 구현 수행 승인"
-  }
+  },
+  "cardlab_test_approval": "제한 계정이라는 제약은 풀고 cardlab 계정으로 테스트 해줘",
+  "groq_send_approval": {
+    "answer": "승인합니다",
+    "recorded_at": "2026-10-22T01:27:52.324912+00:00",
+    "destination": "https://api.groq.com",
+    "payload": [
+      "공개 조회뷰 8개 이름, 컬럼, 타입과 설명",
+      "SQL 허용 정책",
+      "기준일과 제공 시작일",
+      "합성 질문: 보유 카드 수 / 활성 카드 수"
+    ],
+    "excluded": [
+      "회원 ID",
+      "비밀번호",
+      "인증 토큰",
+      "DB 접속정보",
+      "조회 결과 행"
+    ]
+  },
+  "configuration_write_approval": ".env 랑 local 설정값 필요한 값으로 수정해서 최종적으로 실제 연동까지 완성해서 테스트 결과 업데이트해줘",
+  "completed_followups": [
+    "공개/내부12개 뷰 비교",
+    "실제 단계별 시간 측정",
+    "회원 교차 동시조회4건",
+    "200행 1MiB 직전 S-R6 벤치마크",
+    "과거 미실행 문구 정리"
+  ]
 }

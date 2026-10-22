@@ -1,0 +1,90 @@
+{
+  "status": "passed",
+  "measured_at": "2026-10-22T01:47:25.024000+00:00",
+  "python_version": "3.12.14",
+  "platform": "darwin",
+  "measurement": "actual RetrieverService.finish plus additional JSON UTF-8 encoding",
+  "samples_count": 5,
+  "s_r6_budget_seconds": 1.0,
+  "synthetic_row_count": 200,
+  "query_result_bytes": 1048575,
+  "query_result_limit_bytes": 1048576,
+  "headroom_bytes": 1,
+  "max_finish_seconds": 0.00112513,
+  "max_combined_seconds": 0.00275312,
+  "median_combined_seconds": 0.00261633,
+  "response_body_exceeds_query_result_limit": true,
+  "size_policy": {
+    "limit_applies_to": "QueryResult JSON UTF-8 bytes; response wrapper is outside that limit",
+    "response_wrapper_separate_size_limit": false,
+    "encoding": "json.dumps ensure_ascii=False, allow_nan=False, default separators"
+  },
+  "scope": {
+    "db_calls": 0,
+    "model_calls": 0,
+    "env_files_read": 0,
+    "data_rows_logged": 0,
+    "source": "synthetic data only",
+    "includes_transport_or_http_server": false,
+    "worst_case_guarantee": false,
+    "limitation": "Local five-sample measurement only; not a production latency or worst-case guarantee",
+    "deadline_enforcement": "finish is synchronous; measurement does not establish runtime preemption"
+  },
+  "samples": [
+    {
+      "sample": 1,
+      "finish_seconds": 0.00094696,
+      "additional_json_encode_seconds": 0.00137767,
+      "combined_seconds": 0.00232463,
+      "response_body_bytes": 1048877,
+      "http_status": 200,
+      "contract_valid": true,
+      "within_one_second": true,
+      "passed": true
+    },
+    {
+      "sample": 2,
+      "finish_seconds": 0.00104687,
+      "additional_json_encode_seconds": 0.00139104,
+      "combined_seconds": 0.00243792,
+      "response_body_bytes": 1048877,
+      "http_status": 200,
+      "contract_valid": true,
+      "within_one_second": true,
+      "passed": true
+    },
+    {
+      "sample": 3,
+      "finish_seconds": 0.00100441,
+      "additional_json_encode_seconds": 0.00161192,
+      "combined_seconds": 0.00261633,
+      "response_body_bytes": 1048877,
+      "http_status": 200,
+      "contract_valid": true,
+      "within_one_second": true,
+      "passed": true
+    },
+    {
+      "sample": 4,
+      "finish_seconds": 0.00112513,
+      "additional_json_encode_seconds": 0.0015935,
+      "combined_seconds": 0.00271863,
+      "response_body_bytes": 1048877,
+      "http_status": 200,
+      "contract_valid": true,
+      "within_one_second": true,
+      "passed": true
+    },
+    {
+      "sample": 5,
+      "finish_seconds": 0.00110379,
+      "additional_json_encode_seconds": 0.00164933,
+      "combined_seconds": 0.00275312,
+      "response_body_bytes": 1048877,
+      "http_status": 200,
+      "contract_valid": true,
+      "within_one_second": true,
+      "passed": true
+    }
+  ]
+}

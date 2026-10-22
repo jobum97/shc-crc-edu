@@ -1,0 +1,96 @@
+{
+  "status": "passed",
+  "token_source": "saved_env",
+  "cases": [
+    {
+      "case": "CLI-A",
+      "passed": true,
+      "actual_code": 0,
+      "expected_code": 0,
+      "seconds": 0.6601,
+      "contract_valid": true,
+      "error_code": null,
+      "route": "fixed",
+      "row_count": 1
+    },
+    {
+      "case": "CLI-B",
+      "passed": true,
+      "actual_code": 0,
+      "expected_code": 0,
+      "seconds": 0.6522,
+      "contract_valid": true,
+      "error_code": null,
+      "route": "fixed",
+      "row_count": 1
+    },
+    {
+      "case": "CLI-NL",
+      "passed": true,
+      "actual_code": 0,
+      "expected_code": 0,
+      "seconds": 1.5447,
+      "contract_valid": true,
+      "error_code": null,
+      "route": "nl2sql",
+      "row_count": 1
+    },
+    {
+      "case": "CLI-NO-AUTH",
+      "passed": true,
+      "actual_code": 1,
+      "expected_code": 1,
+      "seconds": 0.5861,
+      "contract_valid": true,
+      "error_code": "UNAUTHORIZED_SCOPE",
+      "route": null,
+      "row_count": 0
+    },
+    {
+      "case": "API-A",
+      "passed": true,
+      "actual_code": 200,
+      "expected_code": 200,
+      "seconds": 0.037,
+      "contract_valid": true,
+      "error_code": null,
+      "route": "fixed",
+      "row_count": 1
+    },
+    {
+      "case": "API-B",
+      "passed": true,
+      "actual_code": 200,
+      "expected_code": 200,
+      "seconds": 0.023,
+      "contract_valid": true,
+      "error_code": null,
+      "route": "fixed",
+      "row_count": 1
+    },
+    {
+      "case": "API-NL",
+      "passed": true,
+      "actual_code": 200,
+      "expected_code": 200,
+      "seconds": 0.8494,
+      "contract_valid": true,
+      "error_code": null,
+      "route": "nl2sql",
+      "row_count": 1
+    },
+    {
+      "case": "API-NO-AUTH",
+      "passed": true,
+      "actual_code": 403,
+      "expected_code": 403,
+      "seconds": 0.0024,
+      "contract_valid": true,
+      "error_code": "UNAUTHORIZED_SCOPE",
+      "route": null,
+      "row_count": 0
+    }
+  ],
+  "business_rows_logged": 0,
+  "completed_at": "2026-10-22T01:35:46.272483+00:00"
+}

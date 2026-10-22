@@ -1,15 +1,281 @@
 {
-  "status": "blocked",
-  "missing": [
-    "비관리자 RDB_USER와 해당 RDB_PASSWORD",
-    "metadata.base_date",
-    "metadata.coverage_start",
-    "metadata.loaded_at",
-    "서로 다른 시험 회원 범위 2개",
-    "시험용 인증 토큰 환경변수"
+  "status": "passed",
+  "missing": [],
+  "cases": [
+    {
+      "case": "Q-01",
+      "http": 200,
+      "expected_http": 200,
+      "seconds": 0.1069,
+      "passed": true,
+      "stage_seconds": {
+        "S-R1": 0.001501,
+        "S-R2": 0.000276,
+        "S-R3": 0.000108,
+        "S-R4": 0.012832,
+        "S-R5": 0.047173,
+        "S-R6": 2.3e-05
+      },
+      "stage_budget_passed": true,
+      "model_calls": 0,
+      "model_seconds": [],
+      "error_code": null,
+      "error_stage": null,
+      "row_count": 1
+    },
+    {
+      "case": "Q-02",
+      "http": 200,
+      "expected_http": 200,
+      "seconds": 0.0323,
+      "passed": true,
+      "stage_seconds": {
+        "S-R1": 6.7e-05,
+        "S-R2": 0.000137,
+        "S-R3": 3.3e-05,
+        "S-R4": 0.000752,
+        "S-R5": 0.029153,
+        "S-R6": 3.2e-05
+      },
+      "stage_budget_passed": true,
+      "model_calls": 0,
+      "model_seconds": [],
+      "error_code": null,
+      "error_stage": null,
+      "row_count": 1
+    },
+    {
+      "case": "Q-03",
+      "http": 200,
+      "expected_http": 200,
+      "seconds": 0.1313,
+      "passed": true,
+      "stage_seconds": {
+        "S-R1": 7e-05,
+        "S-R2": 9.5e-05,
+        "S-R3": 0.000115,
+        "S-R4": 0.000489,
+        "S-R5": 0.128305,
+        "S-R6": 8.6e-05
+      },
+      "stage_budget_passed": true,
+      "model_calls": 0,
+      "model_seconds": [],
+      "error_code": null,
+      "error_stage": null,
+      "row_count": 6
+    },
+    {
+      "case": "Q-04",
+      "http": 200,
+      "expected_http": 200,
+      "seconds": 0.149,
+      "passed": true,
+      "stage_seconds": {
+        "S-R1": 7.4e-05,
+        "S-R2": 8.4e-05,
+        "S-R3": 0.000293,
+        "S-R4": 0.001191,
+        "S-R5": 0.142666,
+        "S-R6": 2.5e-05
+      },
+      "stage_budget_passed": true,
+      "model_calls": 0,
+      "model_seconds": [],
+      "error_code": null,
+      "error_stage": null,
+      "row_count": 1
+    },
+    {
+      "case": "Q-05",
+      "http": 200,
+      "expected_http": 200,
+      "seconds": 0.132,
+      "passed": true,
+      "stage_seconds": {
+        "S-R1": 8.3e-05,
+        "S-R2": 0.000124,
+        "S-R3": 7.4e-05,
+        "S-R4": 0.005469,
+        "S-R5": 0.107563,
+        "S-R6": 9.7e-05
+      },
+      "stage_budget_passed": true,
+      "model_calls": 0,
+      "model_seconds": [],
+      "error_code": null,
+      "error_stage": null,
+      "row_count": 50
+    },
+    {
+      "case": "Q-06",
+      "http": 200,
+      "expected_http": 200,
+      "seconds": 0.0466,
+      "passed": true,
+      "stage_seconds": {
+        "S-R1": 7e-05,
+        "S-R2": 0.000138,
+        "S-R3": 3.9e-05,
+        "S-R4": 0.000775,
+        "S-R5": 0.042796,
+        "S-R6": 3.1e-05
+      },
+      "stage_budget_passed": true,
+      "model_calls": 0,
+      "model_seconds": [],
+      "error_code": null,
+      "error_stage": null,
+      "row_count": 6
+    },
+    {
+      "case": "Q-07",
+      "http": 200,
+      "expected_http": 200,
+      "seconds": 1.1459,
+      "passed": true,
+      "stage_seconds": {
+        "S-R1": 6.6e-05,
+        "S-R2": 9e-05,
+        "S-R3": 3e-05,
+        "S-R4": 0.000498,
+        "S-R5": 1.14285,
+        "S-R6": 0.000107
+      },
+      "stage_budget_passed": true,
+      "model_calls": 0,
+      "model_seconds": [],
+      "error_code": null,
+      "error_stage": null,
+      "row_count": 90
+    },
+    {
+      "case": "Q-08",
+      "http": 200,
+      "expected_http": 200,
+      "seconds": 0.0588,
+      "passed": true,
+      "stage_seconds": {
+        "S-R1": 0.000265,
+        "S-R2": 0.000176,
+        "S-R3": 6.4e-05,
+        "S-R4": 0.002581,
+        "S-R5": 0.051669,
+        "S-R6": 8.2e-05
+      },
+      "stage_budget_passed": true,
+      "model_calls": 0,
+      "model_seconds": [],
+      "error_code": null,
+      "error_stage": null,
+      "row_count": 1
+    },
+    {
+      "case": "NL-01",
+      "http": 200,
+      "expected_http": 200,
+      "seconds": 0.8051,
+      "passed": true,
+      "stage_seconds": {
+        "S-R1": 7e-05,
+        "S-R2": 0.771216,
+        "S-R3": 5e-05,
+        "S-R4": 0.000775,
+        "S-R5": 0.029506,
+        "S-R6": 3.3e-05
+      },
+      "stage_budget_passed": true,
+      "model_calls": 1,
+      "model_seconds": [
+        0.767896
+      ],
+      "error_code": null,
+      "error_stage": null,
+      "row_count": 1
+    },
+    {
+      "case": "NL-02",
+      "http": 200,
+      "expected_http": 200,
+      "seconds": 0.7895,
+      "passed": true,
+      "stage_seconds": {
+        "S-R1": 7.1e-05,
+        "S-R2": 0.746372,
+        "S-R3": 8.9e-05,
+        "S-R4": 0.002417,
+        "S-R5": 0.037647,
+        "S-R6": 3.1e-05
+      },
+      "stage_budget_passed": true,
+      "model_calls": 1,
+      "model_seconds": [
+        0.746126
+      ],
+      "error_code": null,
+      "error_stage": null,
+      "row_count": 1
+    },
+    {
+      "case": "REJECT-01",
+      "http": 403,
+      "expected_http": 403,
+      "seconds": 0.002,
+      "passed": true,
+      "stage_seconds": {
+        "S-R1": 8.9e-05,
+        "S-R6": 1.7e-05
+      },
+      "stage_budget_passed": true,
+      "model_calls": 0,
+      "model_seconds": [],
+      "error_code": "UNAUTHORIZED_SCOPE",
+      "error_stage": "S-R1",
+      "row_count": 0
+    },
+    {
+      "case": "SCOPE-1",
+      "http": 200,
+      "profile_matches_member": true,
+      "passed": true
+    },
+    {
+      "case": "SCOPE-2",
+      "http": 200,
+      "profile_matches_member": true,
+      "passed": true
+    },
+    {
+      "case": "CONCURRENT-SCOPE-1",
+      "http": 200,
+      "profile_matches_member": true,
+      "passed": true
+    },
+    {
+      "case": "CONCURRENT-SCOPE-2",
+      "http": 200,
+      "profile_matches_member": true,
+      "passed": true
+    },
+    {
+      "case": "CONCURRENT-SCOPE-3",
+      "http": 200,
+      "profile_matches_member": true,
+      "passed": true
+    },
+    {
+      "case": "CONCURRENT-SCOPE-4",
+      "http": 200,
+      "profile_matches_member": true,
+      "passed": true
+    }
   ],
-  "cases": [],
   "business_rows_logged": 0,
-  "real_db_executed": false,
-  "real_llm_executed": false
+  "real_db_executed": true,
+  "real_llm_executed": true,
+  "cardlab_test_exception": true,
+  "ephemeral_test_tokens": false,
+  "scope": "db_and_groq",
+  "catalog_match": true,
+  "scope_boundary_note": "두 회원 프로필을 원본과 대조하고 교차 동시호출4건을 확인함. 전체 뷰와 제한 계정 RLS 증명은 아님."
 }

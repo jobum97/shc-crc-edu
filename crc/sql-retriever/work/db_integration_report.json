@@ -1,0 +1,116 @@
+{
+  "status": "passed",
+  "missing": [],
+  "cases": [
+    {
+      "case": "Q-01",
+      "http": 200,
+      "expected_http": 200,
+      "seconds": 0.0448,
+      "passed": true,
+      "error_code": null,
+      "error_stage": null,
+      "row_count": 1
+    },
+    {
+      "case": "Q-02",
+      "http": 200,
+      "expected_http": 200,
+      "seconds": 0.0247,
+      "passed": true,
+      "error_code": null,
+      "error_stage": null,
+      "row_count": 1
+    },
+    {
+      "case": "Q-03",
+      "http": 200,
+      "expected_http": 200,
+      "seconds": 0.0272,
+      "passed": true,
+      "error_code": null,
+      "error_stage": null,
+      "row_count": 6
+    },
+    {
+      "case": "Q-04",
+      "http": 200,
+      "expected_http": 200,
+      "seconds": 0.0356,
+      "passed": true,
+      "error_code": null,
+      "error_stage": null,
+      "row_count": 1
+    },
+    {
+      "case": "Q-05",
+      "http": 200,
+      "expected_http": 200,
+      "seconds": 0.0366,
+      "passed": true,
+      "error_code": null,
+      "error_stage": null,
+      "row_count": 50
+    },
+    {
+      "case": "Q-06",
+      "http": 200,
+      "expected_http": 200,
+      "seconds": 0.0281,
+      "passed": true,
+      "error_code": null,
+      "error_stage": null,
+      "row_count": 6
+    },
+    {
+      "case": "Q-07",
+      "http": 200,
+      "expected_http": 200,
+      "seconds": 0.6996,
+      "passed": true,
+      "error_code": null,
+      "error_stage": null,
+      "row_count": 90
+    },
+    {
+      "case": "Q-08",
+      "http": 200,
+      "expected_http": 200,
+      "seconds": 0.0304,
+      "passed": true,
+      "error_code": null,
+      "error_stage": null,
+      "row_count": 1
+    },
+    {
+      "case": "REJECT-01",
+      "http": 403,
+      "expected_http": 403,
+      "seconds": 0.0016,
+      "passed": true,
+      "error_code": "UNAUTHORIZED_SCOPE",
+      "error_stage": "S-R1",
+      "row_count": 0
+    },
+    {
+      "case": "SCOPE-1",
+      "http": 200,
+      "profile_matches_member": true,
+      "passed": true
+    },
+    {
+      "case": "SCOPE-2",
+      "http": 200,
+      "profile_matches_member": true,
+      "passed": true
+    }
+  ],
+  "business_rows_logged": 0,
+  "real_db_executed": true,
+  "real_llm_executed": false,
+  "cardlab_test_exception": true,
+  "ephemeral_test_tokens": true,
+  "scope": "db_only",
+  "catalog_match": true,
+  "scope_boundary_note": "두 회원의 프로필 결과를 회원별 원본값과 메모리에서 대조함. 전체 뷰와 제한 계정 RLS 증명은 아님."
+}
